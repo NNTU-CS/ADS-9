@@ -8,7 +8,6 @@
 bool search(const char &sym, const std::string &string);
 
 std::string searchRoot(const char* filename) {
-
   std::string middle_of_alph = "fghijklmnopqrstuFGHIJKLMNOPQRSTU";
   std::string word = "";
 
@@ -46,7 +45,6 @@ bool search(const char &sym, const std::string &string) {
 }
 
 BST<std::string> makeTree(const char* filename) {
-
   std::string root_val = searchRoot(filename);
 
   BST<std::string> tree;
