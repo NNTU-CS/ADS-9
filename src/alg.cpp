@@ -11,6 +11,8 @@ std::string searchRoot(const char* filename) {
 
   std::string middle_of_alph = "fghijklmnopqrstuFGHIJKLMNOPQRSTU";
   std::string word = "";
+  
+  std::cout << filename << std::endl;
 
   std::ifstream fin(filename);
 
