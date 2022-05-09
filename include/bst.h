@@ -3,13 +3,13 @@
 #define INCLUDE_BST_H_
 #define _CRT_SECURE_NO_WARNINGS
 
+#include <string.h>
 #include <sstream>
 #include <fstream>
 #include <iostream>
 #include <cstring>
 #include <string>
 #include <algorithm>
-#include <string.h>
 
 template < typename T >
 class BST {
@@ -19,7 +19,7 @@ class BST {
       T value;
       int count;
       Node *left;
-      Node *right ;
+      Node *right;
     };
 
  private:
@@ -70,7 +70,7 @@ void BST <T>::add(const T &value) {
 }
 
 template <typename T>
-void BST <T>::delTree (Node *root) {
+void BST <T>::delTree(Node *root) {
   if (root == nullptr) {
     return;
   } else {
