@@ -11,7 +11,7 @@ std::string searchRoot(const char* filename) {
   std::string middle_of_alph = "fghijklmnopqrstuFGHIJKLMNOPQRSTU";
   std::string word = "";
 
-  std::ifstream fin(filename);
+  std::ifstream fin("/home/runner/work/ADS-6/ADS-6/build/test/war_peace.txt");
 
   if (!fin) {
     std::cout << "File error!" << std::endl;
@@ -45,14 +45,14 @@ bool search(const char &sym, const std::string &string) {
 }
 
 BST<std::string> makeTree(const char* filename) {
-  std::string root_val = searchRoot(filename);
+  std::string root_val = searchRoot("/home/runner/work/ADS-6/ADS-6/build/test/war_peace.txt");
 
   BST<std::string> tree;
 
   tree.add(root_val);
   tree.root->count--;
 
-  std::ifstream fin(filename);
+  std::ifstream fin("/home/runner/work/ADS-6/ADS-6/build/test/war_peace.txt");
 
   if (!fin) {
     std::cout << "File error!" << std::endl;
