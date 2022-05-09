@@ -9,6 +9,7 @@
 #include <cstring>
 #include <string>
 #include <sstream>
+#include <algorithm>
 #include <string.h>
 
 template < typename T >
