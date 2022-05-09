@@ -3,9 +3,6 @@
 #define INCLUDE_BST_H_
 #define _CRT_SECURE_NO_WARNINGS
 
-#ifndef INCLUDE_BST_H_
-#define INCLUDE_BST_H_
-
 #include <sstream>
 #include <fstream>
 #include <iostream>
