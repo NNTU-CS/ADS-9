@@ -118,5 +118,4 @@ template <typename T>
 int BST<T>::search(T value) {
   return searchNode(root, value);
 }
-
 #endif  // INCLUDE_BST_H_
