@@ -1,14 +1,16 @@
 // Copyright 2021 NNTU-CS
+#ifndef INCLUDE_BST_H_
+#define INCLUDE_BST_H_
 #define _CRT_SECURE_NO_WARNINGS
 
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
+#include <sstream>
 #include <fstream>
 #include <iostream>
 #include <cstring>
 #include <string>
-#include <sstream>
 #include <algorithm>
 #include <string.h>
 
@@ -25,10 +27,10 @@ class BST {
 
  private:
     Node *root;
-    Node *addNode (Node *, const T&);
-    int depthTree (Node *);
-    int searchNode (Node *, T&);
-    void delTree (Node *);
+    Node *addNode(Node *, const T&);
+    int depthTree(Node *);
+    int searchNode(Node *, const T&);
+    void delTree(Node *);
 
  public:
     BST();
@@ -55,15 +57,12 @@ typename BST <T>::Node *BST <T>::addNode(Node *root , const T &value) {
         root->value = value;
         root->count = 1;
         root->left = root->right = nullptr;
-    }
-    else if (strcmp(root->value.c_str(), value.c_str()) > 0) {
+    } else if (strcmp(root->value.c_str(), value.c_str()) > 0) {
         root->left = addNode(root->left , value);
-    }
-    else if (strcmp(root->value.c_str(), value.c_str()) < 0) {
+    } else if (strcmp(root->value.c_str(), value.c_str()) < 0) {
         root->right = addNode(root->right, value);
-    }
-    else {
-        root->count++;
+    } else {
+         root->count++;
     }
     return root;
 }
@@ -106,7 +105,7 @@ int BST<T>::depth() {
 }
 
 template <typename T>
-int BST<T>::searchNode(Node *root, T& val) {
+int BST<T>::searchNode(Node *root, const T& val) {
   if (nullptr == root) {
     return 0;
   } else if ((strcmp(root->value.c_str(), val.c_str()) == 0)) {
