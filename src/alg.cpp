@@ -26,6 +26,7 @@ std::string searchRoot(const char* filename) {
       std::transform(word.begin(), word.end(), word.begin(), tolower);
       for (int i = 0; i < middle_of_alph.size(); ++i) {
         if (word[0] == middle_of_alph[i]) {
+          fin.close();
           return word;
         }
       }
