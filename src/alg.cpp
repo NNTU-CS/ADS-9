@@ -12,9 +12,7 @@ std::string searchRoot(const char* filename) {
   std::string middle_of_alph = "fghijklmnopqrstuFGHIJKLMNOPQRSTU";
   std::string word = "";
 
-  std::ifstream fin;
-
-  fin.open(filename);
+  std::ifstream fin(filename);
 
   if (!fin) {
     std::cout << "File error!" << std::endl;
@@ -56,9 +54,7 @@ BST<std::string> makeTree(const char* filename) {
   tree.add(root_val);
   tree.root->count--;
 
-  std::ifstream fin;
-
-  fin.open(filename);
+  std::ifstream fin(filename);
 
   if (!fin) {
     std::cout << "File error!" << std::endl;
