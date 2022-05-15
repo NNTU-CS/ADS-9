@@ -5,10 +5,11 @@
 #include  <cstdlib>
 #include  "bst.h"
 
-void lower(std::string &s) {
+std::string lower(std::string s) {
   for (auto& x : s) {
     x = tolower(x);
   }
+  return s;
 }
 
 BST<std::string> makeTree(const char* filename) {
@@ -20,7 +21,7 @@ BST<std::string> makeTree(const char* filename) {
     if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
       w += c;
     } else {
-      lower(w);
+      w = lower(w);
       binTree.add(w);
       w = "";
     }
