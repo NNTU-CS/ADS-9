@@ -14,7 +14,7 @@ struct Node {
 };
 template <typename Tr>
 class BST {
-private:
+ private:
     Node<Tr>* root = nullptr;
     int height = 0;
     void printtree(Node<Tr>* tree, int ind) {
@@ -49,7 +49,7 @@ private:
         delete node;
     }
 
-public:
+ public:
     BST() {
         root = nullptr;
         height = 0;
@@ -72,8 +72,7 @@ public:
                     curnt->prev = prev;
                     if (pos == 1) {
                         prev->r = curnt;
-                    }
-                    else {
+                    } else {
                         prev->l = curnt;
                     }
                     pos = 0;
@@ -92,8 +91,7 @@ public:
             else if (curnt->value == item) {
                 curnt->count++;
                 break;
-            }
-            else {
+            } else {
                 prev = curnt;
                 pos = -1;
                 curnt = curnt->l;
@@ -105,14 +103,11 @@ public:
         while (true) {
             if (curnt == nullptr) {
                 throw std::string("tree is empty!");
-            }
-            else if (curnt->value < item) {
+            } else if (curnt->value < item) {
                 curnt = curnt->r;
-            }
-            else if (curnt->value == item) {
+            } else if (curnt->value == item) {
                 return curnt->count;
-            }
-            else {
+            } else {
                 curnt = curnt->l;
             }
         }
