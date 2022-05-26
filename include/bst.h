@@ -17,7 +17,7 @@ class BST {
 private:
     Node<Tr>* root = nullptr;
     int height = 0;
-    void printtree(node<Tr>* tree, int ind) {
+    void printtree(Node<Tr>* tree, int ind) {
         std::cout << ind << " " << tree->value << std::endl;
         ++ind;
         if (tree->l != nullptr) {
@@ -57,7 +57,7 @@ public:
     ~BST() {
         delnode(root);
     }
-    void add(t item) {
+    void add(Tr item) {
         Node<Tr>* curnt = root;
         Node<Tr>* prev = nullptr;
         int pos = 0;
@@ -100,7 +100,7 @@ public:
             }
         }
     }
-    int search(t item) {
+    int search(Tr item) {
         Node<Tr>* curnt = root;
         while (true) {
             if (curnt == nullptr) {
