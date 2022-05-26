@@ -87,8 +87,7 @@ class BST {
                 prev = curnt;
                 pos = 1;
                 curnt = curnt->r;
-            }
-            else if (curnt->value == item) {
+            } else if (curnt->value == item) {
                 curnt->count++;
                 break;
             } else {
