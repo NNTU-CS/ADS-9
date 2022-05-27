@@ -6,5 +6,20 @@
 #include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
-  // поместите сюда свой код
+  BST<std::string> bst;
+  std::ifstream file(filename);
+  std::string s = "";
+  while (!file.eof()) {
+    s = "";
+    while (true) {
+      char d = file.get();
+      if ((d >= 97 && d <= 122) || (d >= 65 && d <= 90)) {
+        s += tolower(d);
+      } else {
+        break;
+      }
+    }
+    bst.AddNode(s);
+  }
+  return bst;
 }
