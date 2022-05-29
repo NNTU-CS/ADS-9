@@ -22,8 +22,8 @@ BST<std::string> makeTree(const char* filename) {
       }
       slovo += sim;
     } else {
-      if (word != "") {
-        Tree.push(word);
+      if (slovo != "") {
+        Tree.push(slovo);
         slovo = "";
       }
     }
