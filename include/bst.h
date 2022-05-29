@@ -1,7 +1,7 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
-template < typename T > 
+template <typename T>
 class BST {
  public:
   struct Node {
@@ -27,7 +27,7 @@ class BST {
       root->count++;
     }
     return root;
-  } 
+  }
   int depthTree(link root) {
     if (root == nullptr)
       return 0;
