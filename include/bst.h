@@ -58,67 +58,67 @@ class BST {
         delnode(root);
     }
     void add(t item) {
-        node<t>* current = root;
+        node<t>* cur = root;
         node<t>* prev = nullptr;
         int pos = 0;
         while (true) {
-            if (current == nullptr) {
-                current = new node<t>;
-                current->left = nullptr;
-                current->right = nullptr;
-                current->value = item;
-                current->count = 1;
+            if (cur == nullptr) {
+                cur = new node<t>;
+                cur->left = nullptr;
+                cur->right = nullptr;
+                cur->value = item;
+                cur->count = 1;
                 if (prev != nullptr) {
-                    current->prev = prev;
+                    cur->prev = prev;
                     if (pos == 1) {
-                        prev->right = current;
+                        prev->right = cur;
                     } else {
-                        prev->left = current;
+                        prev->left = cur;
                     }
                     pos = 0;
                     prev = nullptr;
                 }
                 if (root == nullptr) {
-                    root = current;
+                    root = cur;
                 }
                 break;
             }
-            if (current->value < item) {
-                prev = current;
+            if (cur->value < item) {
+                prev = cur;
                 pos = 1;
-                current = current->right;
-            } else if (current->value == item) {
-                current->count++;
+                cur = cur->right;
+            } else if (cur->value == item) {
+                cur->count++;
                 break;
             } else {
-                prev = current;
+                prev = cur;
                 pos = -1;
-                current = current->left;
+                cur = cur->left;
             }
         }
     }
     int search(t item) {
-        node<t>* current = root;
+        node<t>* cur = root;
         while (true) {
-            if (current == nullptr) {
+            if (cur == nullptr) {
                 throw std::string("tree is empty!");
-            } else if (current->value < item) {
-                current = current->right;
-            } else if (current->value == item) {
-                return current->count;
+            } else if (cur->value < item) {
+                cur = cur->right;
+            } else if (cur->value == item) {
+                return cur->count;
             } else {
-                current = current->left;
+                cur = cur->left;
             }
         }
     }
-    int depth() {
-        node<t>* current = root;
-        getdepth(current, 0);
-        return height - 1;
-    }
     void print() {
-        node<t>* current = root;
-        printtree(current, 0);
+        node<t>* cur = root;
+        printtree(cur, 0);
+    }
+    int depth() {
+        node<t>* cur = root;
+        getdepth(cur, 0);
+        return height - 1;
     }
 };
 #endif  // INCLUDE_BST_H_
