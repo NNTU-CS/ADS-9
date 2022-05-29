@@ -2,7 +2,6 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include <string>
-#include <iostream>
 
 template <typename t>
 struct node {
@@ -17,16 +16,6 @@ class BST {
  private:
     node<t>* root = nullptr;
     int height = 0;
-    void printtree(node<t>* tree, int index) {
-        std::cout << index << " " << tree->value << std::endl;
-        ++index;
-        if (tree->left != nullptr) {
-            printtree(tree->left, index);
-        }
-        if (tree->right != nullptr) {
-            printtree(tree->right, index);
-        }
-    }
     void getdepth(node<t>* tree, int index) {
         ++index;
         if (tree->left != nullptr) {
@@ -58,66 +47,62 @@ class BST {
         delnode(root);
     }
     void add(t item) {
-        node<t>* cur = root;
+        node<t>* current = root;
         node<t>* prev = nullptr;
         int pos = 0;
         while (true) {
-            if (cur == nullptr) {
-                cur = new node<t>;
-                cur->left = nullptr;
-                cur->right = nullptr;
-                cur->value = item;
-                cur->count = 1;
+            if (current == nullptr) {
+                current = new node<t>;
+                current->left = nullptr;
+                current->right = nullptr;
+                current->value = item;
+                current->count = 1;
                 if (prev != nullptr) {
-                    cur->prev = prev;
+                    current->prev = prev;
                     if (pos == 1) {
-                        prev->right = cur;
+                        prev->right = current;
                     } else {
-                        prev->left = cur;
+                        prev->left = current;
                     }
                     pos = 0;
                     prev = nullptr;
                 }
                 if (root == nullptr) {
-                    root = cur;
+                    root = current;
                 }
                 break;
             }
-            if (cur->value < item) {
-                prev = cur;
+            if (current->value < item) {
+                prev = current;
                 pos = 1;
-                cur = cur->right;
-            } else if (cur->value == item) {
-                cur->count++;
+                current = current->right;
+            } else if (current->value == item) {
+                current->count++;
                 break;
             } else {
-                prev = cur;
+                prev = current;
                 pos = -1;
-                cur = cur->left;
+                current = current->left;
             }
         }
     }
     int search(t item) {
-        node<t>* cur = root;
+        node<t>* current = root;
         while (true) {
-            if (cur == nullptr) {
+            if (current == nullptr) {
                 throw std::string("tree is empty!");
-            } else if (cur->value < item) {
-                cur = cur->right;
-            } else if (cur->value == item) {
-                return cur->count;
+            } else if (current->value < item) {
+                current = current->right;
+            } else if (current->value == item) {
+                return current->count;
             } else {
-                cur = cur->left;
+                current = current->left;
             }
         }
     }
-    void print() {
-        node<t>* cur = root;
-        printtree(cur, 0);
-    }
     int depth() {
-        node<t>* cur = root;
-        getdepth(cur, 0);
+        node<t>* current = root;
+        getdepth(current, 0);
         return height - 1;
     }
 };
