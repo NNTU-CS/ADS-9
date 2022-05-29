@@ -5,15 +5,14 @@
 #include <cstdlib>
 #include <string>
 #include "bst.h"
-using namespace std;
 
-BST<string> makeTree(const char* filename) {
-  BST<string> Tree;
-  ifstream file(filename);
+BST<std::string> makeTree(const char* filename) {
+  BST<std::string> Tree;
+  std::ifstream file(filename);
   if (!file) {
-    throw string("File search error");
+    throw std::string("File search error");
   }
-  string slovo = "";
+  std::string slovo = "";
   while (!file.eof()) {
     char chr = file.get();
     int sim = chr;
