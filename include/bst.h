@@ -2,21 +2,32 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include <string>
+#include <iostream>
 
-template <typename T>
+template <typename t>
 struct node {
-    node<T>* right = nullptr;
-    node<T>* left = nullptr;
-    node<T>* prev = nullptr;
+    node<t>* right = nullptr;
+    node<t>* left = nullptr;
+    node<t>* prev = nullptr;
     int count = 0;
-    T value = "";
+    t value = "";
 };
-template <typename T>
+template <typename t>
 class BST {
  private:
-    node<T>* root = nullptr;
+    node<t>* root = nullptr;
     int height = 0;
-    void getdepth(node<T>* tree, int index) {
+    void printtree(node<t>* tree, int index) {
+        std::cout << index << " " << tree->value << std::endl;
+        ++index;
+        if (tree->left != nullptr) {
+            printtree(tree->left, index);
+        }
+        if (tree->right != nullptr) {
+            printtree(tree->right, index);
+        }
+    }
+    void getdepth(node<t>* tree, int index) {
         ++index;
         if (tree->left != nullptr) {
             getdepth(tree->left, index);
@@ -28,7 +39,7 @@ class BST {
             height = index;
         }
     }
-    void delnode(node<T>* node) {
+    void delnode(node<t>* node) {
         if (node->left != nullptr) {
             delnode(node->left);
         }
@@ -46,63 +57,67 @@ class BST {
     ~BST() {
         delnode(root);
     }
-    void push(T item) {
-        node<T>* current = root;
-        node<T>* prev = nullptr;
+    void add(t item) {
+        node<t>* cur = root;
+        node<t>* prev = nullptr;
         int pos = 0;
         while (true) {
-            if (current == nullptr) {
-                current = new node<T>;
-                current->left = nullptr;
-                current->right = nullptr;
-                current->value = item;
-                current->count = 1;
+            if (cur == nullptr) {
+                cur = new node<t>;
+                cur->left = nullptr;
+                cur->right = nullptr;
+                cur->value = item;
+                cur->count = 1;
                 if (prev != nullptr) {
-                    current->prev = prev;
+                    cur->prev = prev;
                     if (pos == 1) {
-                        prev->right = current;
+                        prev->right = cur;
                     } else {
-                        prev->left = current;
+                        prev->left = cur;
                     }
                     pos = 0;
                     prev = nullptr;
                 }
                 if (root == nullptr) {
-                    root = current;
+                    root = cur;
                 }
                 break;
             }
-            if (current->value < item) {
-                prev = current;
+            if (cur->value < item) {
+                prev = cur;
                 pos = 1;
-                current = current->right;
-            } else if (current->value == item) {
-                current->count++;
+                cur = cur->right;
+            } else if (cur->value == item) {
+                cur->count++;
                 break;
             } else {
-                prev = current;
+                prev = cur;
                 pos = -1;
-                current = current->left;
+                cur = cur->left;
             }
         }
     }
-    int search(T item) {
-        node<T>* current = root;
+    int search(t item) {
+        node<t>* cur = root;
         while (true) {
-            if (current == nullptr) {
-                throw std::string("EMPTY!");
-            } else if (current->value < item) {
-                current = current->right;
-            } else if (current->value == item) {
-                return current->count;
+            if (cur == nullptr) {
+                throw std::string("tree is empty!");
+            } else if (cur->value < item) {
+                cur = cur->right;
+            } else if (cur->value == item) {
+                return cur->count;
             } else {
-                current = current->left;
+                cur = cur->left;
             }
         }
+    }
+    void print() {
+        node<t>* cur = root;
+        printtree(cur, 0);
     }
     int depth() {
-        node<T>* current = root;
-        getdepth(current, 0);
+        node<t>* cur = root;
+        getdepth(cur, 0);
         return height - 1;
     }
 };
