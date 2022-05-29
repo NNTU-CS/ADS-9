@@ -46,7 +46,7 @@ class BST {
     ~BST() {
         delnode(root);
     }
-    void add(T item) {
+    void push(T item) {
         node<T>* current = root;
         node<T>* prev = nullptr;
         int pos = 0;
