@@ -2,7 +2,6 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include <string>
-using namespace std;
 
 template <typename T>
 struct node {
@@ -91,7 +90,7 @@ class BST {
         node<T>* current = root;
         while (true) {
             if (current == nullptr) {
-                throw string("tree is empty!");
+                throw std::string("EMPTY!");
             } else if (current->value < item) {
                 current = current->right;
             } else if (current->value == item) {
