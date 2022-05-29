@@ -48,7 +48,7 @@ class BST {
       return (R + 1);
     }
   }
-  public:
+   public:
   BST() :root(nullptr) {}
   void add(T nz) {
     root = addNode(root, nz);
