@@ -23,7 +23,7 @@ BST<std::string> makeTree(const char* filename) {
       slovo += sim;
     } else {
       if (slovo != "") {
-        Tree.push(slovo);
+        Tree.add(slovo);
         slovo = "";
       }
     }
