@@ -17,10 +17,7 @@ BST<std::string> makeTree(const char* filename) {
         char chr = file.get();
         int sim = chr;
         if ((sim >= 65 && sim <= 90) || (sim >= 97 && sim <= 122)) {
-            if (sim >= 65 && sim <= 90) {
-                sim = sim - 32;
-            }
-            slovo += sim;
+            word += tolower(ascii);
         } else {
             if (slovo != "") {
                 tree.add(slovo);
