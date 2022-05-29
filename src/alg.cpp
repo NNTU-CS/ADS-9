@@ -6,11 +6,11 @@
 #include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
-  BST<std::string> T;
+  BST<std::string> TR;
     std::ifstream file(filename);
     if (!file) {
         std::cout << "File error!" << std::endl;
-        return T;
+        return TR;
     }
     char e;
     std::string mr = "";
@@ -22,10 +22,10 @@ BST<std::string> makeTree(const char* filename) {
         if (e >= 'a' && e <= 'z') {
             mr = mr + e;
         } else {
-            T.add(mr);
+            TR.add(mr);
             mr = "";
         }
     }
     file.close();
-    return T;
+    return TR;
 }
