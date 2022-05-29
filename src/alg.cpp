@@ -5,7 +5,7 @@
 #include  <cstdlib>
 #include  "bst.h"
 
-void lower(std::string &str) {
+void lower(std::string str) {
 std::string lower(std::string str) {
   for (auto& n : str) {
     n = tolower(n);
