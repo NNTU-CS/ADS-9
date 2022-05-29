@@ -2,68 +2,109 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include <string>
+using namespace std;
 
-template <typename t>
+template <typename T>
 struct node {
-    node<t>* right = nullptr;
-    node<t>* left = nullptr;
-    node<t>* prev = nullptr;
+    node<T>* right = nullptr;
+    node<T>* left = nullptr;
+    node<T>* prev = nullptr;
     int count = 0;
-    t value = "";
+    T value = "";
 };
-template <typename t>
+template <typename T>
 class BST {
-  private:
-  node<t>* root = nullptr;
-  int height = 0;
-  
-  public:
-  BST() {
-    root = nullptr;
-    height = 0;
-  }
-  ~BST() {
-    delnode(root);
-  }
-  void add(t item) {
-    node<t>* cur = root;
-    node<t>* prev = nullptr;
-    int pos = 0;
-    while (true) {
-      if (cur == nullptr) {
-        cur = new node<t>;
-        cur->left = nullptr;
-        cur->right = nullptr;
-        cur->value = item;
-        cur->count = 1;
-        if (prev != nullptr) {
-          cur->prev = prev;
-          if (pos == 1) {
-            prev->right = cur;
-          } else {
-            prev->left = cur;
-          }
-          pos = 0;
-          prev = nullptr;
+ private:
+    node<T>* root = nullptr;
+    int height = 0;
+    void getdepth(node<T>* tree, int index) {
+        ++index;
+        if (tree->left != nullptr) {
+            getdepth(tree->left, index);
         }
-        if (root == nullptr) {
-          root = cur;
+        if (tree->right != nullptr) {
+            getdepth(tree->right, index);
         }
-        break;
-      }
-      if (cur->value < item) {
-        prev = cur;
-        pos = 1;
-        cur = cur->right;
-      } else if (cur->value == item) {
-        cur->count++;
-        break;
-      } else {
-        prev = cur;
-        pos = -1;
-        cur = cur->left;
-      }
+        if (index > height) {
+            height = index;
+        }
     }
-  }
+    void delnode(node<T>* node) {
+        if (node->left != nullptr) {
+            delnode(node->left);
+        }
+        if (node->right != nullptr) {
+            delnode(node->right);
+        }
+        delete node;
+    }
+
+ public:
+    BST() {
+        root = nullptr;
+        height = 0;
+    }
+    ~BST() {
+        delnode(root);
+    }
+    void add(T item) {
+        node<T>* current = root;
+        node<T>* prev = nullptr;
+        int pos = 0;
+        while (true) {
+            if (current == nullptr) {
+                current = new node<T>;
+                current->left = nullptr;
+                current->right = nullptr;
+                current->value = item;
+                current->count = 1;
+                if (prev != nullptr) {
+                    current->prev = prev;
+                    if (pos == 1) {
+                        prev->right = current;
+                    } else {
+                        prev->left = current;
+                    }
+                    pos = 0;
+                    prev = nullptr;
+                }
+                if (root == nullptr) {
+                    root = current;
+                }
+                break;
+            }
+            if (current->value < item) {
+                prev = current;
+                pos = 1;
+                current = current->right;
+            } else if (current->value == item) {
+                current->count++;
+                break;
+            } else {
+                prev = current;
+                pos = -1;
+                current = current->left;
+            }
+        }
+    }
+    int search(T item) {
+        node<T>* current = root;
+        while (true) {
+            if (current == nullptr) {
+                throw string("tree is empty!");
+            } else if (current->value < item) {
+                current = current->right;
+            } else if (current->value == item) {
+                return current->count;
+            } else {
+                current = current->left;
+            }
+        }
+    }
+    int depth() {
+        node<T>* current = root;
+        getdepth(current, 0);
+        return height - 1;
+    }
 };
 #endif  // INCLUDE_BST_H_
