@@ -7,22 +7,26 @@
 #include "bst.h"
 using namespace std;
 
-BST<std::string> makeTree(const char* filename) {
-  BST<std::string> Tree;
+BST<string> makeTree(const char* filename) {
+  BST<string> Tree;
   ifstream file(filename);
-  if (!file) {
-    throw std::string("file not found!");
+  if (!file.open()) {
+    throw string("File search error");
   }
-  std::string word = "";
+  string slovo = "";
   while (!file.eof()) {
     char chr = file.get();
-    int ascii = chr;
-    if ((ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122)) {
-      word += tolower(ascii);
+    int sim = chr;
+    if ((sim >= 65 && sim <= 90) || (sim >= 97 && sim <= 122)) {
+      if (sim >=65 && sim <= 90)
+      {
+        sim -= 32;
+      }
+      slovo += sim;
     } else {
       if (word != "") {
-        Tree.add(word);
-        word = "";
+        Tree.push(word);
+        slovo = "";
       }
     }
   }
