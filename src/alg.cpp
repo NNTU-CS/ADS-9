@@ -8,23 +8,26 @@
 
 BST<std::string> makeTree(const char* filename) {
    BST<std::string> tree;
-    std::ifstream file(filename);
-    if (!file) {
-        throw std::string("file not found!");
-    }
-    std::string word = "";
-    while (!file.eof()) {
-        char chr = file.get();
-        int ascii = chr;
-        if ((ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122)) {
-            word += tolower(ascii);
-        } else {
-            if (word != "") {
-                tree.add(word);
-                word = "";
-            }
-        }
-    }
-    file.close();
-    return tree;
+   std::ifstream file(filename);
+   if (!file) {
+      throw std::string("file not found!");
+   }
+   std::string word = "";
+   while (!file.eof()) {
+      char chr = file.get();
+      int ascii = chr;
+      if ((ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122)) {
+      if (sim >=65 && sim <= 90) {
+        sim -= 32;
+      }
+      slovo += sim;
+      } else {
+         if (word != "") {
+            tree.add(word);
+            word = "";
+         }
+      }
+   }
+   file.close();
+   return tree;
 }
