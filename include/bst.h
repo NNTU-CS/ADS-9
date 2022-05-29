@@ -17,16 +17,6 @@ class BST {
  private:
     node<t>* root = nullptr;
     int height = 0;
-    void printtree(node<t>* tree, int index) {
-        std::cout << index << " " << tree->value << std::endl;
-        ++index;
-        if (tree->left != nullptr) {
-            printtree(tree->left, index);
-        }
-        if (tree->right != nullptr) {
-            printtree(tree->right, index);
-        }
-    }
     void getdepth(node<t>* tree, int index) {
         ++index;
         if (tree->left != nullptr) {
@@ -110,10 +100,6 @@ class BST {
                 cur = cur->left;
             }
         }
-    }
-    void print() {
-        node<t>* cur = root;
-        printtree(cur, 0);
     }
     int depth() {
         node<t>* cur = root;
