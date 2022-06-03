@@ -5,7 +5,6 @@
 #include  <cstdlib>
 #include  "bst.h"
 
-void lower(std::string str) {
 std::string lower(std::string str) {
   for (auto& n : str) {
     n = tolower(n);
@@ -22,7 +21,6 @@ BST<std::string> makeTree(const char* filename) {
     if ((d >= 'a' && d <= 'z') || (d >= 'A' && d <= 'Z')) {
       ff = ff + d;
     } else {
-      lower(ff);
       ff = lower(ff);
       der.add(ff);
       ff = "";
