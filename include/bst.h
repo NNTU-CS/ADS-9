@@ -7,8 +7,8 @@ class BST {
   struct Node {
     T vl;
     int ch;
-    Node h;
-    Noder;
+    Node *h;
+    Node *k;
   };
   Node root;
   Node addNode(Node root, T nz) {
@@ -19,7 +19,7 @@ class BST {
     } else if (root->vl > nz) {
       root->h = addNode(root->h, nz);
     } else if (root->vl < nz) {
-      root->r = addNode(root->r, nz);
+      root->k = addNode(root->k, nz);
     } else {
       (root->ch)++;
     }
@@ -33,7 +33,7 @@ class BST {
     } else if (root->vl > nz) {
       return srchValue(root->l, nz);
     } else {
-      return srchValue(root->r, nz);
+      return srchValue(root->k, nz);
     }
   }
   int hghtTree(Node* root) {
@@ -41,7 +41,7 @@ class BST {
       return 0;
     }
     int H = hghtTree(root->h);
-    int R = hghtTree(root->r);
+    int R = hghtTree(root->k);
     if (H > R) {
       return (H + 1);
     } else {
