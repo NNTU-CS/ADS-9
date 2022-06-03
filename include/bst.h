@@ -1,6 +1,7 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
+
 template<typename T>
 class BST {
  private:
@@ -10,12 +11,12 @@ class BST {
     Node *h;
     Node *k;
   };
-  Node root;
-  Node addNode(Node root, T nz) {
+  Node *root;
+  Node* addNode(Node *root, T nz) {
     if (!root) {
       root = new Node;
       root->vl = nz;
-      root->h = root->r = nullptr;
+      root->h = root->k = nullptr;
     } else if (root->vl > nz) {
       root->h = addNode(root->h, nz);
     } else if (root->vl < nz) {
@@ -25,40 +26,40 @@ class BST {
     }
     return root;
   }
-  int srchValue(Node root, T nz) {
+  int searchValue(Node* root, T nz) {
     if (!root) {
       return 0;
     } else if (root->vl == nz) {
       return root->ch;
     } else if (root->vl > nz) {
-      return srchValue(root->l, nz);
+      return searchValue(root->h, nz);
     } else {
-      return srchValue(root->k, nz);
+      return searchValue(root->k, nz);
     }
   }
-  int hghtTree(Node* root) {
+  int heightTree(Node* root) {
     if (!root) {
       return 0;
     }
-    int H = hghtTree(root->h);
-    int R = hghtTree(root->k);
-    if (H > R) {
+    int K = heightTree(root->k);
+    int H = heightTree(root->h);
+    if (H > K) {
       return (H + 1);
     } else {
-      return (R + 1);
+      return (K + 1);
     }
   }
- 
-    public:
+
+ public:
   BST() :root(nullptr) {}
   void add(T nz) {
     root = addNode(root, nz);
   }
-  int srch(T nz) {
-    return srchValue(root, nz) + 1;
+  int search(T nz) {
+    return searchValue(root, nz) + 1;
   }
-  int glub() {
-    return hghtTree(root) - 1;
+  int depth() {
+    return heightTree(root) - 1;
   }
 };
 
