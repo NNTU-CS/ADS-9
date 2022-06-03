@@ -14,14 +14,19 @@ std::string lower(std::string str) {
 }
 
 BST<std::string> makeTree(const char* filename) {
-  if ((d >= 'A' && d <= 'Z') || (d >= 'a' && d <= 'z')) {
-    ff += d;
-  } else {
-    lower(ff);
-    ff = lower(ff);
-    binTree.add(ff);
-    ff = "";
+  BST<std::string> der;
+  std::ifstream mr(filename);
+  std::string w = "";
+  while (!mr.eof()) {
+    char d = mr.get();
+    if ((d >= 'a' && d <= 'z') || (d >= 'A' && d <= 'Z')) {
+      ff = ff + d;
+    } else {
+      lower(ff);
+      ff = lower(ff);
+      der.add(ff);
+      ff = "";
+    }
   }
-}
-return binTree;
+  return der;
 }
