@@ -15,7 +15,7 @@ std::string lower(std::string str) {
 BST<std::string> makeTree(const char* filename) {
   BST<std::string> der;
   std::ifstream mr(filename);
-  std::string w = "";
+  std::string ff = "";
   while (!mr.eof()) {
     char d = mr.get();
     if ((d >= 'a' && d <= 'z') || (d >= 'A' && d <= 'Z')) {
