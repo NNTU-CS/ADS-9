@@ -4,7 +4,31 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "bst.h"
-
 BST<std::string> makeTree(const char* filename) {
-  // поместите сюда свой код
+  BST<std::string> MyTree;
+  std::ifstream fin(filename);
+  char temp;
+  std::string word = "";
+  if (!fin.is_open()) {
+      std::cout << "Error! File can't be open!" << std::endl;
+      return MyTree;
+  }
+  while (!fin.eof()) {
+      temp = fin.get();
+      if (temp >= 'A') {
+          if (temp <= 'Z') {
+              temp = temp + 32;
+          }
+      }
+      if (temp >= 'a') {
+          if (temp <= 'z') {
+              word = word + temp;
+          }
+      } else {
+          MyTree.Add(word);
+          word = "";
+      }
+  }
+  fin.close();
+  return MyTree;
 }
