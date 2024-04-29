@@ -3,8 +3,38 @@
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
+#include <string>
+#include <cctype>
+#include <vector>
 #include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
-  // поместите сюда свой код
+    std::ifstream file(filename);
+    if (!file) {
+        std::cerr << "Error opening file: " << filename << std::endl;
+        return BST<std::string>();
+    }
+
+    BST<std::string> tree;
+    std::string word;
+    char ch;
+
+    while (file.get(ch)) {
+        if (std::isalpha(ch)) {
+            // Преобразуем символ в нижний регистр
+            ch = std::tolower(ch);
+            word += ch;
+        } else if (!word.empty()) {
+            // Если мы встретили не букву, а слово не пустое, добавляем его в дерево
+            tree.insert(word);
+            word.clear();
+        }
+    }
+
+    if (!word empty()) {
+        tree.insert(word);
+    }
+
+    file.close();
+    return tree;
 }
