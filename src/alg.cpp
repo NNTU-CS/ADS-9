@@ -21,11 +21,9 @@ BST<std::string> makeTree(const char* filename) {
 
     while (file.get(ch)) {
         if (std::isalpha(ch)) {
-            // Преобразуем символ в нижний регистр
             ch = std::tolower(ch);
             word += ch;
         } else if (!word.empty()) {
-            // Если мы встретили не букву, а слово не пустое, добавляем его в дерево
             tree.insert(word);
             word.clear();
         }
