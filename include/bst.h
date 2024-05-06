@@ -1,6 +1,7 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
+#include <string>
 
 template <typename T>
 struct Node {
@@ -13,7 +14,7 @@ template <typename T>
 Node<T>* makeTree(const char* filename);
 
 template <typename T>
-void insert(Node<T>*& root, Node<T>* node);
+void insert(Node<T>* root, Node<T>* node);
 
 template <typename T>
 Node<T>* search(Node<T>* root, const std::string& word);
