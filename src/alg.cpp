@@ -6,7 +6,7 @@
 #include  "bst.h"
 
 std::string lower(std::string s) {
-    for (auto &x: s) {
+    for (auto & x : s) {
         x = tolower(x);
     }
     return s;
