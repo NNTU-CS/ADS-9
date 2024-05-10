@@ -50,7 +50,7 @@ void BST<T>::printTree(Node* root) {
     return;
   printTree(root->left);
   for (int i = 0; i < root->count; i++)
-    cout << root->value << " ";
+    std::cout << root->value << " ";
   printTree(root->right);
 }
 template<typename T>
@@ -85,12 +85,12 @@ BST<T>::~BST() {
 BST<std::string> makeTree(const char* filename) {
   std::ifstream file(filename);
   if (!file) {
-		std::cout << "File error!" << std::endl;
+    std::cout << "File error!" << std::endl;
   }
-  BST<string> bst;
+  BST<std::string> bst;
   int flag = 0;
   char ch;
-  string word;
+  std::string word;
   while (!file.eof()) {
     ch = file.get();
 		if (ch >= 'A' and ch <= 'Z') {
