@@ -35,7 +35,7 @@ int BST<T>::depthTree(Node* root) {
     return 0;
   int hl = depthTree(root->left);
   int hr = depthTree(root->right);
-  return (hl > hr) ? (hl + 1) : (hr + 1);
+  return (hl > hr) ? (hl) : (hr);
 }
 template<typename T>
 int BST<T>::search(T value) {
