@@ -21,7 +21,7 @@ template <typename T> class BST {
     } else if (data < node->data) {
         add(node->left, data);
     } else if (data > node->data) {
-        add(node->rightm, data);
+        add(node->right, data);
     } else {
         node->count++;
     }
