@@ -7,7 +7,6 @@
 
 template<typename T>
 class Node {
-    
  public:
     T key;
     int count;
@@ -18,7 +17,6 @@ class Node {
 
 template<typename T>
 class BST {
-
  private:
     Node<T> *root;
 
