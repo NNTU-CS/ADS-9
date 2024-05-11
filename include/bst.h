@@ -1,6 +1,7 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
+#include <algorithm>
 
 template <typename T>
 class BST {
@@ -9,7 +10,7 @@ class BST {
         T value;
         int count;
         Node* left, * right;
-        Node(const T& val) : value(val), count(1),
+        explicit Node(const T& val) : value(val), count(1),
             left(nullptr), right(nullptr) {}
     };
     Node* root;
@@ -18,7 +19,7 @@ class BST {
             return new Node(value);
         if (value < node->value)
             node->left = insert(node->left, value);
-        else if (value > node->value) 
+        else if (value > node->value)
             node->right = insert(node->right, value);
         else
             node->count++;
