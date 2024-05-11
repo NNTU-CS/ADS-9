@@ -4,7 +4,7 @@
 
 template <typename T>
 class BST {
-private:
+ private:
     struct Node {
         T value;
         int count;
@@ -33,11 +33,12 @@ private:
         return node ? 1 + std::max(depth(node->left),
             depth(node->right)) : 0;
     }
-public:
+
+ public:
     BST() : root(nullptr) {}
     void add(const T& value) { root = insert(root, value); }
     int search(const T& value) { return search(root, value); }
-    int depth() { return depth(root); }
+    int depth() { return depth(root) - 1; }
 };
 
 #endif  // INCLUDE_BST_H_
