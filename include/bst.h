@@ -7,7 +7,8 @@
 
 template<typename T>
 class Node {
-public:
+    
+ public:
     T key;
     int count;
     Node *left, *right;
@@ -17,7 +18,8 @@ public:
 
 template<typename T>
 class BST {
-private:
+
+ private:
     Node<T> *root;
 
     void insert(Node<T> *node, const T &key) {
@@ -59,7 +61,7 @@ private:
         return std::max(get_depth(node->left), get_depth(node->right)) + 1;
     }
 
-public:
+ public:
     BST() : root(nullptr) {}
 
     void insert(const T &key) {
