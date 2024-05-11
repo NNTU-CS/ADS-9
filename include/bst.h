@@ -4,7 +4,7 @@
 
 template <typename T>
 class BST {
- private:
+private:
     struct Node {
         T value;
         int count;
@@ -18,7 +18,7 @@ class BST {
             return new Node(value);
         if (value < node->value)
             node->left = insert(node->left, value);
-        else if (value > node->value)
+        else if (value > node->value) 
             node->right = insert(node->right, value);
         else
             node->count++;
@@ -33,8 +33,7 @@ class BST {
         return node ? 1 + std::max(depth(node->left),
             depth(node->right)) : 0;
     }
-
- public:
+public:
     BST() : root(nullptr) {}
     void add(const T& value) { root = insert(root, value); }
     int search(const T& value) { return search(root, value); }
