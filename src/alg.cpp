@@ -5,19 +5,20 @@
 #include  <cstdlib>
 #include  "bst.h"
 
-bool isAlpha(char c) {
-    return std::isalpha(c);
-}
-
-bool isEmpty(const std::string &word) {
-    return word.empty();
-}
-
-std::string toLower(char c) {
-    return std::string(1, std::tolower(c));
-}
 
 BST<std::string> makeTree(const char* filename) {
+  
+    bool isAlpha(char c) {
+        return std::isalpha(c);
+    }
+
+    bool isEmpty(const std::string &word) {
+        return word.empty();
+    }
+
+    std::string toLower(char c) {
+        return std::string(1, std::tolower(c));
+    }
     std::ifstream file(filename);
     BST<std::string> tree;
     std::string word;
