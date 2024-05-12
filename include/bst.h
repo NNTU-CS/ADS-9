@@ -1,3 +1,4 @@
+// Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
@@ -5,8 +6,8 @@
 #include <algorithm>
 
 template <typename T>
-class Node
-{
+class Node {
+
 public:
     T key;
     int count;
@@ -16,31 +17,23 @@ public:
 };
 
 template <typename T>
-class BST
-{
+class BST {
+
 private:
     Node<T> *root;
 
-    void insert(Node<T> *node, const T &key)
-    {
-        if (node->key == key)
-        {
+    void insert(Node<T> *node, const T &key) {
+        if (node->key == key) {
             node->count++;
             return;
-        }
-        else if (node->key > key)
-        {
-            if (node->left == nullptr)
-            {
+        } else if (node->key > key) {
+            if (node->left == nullptr) {
                 node->left = new Node<T>(key);
                 return;
             }
             insert(node->left, key);
-        }
-        else
-        {
-            if (node->right == nullptr)
-            {
+        } else {
+            if (node->right == nullptr) {
                 node->right = new Node<T>(key);
                 return;
             }
@@ -48,30 +41,23 @@ private:
         }
     }
 
-    int search(Node<T> *node, const T &key)
-    {
-        if (node == nullptr)
-        {
+    int search(Node<T> *node, const T &key) {
+        if (node == nullptr) {
             return 0;
         }
-        if (node->key == key)
-        {
+        if (node->key == key) {
             return node->count;
         }
-        else if (node->key > key)
-        {
+        else if (node->key > key) {
             return search(node->left, key);
         }
-        else
-        {
+        else {
             return search(node->right, key);
         }
     }
 
-    int get_depth(Node<T> *node)
-    {
-        if (node == nullptr)
-        {
+    int get_depth(Node<T> *node) {
+        if (node == nullptr) {
             return 0;
         }
         return std::max(get_depth(node->left), get_depth(node->right)) + 1;
@@ -80,23 +66,19 @@ private:
 public:
     BST() : root(nullptr) {}
 
-    void insert(const T &key)
-    {
-        if (root == nullptr)
-        {
+    void insert(const T &key) {
+        if (root == nullptr) {
             root = new Node<T>(key);
             return;
         }
         insert(root, key);
     }
 
-    int search(const T &key)
-    {
+    int search(const T &key) {
         return search(root, key);
     }
 
-    int depth()
-    {
+    int depth() {
         return get_depth(root) - 1;
     }
 };
