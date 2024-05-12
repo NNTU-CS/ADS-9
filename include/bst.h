@@ -1,81 +1,104 @@
-// Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
 #include <string>
 #include <algorithm>
-#include <memory>
 
-template<typename T>
-class bst {
+template <typename T>
+class Node
+{
+public:
+    T key;
+    int count;
+    Node *left, *right;
+
+    explicit Node(T k) : key(k), count(1), left(nullptr), right(nullptr) {}
+};
+
+template <typename T>
+class BST
+{
 private:
-    struct Node {
-        T key;
-        int count;
-        std::unique_ptr<Node> left;
-        std::unique_ptr<Node> right;
+    Node<T> *root;
 
-        Node(T k) : key(k), count(1), left(nullptr), right(nullptr) {}
-    };
-
-    std::unique_ptr<Node> root;
-
-    void insert(std::unique_ptr<Node> &node, const T &key) {
-        if (node->key == key) {
+    void insert(Node<T> *node, const T &key)
+    {
+        if (node->key == key)
+        {
             node->count++;
-        } else if (node->key > key) {
-            if (!node->left) {
-                node->left = std::make_unique<Node>(key);
-            } else {
-                insert(node->left, key);
+            return;
+        }
+        else if (node->key > key)
+        {
+            if (node->left == nullptr)
+            {
+                node->left = new Node<T>(key);
+                return;
             }
-        } else {
-            if (!node->right) {
-                node->right = std::make_unique<Node>(key);
-            } else {
-                insert(node->right, key);
+            insert(node->left, key);
+        }
+        else
+        {
+            if (node->right == nullptr)
+            {
+                node->right = new Node<T>(key);
+                return;
             }
+            insert(node->right, key);
         }
     }
 
-    int search(const std::unique_ptr<Node> &node, const T &key) {
-        if (!node) {
+    int search(Node<T> *node, const T &key)
+    {
+        if (node == nullptr)
+        {
             return 0;
-        } else if (node->key == key) {
+        }
+        if (node->key == key)
+        {
             return node->count;
-        } else if (node->key > key) {
+        }
+        else if (node->key > key)
+        {
             return search(node->left, key);
-        } else {
+        }
+        else
+        {
             return search(node->right, key);
         }
     }
 
-    int getDepth(const std::unique_ptr<Node> &node) {
-        if (!node) {
+    int get_depth(Node<T> *node)
+    {
+        if (node == nullptr)
+        {
             return 0;
-        } else {
-            return std::max(getDepth(node->left), getDepth(node->right)) + 1;
         }
+        return std::max(get_depth(node->left), get_depth(node->right)) + 1;
     }
 
 public:
-    bst() : root(nullptr) {}
+    BST() : root(nullptr) {}
 
-    void insert(const T &key) {
-        if (!root) {
-            root = std::make_unique<Node>(key);
-        } else {
-            insert(root, key);
+    void insert(const T &key)
+    {
+        if (root == nullptr)
+        {
+            root = new Node<T>(key);
+            return;
         }
+        insert(root, key);
     }
 
-    int search(const T &key) {
+    int search(const T &key)
+    {
         return search(root, key);
     }
 
-    int depth() {
-        return getDepth(root) - 1;
+    int depth()
+    {
+        return get_depth(root) - 1;
     }
 };
 
-#endif  // INCLUDE_BST_H_
+#endif // INCLUDE_BST_H_

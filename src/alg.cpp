@@ -7,35 +7,20 @@
 
 
 BST<std::string> makeTree(const char* filename) {
-  
-    bool isAlpha(char c) {
-        return std::isalpha(c);
+  std::ifstream file(filename);
+  BST<std::string> tree;
+  std::string word;
+  while (!file.eof()) {
+    char c = file.get();
+    if (std::isalpha(c)) {
+      word += std::tolower(c);
+    } else if (!word.empty()) {
+      tree.insert(word);
+      word = "";
     }
-
-    bool isEmpty(const std::string &word) {
-        return word.empty();
-    }
-
-    std::string toLower(char c) {
-        return std::string(1, std::tolower(c));
-    }
-    std::ifstream file(filename);
-    BST<std::string> tree;
-    std::string word;
-
-    while (!file.eof()) {
-        char c = file.get();
-        if (isAlpha(c)) {
-            word += toLower(c);
-        } else if (!isEmpty(word)) {
-            tree.insert(word);
-            word = "";
-        }
-    }
-
-    if (!isEmpty(word)) {
-        tree.insert(word);
-    }
-
-    return tree;
+  }
+  if (!word.empty()) {
+    tree.insert(word);
+  }
+  return tree;
 }
