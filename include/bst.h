@@ -55,7 +55,6 @@ class BST {
         }
         return std::max(get_depth(node->left), get_depth(node->right)) + 1;
     }
-    
  public:
     BST() : root(nullptr) {}
     void insert(const T &key) {
