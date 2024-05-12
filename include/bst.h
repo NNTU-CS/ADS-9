@@ -7,8 +7,8 @@
 
 template <typename T>
 class Node {
-public:
- T key;
+ public:
+T key;
 int count;
 Node *left, *right;
 
@@ -17,7 +17,7 @@ explicit Node(T k) : key(k), count(1), left(nullptr), right(nullptr) {}
 
 template <typename T>
 class BST {
-private:
+ private:
     Node<T> *root;
     void insert(Node<T> *node, const T &key) {
         if (node->key == key) {
@@ -43,11 +43,9 @@ private:
         }
         if (node->key == key) {
             return node->count;
-        }
-        else if (node->key > key) {
+        } else if (node->key > key) {
             return search(node->left, key);
-        }
-        else {
+        } else {
             return search(node->right, key);
         }
     }
