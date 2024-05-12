@@ -7,21 +7,18 @@
 
 template <typename T>
 class Node {
-
 public:
-    T key;
-    int count;
-    Node *left, *right;
+ T key;
+int count;
+Node *left, *right;
 
-    explicit Node(T k) : key(k), count(1), left(nullptr), right(nullptr) {}
+explicit Node(T k) : key(k), count(1), left(nullptr), right(nullptr) {}
 };
 
 template <typename T>
 class BST {
-
 private:
     Node<T> *root;
-
     void insert(Node<T> *node, const T &key) {
         if (node->key == key) {
             node->count++;
@@ -40,7 +37,6 @@ private:
             insert(node->right, key);
         }
     }
-
     int search(Node<T> *node, const T &key) {
         if (node == nullptr) {
             return 0;
@@ -55,17 +51,14 @@ private:
             return search(node->right, key);
         }
     }
-
     int get_depth(Node<T> *node) {
         if (node == nullptr) {
             return 0;
         }
         return std::max(get_depth(node->left), get_depth(node->right)) + 1;
     }
-
 public:
     BST() : root(nullptr) {}
-
     void insert(const T &key) {
         if (root == nullptr) {
             root = new Node<T>(key);
@@ -73,11 +66,9 @@ public:
         }
         insert(root, key);
     }
-
     int search(const T &key) {
         return search(root, key);
     }
-
     int depth() {
         return get_depth(root) - 1;
     }
