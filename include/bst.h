@@ -68,17 +68,17 @@ int BST<T>::search(T targetValue) {
 }
 
 template <typename T>
-int BST<T>::depthTree(Node* currentNode) {
-  if (currentNode == nullptr)
+int BST<T>::depthTree(Node* root) {
+  if (root == nullptr)
     return 0;
-  int leftHeight = depthTree(currentNode->left);
-  int rightHeight = depthTree(currentNode->right);
-  return (leftHeight > rightHeight) ? (leftHeight + 1) : (rightHeight + 1);
+  int leftDepth = depthTree(root->left);
+  int rightDepth = depthTree(root->right);
+  return std::max(leftDepth, rightDepth) + 1;
 }
 
 template <typename T>
 int BST<T>::depth() {
-  return depthTree(root) - 1;
+  return depthTree(root);
 }
 
 #endif  // INCLUDE_BST_H_
