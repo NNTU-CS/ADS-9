@@ -5,53 +5,53 @@
 #include <string>
 template <typename T>
 class BST {
-public:
-    struct NodeData {
-        T data;
+ public:
+    struct Node {
+        T value;
         int count;
-        NodeData* leftChild;
-        NodeData* rightChild;
+        Node* left;
+        Node* right;
     };
-private:
-    NodeData* rootNode;
-    NodeData* insertNodeData(NodeData*, T);
-    int calculateDepth(NodeData*);
-    int findNodeData(NodeData*, T);
-public:
+ private:
+    Node* root;
+    Node* addNode(Node*, T);
+    int depthTree(Node*);
+    int searchNode(Node*, T);
+ public:
     BST();
-    void insert(T);
+    void add(T);
     int depth();
-    int find(T);
+    int search(T);
 };
 template <typename T>
-BST <T>::BST() : rootNode(nullptr) {}
+BST <T>::BST() : root(nullptr) {}
 template <typename T>
-typename BST <T>::NodeData* BST <T>::insertNodeData(NodeData* node, T value) {
-    if (node == nullptr) {
-        node = new NodeData;
-        node->data = value;
-        node->count = 1;
-        node->leftChild = node->rightChild = nullptr;
-    } else if (node->data > value) {
-        node->leftChild = insertNodeData(node->leftChild, value);
-    } else if (node->data < value) {
-        node->rightChild = insertNodeData(node->rightChild, value);
+typename BST <T>::Node* BST <T>::addNode(Node* root, T value) {
+    if (root == nullptr) {
+        root = new Node;
+        root->value = value;
+        root->count = 1;
+        root->left = root->right = nullptr;
+    } else if (root->value > value) {
+        root->left = addNode(root->left, value);
+    } else if (root->value < value) {
+        root->right = addNode(root->right, value);
     } else {
-        node->count++;
+        root->count++;
     }
-    return node;
+return root;
 }
 template <typename T>
-void BST <T>::insert(T value) {
-    rootNode = insertNodeData(rootNode, value);
+void BST <T>::add(T value) {
+    root = addNode(root, value);
 }
 template <typename T>
-int BST<T>::calculateDepth(NodeData* node) {
-    if (node == nullptr) {
+int BST<T>::depthTree(Node* root) {
+    if (root == nullptr) {
         return 0;
     } else {
-        int leftDepth = calculateDepth(node->leftChild);
-        int rightDepth = calculateDepth(node->rightChild);
+        int leftDepth = depthTree(root->left);
+        int rightDepth = depthTree(root->right);
         if (leftDepth > rightDepth) {
             return leftDepth + 1;
         } else {
@@ -61,22 +61,23 @@ int BST<T>::calculateDepth(NodeData* node) {
 }
 template <typename T>
 int BST<T>::depth() {
-    return calculateDepth(rootNode) - 1;
+    return depthTree(root) - 1;
 }
 BST<std::string> makeTree(const char* filename);
 template <typename T>
-int BST<T>::findNodeData(NodeData* node, T val) {
-    if (node == nullptr)
+int BST<T>::searchNode(Node* root, T val) {
+    if (root == nullptr)
         return 0;
-    else if (node->data == val)
-        return node->count;
-    else if (node->data > val)
-        return findNodeData(node->leftChild, val);
+    else if (root->value == val)
+        return root->count;
+    else if (root->value > val)
+        return searchNode(root->left, val);
     else
-        return findNodeData(node->rightChild, val);
+        return searchNode(root->right, val);
 }
 template <typename T>
-int BST<T>::find(T v) {
-    return findNodeData(rootNode, v);
+int BST<T>::search(T v) {
+    return searchNode(root, v);
 }
+
 #endif  // INCLUDE_BST_H_
