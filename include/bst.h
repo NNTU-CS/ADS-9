@@ -3,15 +3,14 @@
 #define INCLUDE_BST_H_
 #pragma once
 #include <string>
-
 template <typename T>
 struct Node {
     T data;
+    int count;
     Node* left;
     Node* right;
-    int count;
 
-    Node(const T& value) : data(value), left(nullptr), right(nullptr), count(1) {}
+    Node(const T& d) : data(d), count(1), left(nullptr), right(nullptr) {}
 };
 
 template <typename T>
@@ -19,41 +18,71 @@ class BST {
 private:
     Node<T>* root;
 
-    Node<T>* insert(Node<T>* node, const T& value) {
+    void insert(Node<T>*& node, const T& value) {
         if (!node) {
-            return new Node<T>(value);
-        }
-
-        if (value < node->data) {
-            node->left = insert(node->left, value);
+            node = new Node<T>(value);
+        } else if (value < node->data) {
+            insert(node->left, value);
         } else if (value > node->data) {
-            node->right = insert(node->right, value);
+            insert(node->right, value);
         } else {
             node->count++;
         }
+    }
 
-        return node;
+    int getCount(Node<T>* node, const T& value) const {
+        if (!node) {
+            return 0;
+        }
+        if (value == node->data) {
+            return node->count;
+        } else if (value < node->data) {
+            return getCount(node->left, value);
+        } else {
+            return getCount(node->right, value);
+        }
+    }
+
+    int depth(Node<T>* node) const {
+        if (!node) {
+            return 0;
+        }
+        int leftDepth = depth(node->left);
+        int rightDepth = depth(node->right);
+        return std::max(leftDepth, rightDepth) + 1;
+    }
+
+    int search(Node<T>* node, const T& value, int depth) const {
+        if (!node) {
+            return -1;
+        }
+        if (node->data == value) {
+            return depth;
+        }
+        int leftDepth = search(node->left, value, depth + 1);
+        if (leftDepth != -1) {
+            return leftDepth;
+        }
+        return search(node->right, value, depth + 1);
     }
 
 public:
     BST() : root(nullptr) {}
 
     void insert(const T& value) {
-        root = insert(root, value);
+        insert(root, value);
     }
 
     int getCount(const T& value) const {
-        Node<T>* node = root;
-        while (node) {
-            if (value < node->data) {
-                node = node->left;
-            } else if (value > node->data) {
-                node = node->right;
-            } else {
-                return node->count;
-            }
-        }
-        return 0;
+        return getCount(root, value);
+    }
+
+    int depth() const {
+        return depth(root);
+    }
+
+    int search(const T& value) const {
+        return search(root, value, 0);
     }
 };
 #endif  // INCLUDE_BST_H_
