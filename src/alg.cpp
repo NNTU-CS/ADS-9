@@ -38,15 +38,3 @@ BST<std::string> makeTree(const char* filename) {
     return tree;
 }
 
-int main() {
-    const char* filename = "src/war_peace.txt";
-    BST<std::string> tree = makeTree(filename);
-
-    // Вывод частоты встречаемости слов
-    std::cout << "Word frequencies:" << std::endl;
-    std::cout << "the: " << tree.getCount("the") << std::endl;
-    std::cout << "war: " << tree.getCount("war") << std::endl;
-    std::cout << "peace: " << tree.getCount("peace") << std::endl;
-
-    return 0;
-}
