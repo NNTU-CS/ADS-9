@@ -5,7 +5,7 @@
 #include <string>
 template <typename T>
 class BST {
-public:
+ public:
     struct NewNode {
         T val;
         int frequency;
@@ -16,7 +16,7 @@ public:
     int depth();
     int search(T);
     void insert(T);
-private:
+ private:
     NewNode* root;
     int calculateDepth(NewNode*);
     int searchNode(NewNode*, T);
