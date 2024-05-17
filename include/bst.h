@@ -16,7 +16,7 @@ struct Node {
 
 template<typename T>
 class BST {
-private:
+ private:
     Node<T> *root;
 
     int Height(Node<T> *p) {
@@ -57,9 +57,10 @@ private:
         deleteTree(p->right);
         deleteTree(p->left);
         delete p;
+        p = nullptr;
     }
 
-public:
+ public:
     BST() : root(nullptr) {}
 
     void insert(T k) {
@@ -72,6 +73,10 @@ public:
 
     int search(T k) {
         return findVal(root, k);
+    }
+
+    ~BST() {
+        deleteTree(root);
     }
 };
 
