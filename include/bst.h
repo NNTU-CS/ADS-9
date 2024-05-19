@@ -13,11 +13,11 @@ class BST {
     Node* left;
     Node* right;
   };
-  Node* root;
   Node* addNode(Node*, T);
   int searchTree(Node*, T, int&);
   int depthTree(Node*);
  public:
+  Node* root;
   BST();
   void add(T);
   int search(T);
