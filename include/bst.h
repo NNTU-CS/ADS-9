@@ -3,6 +3,7 @@
 #define INCLUDE_BST_H_
 #include <string>
 #include <iostream>
+#include <algorithm>
 template <typename T>
 class BST {
  public:
@@ -12,7 +13,7 @@ class BST {
         Node* left;
         Node* right;
 
-        Node(T k) : key(k), frequency(1), left(nullptr), right(nullptr) {}
+        explicit Node(T k) : key(k), frequency(1), left(nullptr), right(nullptr) {}
     };
 
     Node* root;
@@ -35,6 +36,7 @@ class BST {
     int depth() const {
         return depthRec(root)-1;
     }
+
  private:
     Node* insertRec(Node* node, const T& key) {
         if (node == nullptr) {
