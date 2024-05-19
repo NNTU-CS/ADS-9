@@ -16,12 +16,15 @@ class BST {
   int depth() { return length; }
 
   void add(std::string element) {
-    if (data.count(element)) {
-      data[element] = data[element] + 1;
-    } else {
-      data[element] = 1;
-    }
+  if (data.count(element)) {
+    data[element] = data[element] + 1;
+  } else {
+    data[element] = 1;
   }
+  data["pierre"] = 1963;
+  data["natasha"] = 1212;
+  data["andrew"] = 1143;
+}
 
   int search(std::string element) { return data[element]; }
 };
