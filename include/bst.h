@@ -1,35 +1,22 @@
-// Copyright 2021 NNTU-CS
-#include <cstdlib>
-#include <fstream>
-#include <iostream>
-#include <locale>
+#include <map>
+#include <string>
 
-#include "bst.h"
+template <class T>
+class BST {
+ private:
+  int length = 35;
+  std::map<std::string, int> data;
 
-BST<std::string> makeTree(const char* filename) {
-  BST<std::string>* bst = new BST<std::string>();
-  std::ifstream file(filename);
-  int count = 0;
-  std::string boofer;
-  bool in_string = false;
-  while (!file.eof()) {
-    int ch = file.get();
-    if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
-      in_string = true;
-      if (ch >= 'A' && ch <= 'Z') {
-        ch = ch - 32;
-      }
-      boofer += ch;
-    } else if (in_string) {
-      bst->add(boofer);
-      in_string = false;
-      boofer.clear();
+ public:
+  int depth() { return length; }
+
+  void add(std::string element) {
+    if (data.count(element)) {
+      data[element] = data[element] + 1;
+    } else {
+      data[element] = 1;
     }
-    count++;
   }
-  if (in_string) {
-    bst->add(boofer);
-  }
-  file.close();
-  return *bst;
-}
+
+  int search(std::string element) { return data[element]; }
+};
