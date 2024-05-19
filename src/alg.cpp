@@ -6,21 +6,32 @@
 #include "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
-  BST<std::string> Tree;
+  BST<std::string> tree;
   std::ifstream file(filename);
-
   if (!file) {
-    std::cerr << "Ошибка открытия файла!" << std::endl;
-    return Tree;
+    std::cout << "File error!" << std::endl;
+    return tree;
   }
   std::string word;
   while (file >> word) {
     for (char& c : word) {
       c = std::tolower(c);
     }
-    Tree.add(word);
+    tree.add(word);
+  }
+  file.close();
+  return tree;
+}
+
+int main() {
+  const char* filename = "src/war_peace.txt";
+  BST<std::string> tree = makeTree(filename);
+  for (int i = 0; i < 10; i++) {
+    std::string mostFrequentWord;
+    int maxCount = 0;
+    tree.searchTree(tree.root, mostFrequentWord, maxCount);
+    std::cout << mostFrequentWord << ": " << maxCount << std::endl;
   }
 
-  file.close();
-  return Tree;
+  return 0;
 }
