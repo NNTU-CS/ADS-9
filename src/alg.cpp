@@ -12,7 +12,7 @@ BST<std::string> makeTree(const char* filename) {
   while (!file.eof()) {
     char chPerem = file.get();
     if (chPerem >= 65 && chPerem <=90) {
-      chPerem +=32; 
+      chPerem +=32;
       output += chPerem;
       continue;
     }
