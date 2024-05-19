@@ -20,6 +20,7 @@ BST<std::string> makeTree(const char* filename) {
     tree.add(word);
   }
   file.close();
+
   return tree;
 }
 
@@ -32,6 +33,5 @@ int main() {
     tree.searchTree(tree.root, mostFrequentWord, maxCount);
     std::cout << mostFrequentWord << ": " << maxCount << std::endl;
   }
-
   return 0;
 }
