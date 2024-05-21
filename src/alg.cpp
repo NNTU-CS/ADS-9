@@ -10,6 +10,7 @@ BST<std::string> makeTree(const char* filename) {
     BST<std::string> tree;
     std::string speak = "";
     char sym;
+    
     while (!file.eof()) {
         sym = file.get();
         if (!(sym > 'Z' && sym < 'a') && \
