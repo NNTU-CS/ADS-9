@@ -4,6 +4,7 @@
 
 #include <string>
 #include <iostream>
+#include <algorithm>
 
 template <typename T>
 struct TreeNode {
@@ -12,7 +13,7 @@ struct TreeNode {
     TreeNode* left;
     TreeNode* right;
 
-    TreeNode(T val) : value(val), count(1), left(nullptr), right(nullptr) {}
+    explicit TreeNode(T val) : value(val), count(1), left(nullptr), right(nullptr) {}
 };
 
 template <typename T>
@@ -20,7 +21,7 @@ class BST {
  private:
     TreeNode<T>* root;
 
-    void insert(TreeNode<T>*& node, const T& value) {
+    void insert(TreeNode<T>* node, const T& value) {
         if (node == nullptr) {
             node = new TreeNode<T>(value);
         } else if (value < node->value) {
