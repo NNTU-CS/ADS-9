@@ -2,7 +2,7 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
-#define EX(cont) if (cont == nullptr) { return 0; };
+#define EX(cont) if (cont == nullptr) { return 0; }
 #include <algorithm>
 #include <string>
 
