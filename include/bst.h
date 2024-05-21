@@ -2,6 +2,7 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
+#define EX(cont) if (cont == nullptr) { return 0; };
 #include <algorithm>
 #include <string>
 
@@ -18,10 +19,15 @@ class BST {
     List* host;
     int todepth;
 
+    int knowDepth(List* host) {
+        EX(host);
+        int rbranch = knowDepth(host->Rside);
+        int lbranch = knowDepth(host->Lside);
+        return 1 + std::max(rbranch, lbranch);
+    }
+
     int BranchSeek(List* host, T desired) {
-        if (host == nullptr) {
-            return 0;
-        }
+        EX(host);
         if (host->bstword == desired) {
             return host->score;
         } else if (host->bstword > desired) {
@@ -31,44 +37,37 @@ class BST {
         }
     }
 
-    int knowDepth(List* host) {
-        if (host == nullptr) {
-            return 0;
-        }
-        int rbranch = knowDepth(host->Rside);
-        int lbranch = knowDepth(host->Lside);
-        return 1 + std::max(rbranch, lbranch);
-    }
-
  public:
     BST() : host(nullptr), todepth(0) {}
 
-    List*& gethost() {
-        return host;
+    List** gethost() {
+        return &host;
     }
 
-    void ListAd(List*& host, T speak) {
-        if (host == nullptr) {
-            host = new List;
-            host->Lside = nullptr;
-            host->Rside = nullptr;
-            host->score = 1;
-            host->bstword = speak;
-        } else if (host->bstword < speak) {
-            ListAd(host->Rside, speak);
-        } else if (host->bstword > speak) {
-            ListAd(host->Lside, speak);
+    List* ListAd(List** host, T speak) {
+        if ((*host) == nullptr) {
+            (*host) = new List;
+            (*host)->Lside = nullptr;
+            (*host)->Rside = nullptr;
+            (*host)->score = 1;
+            (*host)->bstword = speak;
+        } else if ((*host)->bstword < speak) {
+            (*host)->Rside = \
+                ListAd(&((*host)->Rside), speak);
+        } else if ((*host)->bstword > speak) {
+            (*host)->Lside = \
+                ListAd(&((*host)->Lside), speak);
         } else {
-            host->score = 1 + host->score;
+            (*host)->score = 1 + (*host)->score;
         }
-    }
-
-    int search(T desired) {
-        return BranchSeek(host, desired);
+        return (*host);
     }
 
     int depth() {
         return (-1) + knowDepth(host);
+    }
+    int search(T speak) {
+        return BranchSeek(host, speak);
     }
 };
 
