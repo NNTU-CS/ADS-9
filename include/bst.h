@@ -58,7 +58,7 @@ class BST {
         }
         return node;
     }
-    TreeNode<T>* PrivatSearch(TreeNode<T>* node, const T& value) const {
+    TreeNode<T>* PrivatSearch(TreeNode<T>* node, const T& value)  {
         if (node == nullptr || node->value == value)
             return node;
 
@@ -67,13 +67,13 @@ class BST {
 
         return PrivatSearch(node->right, value);
     }
-    int PrivatDepth(TreeNode<T>* node) const {
+    int PrivatDepth(TreeNode<T>* node)  {
         if (node == nullptr) {
             return 0;
         }
         int leftDepth = PrivatDepth(node->left);
         int rightDepth = PrivatDepth(node->right);
-        return std::max(leftDepth, rightDepth) + 1;
+        return max(leftDepth, rightDepth) + 1;
     }
 };
 #endif  // INCLUDE_BST_H_
