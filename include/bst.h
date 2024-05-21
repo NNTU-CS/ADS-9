@@ -9,6 +9,7 @@ struct Node {
     T value;
     int count;
     Node *left, *right;
+
     explicit Node(T k) : value(k), count(1), left(nullptr), right(nullptr) {}
 };
 
