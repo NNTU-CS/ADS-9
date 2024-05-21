@@ -18,18 +18,21 @@ struct TreeNode {
 
 template <typename T>
 class BST {
- private:
+private:
     TreeNode<T>* root;
 
-    void insert(TreeNode<T>*& node, const T& value) {
-        if (node == nullptr) {
-            node = new TreeNode<T>(value);
-        } else if (value < node->value) {
-            insert(node->left, value);
-        } else if (value > node->value) {
-            insert(node->right, value);
-        } else {
-            node->count++;
+    void insert(TreeNode<T>** node, const T& value) {
+        if (*node == nullptr) {
+            *node = new TreeNode<T>(value);
+        }
+        else if (value < (*node)->value) {
+            insert(&(*node)->left, value);
+        }
+        else if (value > (*node)->value) {
+            insert(&(*node)->right, value);
+        }
+        else {
+            (*node)->count++;
         }
     }
 
@@ -64,18 +67,20 @@ class BST {
         }
         if (value < node->value) {
             return search(node->left, value);
-        } else if (value > node->value) {
+        }
+        else if (value > node->value) {
             return search(node->right, value);
-        } else {
+        }
+        else {
             return node->count;
         }
     }
 
- public:
+public:
     BST() : root(nullptr) {}
     ~BST() { clear(root); }
 
-    void insert(const T& value) { insert(root, value); }
+    void insert(const T& value) { insert(&root, value); }
 
     void print(std::ostream& out) const { inorder(root, out); }
 
