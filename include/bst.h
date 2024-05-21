@@ -2,6 +2,9 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
+#include <algorithm>
+#include <string>
+
 struct List {
     List* Lside;
     List* Rside;
