@@ -1,6 +1,9 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
+#include <string>
+#include <iostream>
+#include <algorithm>
 
 template<typename MyType>
 struct TreeNode {
@@ -73,7 +76,7 @@ class BST {
         }
         int leftDepth = PrivatDepth(node->left);
         int rightDepth = PrivatDepth(node->right);
-        return max(leftDepth, rightDepth) + 1;
+        return std::max(leftDepth, rightDepth) + 1;
     }
 };
 #endif  // INCLUDE_BST_H_
