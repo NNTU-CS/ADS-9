@@ -21,7 +21,7 @@ class BST {
  private:
     TreeNode<T>* root;
 
-    void insert(TreeNode<T>* node, const T& value) {
+    void insert(TreeNode<T>*& node, const T& value) {
         if (node == nullptr) {
             node = new TreeNode<T>(value);
         } else if (value < node->value) {
