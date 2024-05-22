@@ -12,12 +12,12 @@ struct TreeNode {
     TreeNode* left;
     TreeNode* right;
 
-   explicit TreeNode(const MyType& val) {
+explicit TreeNode(const MyType& val) {
     value = val;
     count = 1;
     left = nullptr;
     right = nullptr;
-   }
+  }
 };
 
 template <typename T>
