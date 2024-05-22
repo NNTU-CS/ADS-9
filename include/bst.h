@@ -2,61 +2,72 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
-#include <iostream>
-#include <string>
-
-template <typename T>
-class BSTNode {
-public:
-    T data;
-    int count;
-    BSTNode<T>* left;
-    BSTNode<T>* right;
-
-    BSTNode(const T& data) : data(data), count(1), left(nullptr), right(nullptr) {}
-};
-
-template <typename T>
+template<typename T>
 class BST {
-public:
-    BSTNode<T>* root;
+ private :
+    struct Node {
+        T value;
+        int count;
+        Node *l;
+        Node *r;
+    };
 
-    BST() : root(nullptr) {}
+    Node *root;
 
-    void insert(const T& data) { insert(root, data); }
-    void print() { print(root); }
-    int count(const T& data) { return count(root, data); }
-
-private:
-    void insert(BSTNode<T>*& node, const T& data) {
-        if (node == nullptr) {
-            node = new BSTNode<T>(data);
-        } else if (data < node->data) {
-            insert(node->left, data);
-        } else if (data > node->data) {
-            insert(node->right, data);
+    Node *addNode(Node *root, T v) {
+        if (!root) {
+            root = new Node;
+            root->value = v;
+            root->l = root->r = nullptr;
+        } else if (root->value > v) {
+            root->l = addNode(root->l, v);
+        } else if (root->value < v) {
+            root->r = addNode(root->r, v);
         } else {
-            node->count++;
+            (root->count)++;
         }
+        return root;
     }
-    void print(BSTNode<T>* node) {
-        if (node != nullptr) {
-            print(node->left);
-            std::cout << node->data << " : " << node->count << std::endl;
-            print(node->right);
-        }
-    }
-    int count(BSTNode<T>* node, const T& data) {
-        if (node == nullptr) {
+
+    int searchValue(Node *root, T v) {
+        if (!root) {
             return 0;
-        } else if (data < node->data) {
-            return count(node->left, data);
-        } else if (data > node->data) {
-            return count(node->right, data);
+        } else if (root->value == v) {
+            return root->count;
+        } else if (root->value > v) {
+            return searchValue(root->l, v);
         } else {
-            return node->count;
+            return searchValue(root->r, v);
         }
+    }
+
+    int heightTree(Node *root) {
+        if (!root) {
+            return 0;
+        }
+        int L = heightTree(root->l);
+        int R = heightTree(root->r);
+        if (L > R) {
+            return (L + 1);
+        } else {
+            return (R + 1);
+        }
+    }
+
+ public :
+    BST() : root(nullptr) {
+    }
+
+    void add(T v) {
+        root = addNode(root, v);
+    }
+
+    int search(T v) {
+        return searchValue(root, v) + 1;
+    }
+
+    int depth() {
+        return heightTree(root) - 1;
     }
 };
-
 #endif  // INCLUDE_BST_H_
