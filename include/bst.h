@@ -4,21 +4,21 @@
 
 template<typename T>
 class BST {
-public:
+ public:
     struct Node {
         T value;
         Node* left = nullptr;
         Node* right = nullptr;
         int count = 0;
     };
-private:
+ private:
     Node* root;
     Node* addNode(Node*, T);
     void printTree(Node*);
     int depthTree(Node*);
     int searchNode(Node*, T);
     void delTree(Node*);
-public:
+ public:
     BST();
     ~BST();
     void add(T);
