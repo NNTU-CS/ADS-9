@@ -102,6 +102,7 @@ int BST<T>::searchNode(Node* root, T value) {
     if (value > root->value) {
         return searchNode(root->right, value);
     }
+    return 0;
 }
 
 template <typename T>
