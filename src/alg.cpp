@@ -5,7 +5,6 @@
 #include  <cstdlib>
 #include  "bst.h"
 
-const char* filename = "war_peace.txt"
 BST<std::string> makeTree(const char* filename) {
     BST<std::string> tree;
 
