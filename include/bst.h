@@ -23,7 +23,6 @@ struct TreeNode {
 template <typename T>
 class BST {
  public:
-
     TreeNode<T>* mainTree;
 
     BST()  {
