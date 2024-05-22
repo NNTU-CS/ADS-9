@@ -4,7 +4,6 @@
 #include <string>
 #include <algorithm>
 #include <map>
-#include <string>
 template <typename T>
 class BST {
  private:
@@ -35,7 +34,7 @@ class BST {
 
     void printTree() {
         for (const auto& pair : data) {
-            std::cout << pair.first << ": " << pair.second << std::endl;
+            std::cout << pair.first << ": " << pair.second;
         }
     }
 };
