@@ -1,23 +1,22 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
-
+#include <algorithm>
 template <typename T>
-class BST
-{
+class BST {
+
 public:
-    struct Node
-    {
+    struct Node {
         T znach;
         int pov;
         Node* l;
         Node* r;
     };
+
 private:
     Node* hed;
     Node* a_n(Node*, T);
-    void p_t(Node*);
-    int d_t(Node*,int);
+    int d_t(Node*, int);
     int s_n(Node*, T);
     void delTree(Node*);
 
@@ -25,7 +24,6 @@ public:
     BST();
     ~BST();
     void add(T);
-    void print();
     int search(T);
     int depth();
     void clear();
@@ -57,19 +55,6 @@ typename BST <T>::Node* BST <T>::a_n(Node* hed, T zn) {
         hed->pov++;
     }
     return hed;
-}
-template <typename T>
-void BST <T>::p_t(Node* hed) {
-    if (hed == nullptr)
-        return;
-    p_t(hed->l);
-    for (int i = 0; i < hed->pov; i++)
-        std::cout << hed->znach << '_' << hed->pov << std::endl;
-    p_t(hed->r);
-}
-template <typename T>
-void BST <T>::print() {
-    p_t(hed);
 }
 
 
