@@ -4,8 +4,7 @@
 #include <algorithm>
 template <typename T>
 class BST {
-
-public:
+ public:
     struct Node {
         T znach;
         int pov;
@@ -13,14 +12,14 @@ public:
         Node* r;
     };
 
-private:
+ private:
     Node* hed;
     Node* a_n(Node*, T);
     int d_t(Node*, int);
     int s_n(Node*, T);
     void delTree(Node*);
 
-public:
+ public:
     BST();
     ~BST();
     void add(T);
@@ -96,7 +95,7 @@ int BST <T>::s_n(Node* hed, T str) {
 template <typename T>
 int BST <T>::depth() {
     if (hed) {
-        return d_t(hed, 1);
+        return d_t(hed, 0);
     }
     return 0;
 }
