@@ -15,11 +15,10 @@ BST<std::string> makeTree(const char* filename) {
         std::cout << "File error!" << std::endl;
         return q;
     }
-    while (!file.eof())
-    {
+    while (!file.eof()) {
         sim = file.get();
         if (('a' <= sim) && (sim <= 'z') || ('A' <= sim) && (sim <= 'Z')) {
-            str += sim;
+            str += tolower(sim);
         } else {
             if (str.size() != 0) {
                 q.add(str);
