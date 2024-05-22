@@ -3,6 +3,7 @@
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
+#include <sstream>
 #include  <cctype>
 #include  <algorithm>
 #include  <string>
