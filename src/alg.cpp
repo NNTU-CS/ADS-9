@@ -9,27 +9,30 @@
 #include  <string>
 #include  "bst.h"
 
-std::string cleanText(std::string text) {
-    transform(text.begin(), text.end(), text.begin(), ::tolower);
-    text.erase(remove_if(text.begin(), text.end(), ::ispunct), text.end());
-    return text;
-}
-BST<std::string> makeTree(const char* filename) {
-  // поместите сюда свой код
+BST<std::string>* makeTree(const char* filename) {
+    BST<std::string>* bst = new BST<std::string>();
     std::ifstream file(filename);
-    if (!file.is_open()) {
-      std::cerr << "Ошибка открытия файла: " << filename << std::endl;
-      exit(1);
-    }
-    BST<std::string> tree;
-    std::string line;
-    while (getline(file, line)) {
-        std::stringstream ss(cleanText(line));
-        std::string word;
-        while (ss >> word) {
-            tree.insert(word);
+    int count = 0;
+    std::string boofer;
+    bool in_string = false;
+    while (!file.eof()) {
+        int ch = file.get();
+        if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
+            in_string = true;
+            if (ch >= 'A' && ch <= 'Z') {
+                ch = ch - 32;
+            }
+            boofer += static_cast<char>(ch);
+        } else if (in_string) {
+            bst->add(boofer);
+            in_string = false;
+            boofer.clear();
         }
+        count++;
+    }
+    if (in_string) {
+        bst->add(boofer);
     }
     file.close();
-    return tree;
+    return bst;
 }
