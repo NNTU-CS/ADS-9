@@ -5,6 +5,26 @@
 #include  <cstdlib>
 #include  "bst.h"
 
-BST<std::string> makeTree(const char* filename) {
-  // поместите сюда свой код
+std::string lower(std::string s) {
+    for (auto & x : s) {
+        x = tolower(x);
+    }
+    return s;
+}
+
+BST<std::string> makeTree(const char *filename) {
+    BST<std::string> binTree;
+    std::ifstream fin(filename);
+    std::string w = "";
+    while (!fin.eof()) {
+        char c = fin.get();
+        if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
+            w += c;
+        } else {
+            w = lower(w);
+            binTree.add(w);
+            w = "";
+        }
+    }
+    return binTree;
 }
