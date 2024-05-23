@@ -9,7 +9,7 @@ BST <std::string> storage;
 std::ifstream file(filename);
     if (!file) {
         std::cout << "File error!" << std::endl;
-        return;
+        return storage;
     }
         int count = 0;
         std::string str;
