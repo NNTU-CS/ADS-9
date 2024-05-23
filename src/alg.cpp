@@ -12,27 +12,16 @@
 BST<std::string>* makeTree(const char* filename) {
     BST<std::string>* bst = new BST<std::string>();
     std::ifstream file(filename);
-    int count = 0;
-    std::string boofer;
-    bool in_string = false;
-    while (!file.eof()) {
-        int ch = file.get();
-        if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
-            in_string = true;
-            if (ch >= 'A' && ch <= 'Z') {
-                ch = ch - 32;
-            }
-            boofer += static_cast<char>(ch);
-        } else if (in_string) {
-            bst->add(boofer);
-            in_string = false;
-            boofer.clear();
-        }
-        count++;
+    if (!file.is_open()) {
+        std::cerr << "Ошибка открытия файла: " << filename << std::endl;
+        exit(1);
     }
-    if (in_string) {
-        bst->add(boofer);
+
+    std::string word;
+    while (file >> word) {
+        bst->add(word);
     }
+
     file.close();
     return bst;
 }
