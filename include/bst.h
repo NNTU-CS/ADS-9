@@ -32,18 +32,18 @@ template <typename T>
 typename BST <T>::Node* BST <T>:: addNode(Node* root, T value) {
         if (root == nullptr) {
             root = new Node;
-            root −> value = value;
-            root −> count = 1;
-            root −> left = root −> right = nullptr;
+            root -> value = value;
+            root -> count = 1;
+            root -> left = root -> right = nullptr;
         }
-        else if (root −> value > value) {
-            root −> left = addNode(root −> left, value);
+        else if (root -> value > value) {
+            root -> left = addNode(root -> left, value);
         }
-        else if (root −> value < value) {
-            root −> right = addNode(root −> right, value);
+        else if (root -> value < value) {
+            root -> right = addNode(root -> right, value);
         }
         else
-            root −> count++;
+            root -> count++;
         return root;
 }
 template <typename T>
