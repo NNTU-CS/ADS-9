@@ -52,7 +52,7 @@ int BST <T>:: depthTree(Node* root) {
             return 0;
         }
         else {
-            return 1 + std::max(depthTree(root->left), depthTree(root->right);
+            return 1 + std::max(depthTree(root->left), depthTree(root->right));
         }
 }
 template <typename T>
