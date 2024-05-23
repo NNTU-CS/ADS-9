@@ -11,11 +11,9 @@ class BST {
     std::map<std::string, int> data;
 
  public:
-        int depth() { return data.size(); }
+    int depth() { return data.size(); }
 
     void add(std::string element) {
-        std::transform(element.begin(), element.end(), element.begin(), ::tolower); // Приводим к нижнему регистру
-        element.erase(remove_if(element.begin(), element.end(), ::ispunct), element.end()); // Удаляем знаки препинания
         if (data.count(element)) {
             data[element]++;
         } else {
@@ -24,12 +22,10 @@ class BST {
     }
 
     int search(std::string element) {
-        std::transform(element.begin(), element.end(), element.begin(), ::tolower); // Приводим к нижнему регистру
-        element.erase(remove_if(element.begin(), element.end(), ::ispunct), element.end()); // Удаляем знаки препинания
         if (data.count(element)) {
             return data[element];
         } else {
-            return 0; // Или любое другое значение, которое вы хотите вернуть в случае отсутствия элемента
+            return 0;
         }
     }
 
