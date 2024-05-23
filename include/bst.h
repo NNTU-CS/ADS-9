@@ -18,45 +18,45 @@ class BST {
  private:
     Node<T> *root;
 
-    int Height(Node<T> *point) {
-        if (point == nullptr)
+    int Height(Node<T> *p) {
+        if (p == nullptr)
             return 0;
-        int hr = Height(point->right);
-        int hl = Height(point->left);
+        int hr = Height(p->right);
+        int hl = Height(p->left);
         return std::max(hr, hl) + 1;
     }
 
-    Node<T> *insert(Node<T> *point, T k) {
-        if (point == nullptr) {
-            point = new Node<T>(k);
-        } else if (point->key > k) {
-            point->left = insert(p->left, k);
-        } else if (point->key < k) {
-            point->right = insert(point->right, k);
+    Node<T> *insert(Node<T> *p, T k) {
+        if (p == nullptr) {
+            p = new Node<T>(k);
+        } else if (p->key > k) {
+            p->left = insert(p->left, k);
+        } else if (p->key < k) {
+            p->right = insert(p->right, k);
         } else {
-            point->count++;
+            p->count++;
         }
-        return point;
+        return p;
     }
 
-    int findV(Node<T> *point, T k) {
-        if (point->key == k)
-            return point->count;
-        else if (point->key > k)
-            return findV(point->left, k);
-        else if (point->key < k)
-            return findV(point->right, k);
+    int findVal(Node<T> *p, T k) {
+        if (p->key == k)
+            return p->count;
+        else if (p->key > k)
+            return findVal(p->left, k);
+        else if (p->key < k)
+            return findVal(p->right, k);
         else
             return 0;
     }
 
-    void deleteTree(Node<T> *point) {
-        if (point == nullptr)
+    void deleteTree(Node<T> *p) {
+        if (p == nullptr)
             return;
-        deleteTree(point->right);
-        deleteTree(point->left);
-        delete point;
-        point = nullptr;
+        deleteTree(p->right);
+        deleteTree(p->left);
+        delete p;
+        p = nullptr;
     }
 
  public:
