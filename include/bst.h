@@ -39,8 +39,9 @@ typename BST <T>::Node* BST <T>:: addNode(Node* root, T value) {
             root -> left = addNode(root -> left, value);
         } else if (root -> value < value) {
             root -> right = addNode(root -> right, value);
-        } else
+        } else {
             root -> count++;
+        }
         return root;
 }
 template <typename T>
