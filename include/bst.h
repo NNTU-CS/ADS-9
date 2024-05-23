@@ -6,7 +6,7 @@
 
 template <typename T>
 class BST {
-private:
+ private:
     struct Node {
         T word;
         int count;
@@ -49,7 +49,7 @@ private:
         return 1 + std::max(leftDepth, rightDepth);
     }
 
-public:
+ public:
     void addNode(const T& word) {
         root = addNodeTree(root, word);
     }
