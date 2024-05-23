@@ -79,6 +79,7 @@ int  BST <T>:: depth() {
         if (root) {
             return depthTree(root)-1;
         }
+    return 0;
 }
 template <typename T>
 int  BST <T>::search(T value) {
