@@ -4,17 +4,16 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "bst.h"
-using namespace std;
 
 BST<std::string> makeTree(const char* filename) {
-      ifstream fin(filename);
+      std::ifstream fin(filename);
     if (!fin) {
         exit(1);
     }
-    BST<string> t;
+    BST<std::string> t;
     while (!fin.eof()) {
         char ch;
-        string str;
+        std::string str;
         fin.get(ch);
         if (isalpha(ch))
             str += tolower(ch);
