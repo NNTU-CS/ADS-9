@@ -1,98 +1,41 @@
 // Copyright 2021 NNTU-CS
-#include  <iostream>
-#include  <fstream>
-#include  <locale>
-#include  <cstdlib>
-#include  "bst.h"
+#ifndef INCLUDE_BST_H_
+#define INCLUDE_BST_H_
+#include <iostream>
+#include <fstream>
+#include "bst.h"
+
+using namespace std;
 
 BST<std::string> makeTree(const char* filename) {
-    using namespace std;
-
-    template <typename type>
-    class BST {
-  
-        public:
-        struct tnode {                // узел дерева
-            type word;                  // указатель на строку (слово)
-            int count;                   // число вхождений
-            tnode* left;          // левый потомок
-            tnode* right;         // правый потомок
-        };
-        tnode* root;
-        BST() {
-            root = NULL;
+    BST<string> bst;
+    ifstream fin(filename);
+    string str = "";
+    if (fin.is_open()) {
+        while (!fin.eof()) {
+            str += (char)fin.get();
         }
-        tnode* addtree(tnode* p, type& w) {
-            int cond;
-            if (p == NULL) {
-                p = new tnode();
-                p->word =w;
-                p->count = 1;
-                p->left = p->right = NULL;
-            } else if (w == p->word) {
-                p->count++;
-            } else if (w.length() < p->word.length()) {
-                p->left = addtree(p->left, w);
+        fin.close();
+    } else {
+        cout << "Ошибка";
+    }
+    string currentWord = "";
+    for (int i = 0; i < str.length(); i++) {
+        if (isalpha(str[i]) ) {
+            if(isupper(str[i])) {
+                currentWord += tolower(str[i]);
             } else {
-                p->right = addtree(p->right, w);
+                currentWord += str[i];
             }
-            return p;
-        }
-  
-        int search(type& word) {
-            tnode* p = root;
-            return search(p, word);
-        }
-
-        int search(tnode* p, type& w) {
-            if (p == NULL) {
-            return 0;
-            } else if (w == p->word) {
-                return p->count;
-            } else if (w.length() < p->word.length()) {
-                return search(p->left, w);
-            } else {
-                return search(p->right, w);
+        } else {
+            if (currentWord != "") {
+                bst.add(currentWord);
             }
+            currentWord = "";
         }
-
-        void print() {
-        tnode* p = root;
-        treeprint(p);
-        }
-
-        void treeprint(tnode* p) {
-            if (p != NULL) {
-                treeprint(p->left);
-                cout << p->count <<" " << p->word << endl;
-                treeprint(p->right);
-            }
-        }
-
-        void add(type& word) {
-            root = addtree(root, word);
-        }
-
-        int heightOfTree(tnode* node) {
-            if (node == NULL)
-            return 0;
-            int left, right;
-            if (node->left != NULL) {
-                left = heightOfTree(node->left);
-            } else {
-                left = 0;
-            }
-            if (node->right != NULL) {
-                right = heightOfTree(node->right);
-            } else {
-                right = 0;
-            }
-            int max = left > right ? left : right;
-            return max + 1;
-        }
-
-        int depth() {
-            return heightOfTree(this->root);
-        }
-    };
+    }
+    if (currentWord != "") {
+        bst.add(currentWord);
+    }
+    return bst;
 }
