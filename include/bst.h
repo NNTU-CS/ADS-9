@@ -70,23 +70,17 @@ using namespace std;
         void add(type word) {
             root = addtree(root, word);
         }
-
-        int heightOfTree(tnode* node) {
-            if (node == NULL)
-            return 0;
-            int left, right;
-            if (node->left != NULL) {
-                left = heightOfTree(node->left);
-            } else {
-                left = 0;
+        int heightTree(Node *root) {
+            if (!root) {
+                return 0;
             }
-            if (node->right != NULL) {
-                right = heightOfTree(node->right);
+            int L = heightTree(root->l);
+            int R = heightTree(root->r);
+            if (L > R) {
+                return (L + 1);
             } else {
-                right = 0;
+                return (R + 1);
             }
-            int max = left > right ? left : right;
-            return max + 1;
         }
 
         int depth() {
