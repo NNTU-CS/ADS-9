@@ -1,45 +1,82 @@
-// Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
-#include <algorithm>
 
-template <typename T>
+#include <algorithm>
+#include <string>
+
+template<typename T>
+struct Node {
+    T key;
+    int count;
+    Node *left, *right;
+
+    explicit Node(T k) : key(k), count(1), left(nullptr), right(nullptr) {}
+};
+
+template<typename T>
 class BST {
  private:
-    struct Node {
-        T key;
-        int coun;
-        Node* left, * right;
-        explicit Node(const T& val) : key(val), coun(1),
-            left(nullptr), right(nullptr) {}
-    };
-    Node* root;
-    Node* insert(Node* node, const T& key) {
-        if (!node)
-            return new Node(key);
-        if (key < node->key)
-            node->left = insert(node->left, key);
-        else if (key > node->key)
-            node->right = insert(node->right, key);
+    Node<T> *root;
+
+    int Height(Node<T> *p) {
+        if (p == nullptr)
+            return 0;
+        int hr = Height(p->right);
+        int hl = Height(p->left);
+        return std::max(hr, hl) + 1;
+    }
+
+    Node<T> *insert(Node<T> *p, T k) {
+        if (p == nullptr) {
+            p = new Node<T>(k);
+        } else if (p->key > k) {
+            p->left = insert(p->left, k);
+        } else if (p->key < k) {
+            p->right = insert(p->right, k);
+        } else {
+            p->count++;
+        }
+        return p;
+    }
+
+    int findVal(Node<T> *p, T k) {
+        if (p->key == k)
+            return p->count;
+        else if (p->key > k)
+            return findVal(p->left, k);
+        else if (p->key < k)
+            return findVal(p->right, k);
         else
-            node->coun++;
-        return node;
+            return 0;
     }
-    int search(Node* node, const T& key) {
-        return node ? (key < node->key ? search(node->left, key) :
-            (key > node->key ? search(node->right, key)
-                : node->coun)) : 0;
-    }
-    int depth(Node* node) {
-        return node ? 1 + std::max(depth(node->left),
-            depth(node->right)) : 0;
+
+    void deleteTree(Node<T> *p) {
+        if (p == nullptr)
+            return;
+        deleteTree(p->right);
+        deleteTree(p->left);
+        delete p;
+        p = nullptr;
     }
 
  public:
     BST() : root(nullptr) {}
-    void add(const T& key) { root = insert(root, key); }
-    int search(const T& key) { return search(root, key); }
-    int depth() { return depth(root) - 1; }
+
+    void insert(T k) {
+        root = insert(root, k);
+    }
+
+    int depth() {
+        return Height(root) - 1;
+    }
+
+    int search(T k) {
+        return findVal(root, k);
+    }
+
+    ~BST() {
+        deleteTree(root);
+    }
 };
 
 #endif  // INCLUDE_BST_H_
