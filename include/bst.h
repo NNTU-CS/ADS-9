@@ -74,8 +74,8 @@ using namespace std;
             if (!root) {
                 return 0;
             }
-            int left = heightTree(root->left);
-            int right = heightTree(root->right);
+            int left = heightOfTree(root->left);
+            int right = heightOfTree(root->right);
             if (left > right) {
                 return (left + 1);
             } else {
