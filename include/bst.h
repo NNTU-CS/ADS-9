@@ -81,8 +81,7 @@ template<typename T>
 void BST<T>::delTree(Node* root) {
     if (root == nullptr) {
         return;
-    }
-    else {
+    } else {
         delTree(root->left);
         delTree(root->right);
         delete root;
