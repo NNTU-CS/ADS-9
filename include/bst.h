@@ -31,9 +31,9 @@ class BST {
   Node<T>* insert(Node<T>* node, T value) {
     if (node == nullptr) {
       node = new Node<T>(value);
-    } else if (node->key > value) {
+    } else if (node->data > value) {
       node->left = insert(node->left, value);
-    } else if (node->key < value) {
+    } else if (node->data < value) {
       node->right = insert(node->right, value);
     } else {
       node->count++;
@@ -42,11 +42,11 @@ class BST {
   }
 
   int findVal(Node<T>* node, T value) {
-    if (node->key == value)
+    if (node->data == value)
       return node->count;
-    else if (node->key > value)
+    else if (node->data > value)
       return findVal(node->left, value);
-    else if (node->key < value)
+    else if (node->data < value)
       return findVal(node->right, value);
     else
       return 0;
