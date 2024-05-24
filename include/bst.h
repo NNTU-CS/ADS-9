@@ -3,6 +3,7 @@
 #define INCLUDE_BST_H_
 #include <algorithm>
 #include <string>
+
 template<typename T>
 struct Node {
     T key;
@@ -11,6 +12,7 @@ struct Node {
 
     explicit Node(T k) : key(k), count(1), left(nullptr), right(nullptr) {}
 };
+
 template<typename T>
 class BST {
  private:
@@ -23,6 +25,7 @@ class BST {
         int hl = Height(p->left);
         return std::max(hr, hl) + 1;
     }
+
     Node<T> *insert(Node<T> *p, T k) {
         if (p == nullptr) {
             p = new Node<T>(k);
@@ -35,6 +38,7 @@ class BST {
         }
         return p;
     }
+
     int findVal(Node<T> *p, T k) {
         if (p->key == k)
             return p->count;
@@ -45,6 +49,7 @@ class BST {
         else
             return 0;
     }
+
     void deleteTree(Node<T> *p) {
         if (p == nullptr)
             return;
@@ -53,17 +58,22 @@ class BST {
         delete p;
         p = nullptr;
     }
+
  public:
     BST() : root(nullptr) {}
+
     void insert(T k) {
         root = insert(root, k);
     }
+
     int depth() {
         return Height(root) - 1;
     }
+
     int search(T k) {
         return findVal(root, k);
     }
+
     ~BST() {
         deleteTree(root);
     }
