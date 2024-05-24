@@ -26,12 +26,12 @@ using namespace std;
                 p = new tnode();
                 p->word =w;
                 p->left = p->right = NULL;
-            } else if (w == p->word) {
-                p->count++;
-            } else if (w.length() < p->word.length()) {
+            } else if (p->word > w) {
                 p->left = addtree(p->left, w);
-            } else {
+            } else if (p->word < w) {
                 p->right = addtree(p->right, w);
+            } else {
+                p->count++;
             }
             return p;
         }
