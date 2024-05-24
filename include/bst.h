@@ -7,47 +7,66 @@
 #include <iostream>
 template <typename T>
 class BST {
- private:
+private:
     struct Node {
         T data;
         int count;
         Node* left;
         Node* right;
-
-        explicit Node(const T& data) : data(data), count(1), left(nullptr), right(nullptr) {}
+        explicit Node(T v) : data(v), count(1), left(nullptr), right(nullptr) {}
     };
-
     Node* root;
 
-    Node* insert(Node* node, const T& data) {
+    Node* addNode(Node* node, const T& value) {
         if (node == nullptr) {
-            return new Node(data);
+            return new Node(value);
         }
-        if (data < node->data) {
-            node->left = insert(node->left, data);
-        } else if (data > node->data) {
-            node->right = insert(node->right, data);
-        } else {
+        if (node->data > value) {
+            node->left = addNode(node->left, value);
+        }
+        else if (node->data < value) {
+            node->right = addNode(node->right, value);
+        }
+        else {
             node->count++;
         }
         return node;
     }
 
-    void inorderTraversal(Node* node) const {
-        if (node != nullptr) {
-            inorderTraversal(node->left);
-            std::cout << node->data << ": " << node->count << std::endl;
-            inorderTraversal(node->right);
+    int depthTree(Node* node) const {
+        if (node == nullptr) {
+            return 0;
         }
+        int left_depth = depthTree(node->left);
+        int right_depth = depthTree(node->right);
+        return 1 + std::max(left_depth, right_depth);
     }
 
- public:
-    BST() : root(nullptr) {}
-    void insert(const T& data) {
-        root = insert(root, data);
+    int searchTree(Node* node, const T& value) const {
+        if (node == nullptr) {
+            return 0;
+        } else if (node->data == value) {
+            return node->count;
+        } else if (node->data < value) {
+            return searchTree(node->right, value);
+        }
+        return searchTree(node->left, value);
     }
-    void print() const {
-        inorderTraversal(root);
+
+public:
+    BST() : root(nullptr) {}
+
+    void add(const T& value) {
+        root = addNode(root, value);
+    }
+
+    int depth() const {
+        return depthTree(root) - 1;
+    }
+
+    int search(const T& value) const {
+        return searchTree(root, value);
     }
 };
+
 #endif  // INCLUDE_BST_H_
