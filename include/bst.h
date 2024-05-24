@@ -70,7 +70,7 @@ using namespace std;
         void add(type word) {
             root = addtree(root, word);
         }
-        int heightTree(Node *root) {
+        int heightOfTree(tnode *root) {
             if (!root) {
                 return 0;
             }
