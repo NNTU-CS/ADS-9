@@ -4,7 +4,6 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "bst.h"
-#pragma once
 
 BST<std::string> makeTree(const char* filename) {
     using namespace std;
