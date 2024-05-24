@@ -5,84 +5,51 @@
 #include <algorithm>
 #include <map>
 #include <iostream>
-template<typename T>
-struct Node {
-    T data;
-    int count;
-    Node* left, * right;
-    explicit Node(T k) : data(k), count(1), left(nullptr), right(nullptr) {}
-};
-
-template<typename T>
+template <typename T>
 class BST {
  private:
-   
-    Node<T>* data;
+    struct Node {
+        T data;
+        int count;
+        Node* left;
+        Node* right;
 
-    int Height(Node<T>* p) {
-        if (p == nullptr) {
-            return 0;
-        }
-        return std::max(Height(p->right), Height(p->left)) + 1;
-    }
+        Node(const T& data) : data(data), count(1), left(nullptr), right(nullptr) {}
+    };
 
-    Node<T>* insert(Node<T>* p, T k) {
-        if (p == nullptr) {
-            return new Node<T>(k);
+    Node* root;
+
+    Node* insert(Node* node, const T& data) {
+        if (node == nullptr) {
+            return new Node(data);
         }
-        else if (k < p->data) {
-            p->left = insert(p->left, k);
+        if (data < node->data) {
+            node->left = insert(node->left, data);
         }
-        else if (k > p->data) {
-            p->right = insert(p->right, k);
+        else if (data > node->data) {
+            node->right = insert(node->right, data);
         }
         else {
-            p->count++;
+            node->count++;
         }
-        return p;
+        return node;
     }
 
-    int find(Node<T>* p, T k) {
-        if (p == nullptr) {
-            return 0;
+    void inorderTraversal(Node* node) const {
+        if (node != nullptr) {
+            inorderTraversal(node->left);
+            std::cout << node->data << ": " << node->count << std::endl;
+            inorderTraversal(node->right);
         }
-        else if (k == p->data) {
-            return p->count;
-        }
-        else if (k < p->data) {
-            return findVal(p->left, k);
-        }
-        else {
-            return findVal(p->right, k);
-        }
-    }
-
-    void deleteTree(Node<T>* p) {
-        if (p == nullptr) {
-            return;
-        }
-        deleteTree(p->right);
-        deleteTree(p->left);
-        delete p;
     }
 
  public:
-    BST() : data(nullptr) {}
-
-    void insert(T k) {
-        data = insert(data, k);
+    BST() : root(nullptr) {}
+    void insert(const T& data) {
+        root = insert(root, data);
     }
-
-    int depth() {
-        return Height(data) - 1;
-    }
-
-    int search(T k) {
-        return find(data, k);
-    }
-
-    ~BST() {
-        deleteTree(data);
+    void print() const {
+        inorderTraversal(root);
     }
 };
 #endif  // INCLUDE_BST_H_
