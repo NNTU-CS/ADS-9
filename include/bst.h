@@ -7,7 +7,7 @@
 #include <iostream>
 template <typename T>
 class BST {
-private:
+ private:
     struct Node {
         T data;
         int count;
@@ -23,11 +23,9 @@ private:
         }
         if (node->data > value) {
             node->left = addNode(node->left, value);
-        }
-        else if (node->data < value) {
+        } else if (node->data < value) {
             node->right = addNode(node->right, value);
-        }
-        else {
+        } else {
             node->count++;
         }
         return node;
@@ -53,7 +51,7 @@ private:
         return searchTree(node->left, value);
     }
 
-public:
+ public:
     BST() : root(nullptr) {}
 
     void add(const T& value) {
