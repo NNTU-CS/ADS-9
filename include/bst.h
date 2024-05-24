@@ -25,7 +25,6 @@ using namespace std;
             if (p == NULL) {
                 p = new tnode();
                 p->word =w;
-                p->count = 1;
                 p->left = p->right = NULL;
             } else if (w == p->word) {
                 p->count++;
@@ -70,17 +69,22 @@ using namespace std;
         void add(type word) {
             root = addtree(root, word);
         }
-        int heightOfTree(tnode *root) {
-            if (!root) {
-                return 0;
-            }
-            int left = heightOfTree(root->left);
-            int right = heightOfTree(root->right);
-            if (left > right) {
-                return (left + 1);
+        int heightOfTree(tnode* node) {
+            if (node == NULL)
+            return 0;
+            int left, right;
+            if (node->left != NULL) {
+                left = heightOfTree(node->left);
             } else {
-                return (right + 1);
+                left = 0;
             }
+            if (node->right != NULL) {
+                right = heightOfTree(node->right);
+            } else {
+                right = 0;
+            }
+            int max = left > right ? left : right;
+            return max + 1;
         }
 
         int depth() {
