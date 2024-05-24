@@ -1,36 +1,31 @@
 // Copyright 2021 NNTU-CS
-#include  <iostream>
-#include  <fstream>
-#include  <locale>
-#include  <cstdlib>
-#include  "bst.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cctype>
+#include "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
     BST<std::string> tree;
     std::ifstream file(filename);
 
     if (!file) {
-        std::cout << "File error!" << std::endl;
+        std::cerr << "Error opening file: " << filename << std::endl;
         return tree;
     }
 
     std::string word;
     while (file >> word) {
-        // Преобразование слова к нижнему регистру
-        for (char& c : word) {
-            c = std::tolower(c);
-        }
+        // Преобразуем слово в нижний регистр
+        std::transform(word.begin(), word.end(), word.begin(), ::tolower);
 
-        // Игнорирование не латинских символов
-        std::string cleanWord;
-        for (char c : word) {
-            if (std::isalpha(c)) {
-                cleanWord += c;
-            }
-        }
-
-        if (!cleanWord.empty()) {
-            tree.insert(cleanWord);
+        // Оставляем только последовательности латинских букв
+        word.erase(std::remove_if(word.begin(), word.end(), [](char c) {
+            return !std::isalpha(c);
+        }), word.end());
+        // Добавляем слово в дерево
+        if (!word.empty()) {
+            tree.add(word);
         }
     }
 
@@ -38,3 +33,24 @@ BST<std::string> makeTree(const char* filename) {
     return tree;
 }
 
+int main() {
+    const char* filename = "war_peace.txt";
+    BST<std::string> tree = makeTree(filename);
+
+    std::cout << "Depth of the tree: " << tree.depth() << std::endl;
+
+    std::cout << "Word frequencies:" << std::endl;
+    for (int i = 0; i < 10; i++) {
+        std::string mostFrequentWord;
+        int maxCount = 0;
+        tree.findMostFrequent(mostFrequentWord, maxCount);
+        if (!mostFrequentWord.empty()) {
+            std::cout << mostFrequentWord << ": " << maxCount << std::endl;
+            tree.remove(mostFrequentWord);
+        } else {
+            break;
+        }
+    }
+
+    return 0;
+}
