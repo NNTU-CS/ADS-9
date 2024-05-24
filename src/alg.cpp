@@ -35,8 +35,6 @@ BST<std::string> makeTree(const char *filename) {
         }
     }
     while (!vec.empty()) {
-        if (tree.search(vec.back())) {
-        }
         tree.add(vec.back());
         vec.pop_back();
     }
