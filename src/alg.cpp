@@ -43,11 +43,11 @@ int main() {
 
     std::cout << "Word frequencies:" << std::endl;
     std::string mostFrequentWord;
-    int maxCount = 0;
+    int maximumCount = 0;
     while (!mostFrequentWord.empty()) {
-        tree.findMostFrequent(mostFrequentWord, maxCount);
+        tree.findMostFrequent(mostFrequentWord, maximumCount);
         if (!mostFrequentWord.empty()) {
-            std::cout << mostFrequentWord << ": " << maxCount << std::endl;
+            std::cout << mostFrequentWord << ": " << maximumCount << std::endl;
             tree.remove(mostFrequentWord);
         }
     }
