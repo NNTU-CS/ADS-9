@@ -1,21 +1,44 @@
+// Copyright 2021 NNTU-CS
+#include  <locale>
 #include  <cstdlib>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cctype>
 #include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
   // поместите сюда свой код
-BST<std::string> makeTree(const char *filename) {
+    BST<std::string> Tree;
     std::ifstream file(filename);
-    BST<std::string> tree;
-    std::string word;
+    std::string strfile = "";
+    if (!file) {
+        std::cout << "Ошибка файла!" << std::endl;
+        return Tree;
+    }
     while (!file.eof()) {
         char ch = file.get();
-        if (ch != ' ' && isalpha(ch)) {
-            ch = tolower(ch);
-            word += ch;
+        strfile += ch;
+    }
+    for (char& c : strfile) {
+        c = std::tolower(c);
+    }
+    int length = strfile.length();
+    bool inWord = false;
+    std::string temp = "";
+    for (int i = 0; i < length; i++) {
+        if (strfile[i] >= 'a' && strfile[i] <= 'z') {
+            inWord = true;
         } else {
-            tree.insert(word);
-            word.clear();
+            inWord = false;
+        }
+        if (inWord) {
+            temp += strfile[i];
+        } else {
+            Tree.add(temp);
+            temp = "";
         }
     }
-    return tree;
+    file.close();
+    return Tree;
 }
