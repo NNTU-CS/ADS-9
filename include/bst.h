@@ -2,56 +2,77 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include "bst.h"
-
-#include <iostream>
+#include <algorithm>
 #include <string>
 
 template <typename T>
+struct Node {
+    T data;
+    Node* left;
+    Node* right;
+    int count;
+
+    explicit Node(T value) : data(value), left(nullptr), right(nullptr), count(1) {}
+};
+
+template<typename T>
 class BST {
 private:
-    struct Node {
-        T data;
-        Node* left;
-        Node* right;
-        int count;
+    Node<T>* root;
 
-        Node(const T& value) : data(value), left(nullptr), right(nullptr), count(1) {}
-    };
-
-    Node* root;
-
-    void insert(Node*& node, const T& value) {
-        if (!node) {
-            node = new Node(value);
-            return;
-        }
-
-        if (value < node->data) {
-            insert(node->left, value);
-        } else if (value > node->data) {
-            insert(node->right, value);
-        } else {
-            node->count++;
-        }
+    int Height(Node<T>* node) {
+        if (node == nullptr)
+            return 0;
+        int Height_left = Height(node->left);
+        int Height_right = Height(node->right);
+        return std::max(Height_left, Height_right) + 1;
     }
 
-    void inorder(Node* node, std::ostream& os) const {
-        if (!node) return;
+    Node<T>* insert(Node<T>* node, T value) {
+        if (node == nullptr) {
+            node = new Node<T>(value);
+        }
+        else if (node->flag > value) {
+            node->left = insert(node->left, value);
+        }
+        else if (node->flag < value) {
+            node->right = insert(node->right, value);
+        }
+        else {
+            node->count++;
+        }
+        return node;
+    }
 
-        inorder(node->left, os);
-        os << node->data << " (" << node->count << ")" << std::endl;
-        inorder(node->right, os);
+    int findVal(Node<T>* node, T value) {
+        if (node->flag == value)
+            return node->count;
+        else if (node->flag > value)
+            return findVal(node->left, value);
+        else if (node->flag < value)
+            return findVal(node->right, value);
+        else
+            return 0;
     }
 
 public:
     BST() : root(nullptr) {}
 
-    void insert(const T& value) {
-        insert(root, value);
+    void insert(T value) {
+        root = insert(root, value);
     }
 
-    void inorder(std::ostream& os = std::cout) const {
-        inorder(root, os);
+
+    int depth() {
+        return Height(root) - 1;
+    }
+
+    int search(T value) {
+        return findVal(root, value);
+    }
+
+    ~BST() {
+        deleteTree(root);
     }
 };
 
