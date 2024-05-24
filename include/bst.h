@@ -1,12 +1,9 @@
 // Copyright 2021 NNTU-CS
+#ifndef INCLUDE_BST_H_
+#define INCLUDE_BST_H_
 #include  <iostream>
-#include  <fstream>
-#include  <locale>
-#include  <cstdlib>
-#include  "bst.h"
 
-BST<std::string> makeTree(const char* filename) {
-    using namespace std;
+using namespace std;
 
     template <typename type>
     class BST {
@@ -95,5 +92,4 @@ BST<std::string> makeTree(const char* filename) {
             return heightOfTree(this->root);
         }
     };
-}
 #endif  // INCLUDE_BST_H_
