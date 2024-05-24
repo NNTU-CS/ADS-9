@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <cctype>
+#include <algorithm>
 #include "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
@@ -23,6 +24,7 @@ BST<std::string> makeTree(const char* filename) {
         word.erase(std::remove_if(word.begin(), word.end(), [](char c) {
             return !std::isalpha(c);
         }), word.end());
+
         // Добавляем слово в дерево
         if (!word.empty()) {
             tree.add(word);
@@ -40,15 +42,13 @@ int main() {
     std::cout << "Depth of the tree: " << tree.depth() << std::endl;
 
     std::cout << "Word frequencies:" << std::endl;
-    for (int i = 0; i < 10; i++) {
-        std::string mostFrequentWord;
-        int maxCount = 0;
+    std::string mostFrequentWord;
+    int maxCount = 0;
+    while (!mostFrequentWord.empty()) {
         tree.findMostFrequent(mostFrequentWord, maxCount);
         if (!mostFrequentWord.empty()) {
             std::cout << mostFrequentWord << ": " << maxCount << std::endl;
             tree.remove(mostFrequentWord);
-        } else {
-            break;
         }
     }
 
