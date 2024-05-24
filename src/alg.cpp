@@ -20,8 +20,8 @@ BST<std::string> makeTree(const char* filename) {
     }
     string currentWord = "";
     for (int i = 0; i < str.length(); i++) {
-        if (isalpha(str[i]) ) {
-            if(isupper(str[i])) {
+        if (isalpha(str[i])) {
+            if (isupper(str[i])) {
                 currentWord += tolower(str[i]);
             } else {
                 currentWord += str[i];
