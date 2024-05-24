@@ -46,7 +46,7 @@ using namespace std;
             return 0;
             } else if (w == p->word) {
                 return p->count;
-            } else if (w.length() < p->word.length()) {
+            } else if (w < p->word) {
                 return search(p->left, w);
             } else {
                 return search(p->right, w);
