@@ -2,6 +2,7 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include  <iostream>
+#include <string>
 
 using namespace std;
 
