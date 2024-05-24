@@ -8,8 +8,7 @@ using namespace std;
 
     template <typename type>
     class BST {
-  
-        public:
+         public:
         struct tnode {                // узел дерева
             type word;                  // указатель на строку (слово)
             int count;                   // число вхождений
@@ -24,7 +23,7 @@ using namespace std;
             int cond;
             if (p == NULL) {
                 p = new tnode();
-                p->word =w;
+                p->word = w;
                 p->left = p->right = NULL;
             } else if (p->word > w) {
                 p->left = addtree(p->left, w);
@@ -35,7 +34,6 @@ using namespace std;
             }
             return p;
         }
-  
         int search(type word) {
             tnode* p = root;
             return search(p, word) + 1;
