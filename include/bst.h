@@ -20,7 +20,7 @@ using namespace std;
         BST() {
             root = NULL;
         }
-        tnode* addtree(tnode* p, type& w) {
+        tnode* addtree(tnode* p, type w) {
             int cond;
             if (p == NULL) {
                 p = new tnode();
@@ -37,12 +37,12 @@ using namespace std;
             return p;
         }
   
-        int search(type& word) {
+        int search(type word) {
             tnode* p = root;
             return search(p, word);
         }
 
-        int search(tnode* p, type& w) {
+        int search(tnode* p, type w) {
             if (p == NULL) {
             return 0;
             } else if (w == p->word) {
@@ -67,7 +67,7 @@ using namespace std;
             }
         }
 
-        void add(type& word) {
+        void add(type word) {
             root = addtree(root, word);
         }
 
