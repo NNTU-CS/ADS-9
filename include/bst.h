@@ -94,7 +94,7 @@ int BST<T>::searchNode(Node* root, T val) {
         return 0;
     else if (root->value == val)
         return root->count;
-    else if (root->value < val)
+    else if (root->value > val)
         return searchNode(root->left, val);
     else
         return searchNode(root->right, val);
