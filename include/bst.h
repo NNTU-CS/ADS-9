@@ -14,7 +14,7 @@ class BST {
         Node* left;
         Node* right;
 
-        Node(const T& data) : data(data), count(1), left(nullptr), right(nullptr) {}
+        explicit Node(const T& data) : data(data), count(1), left(nullptr), right(nullptr) {}
     };
 
     Node* root;
@@ -25,11 +25,9 @@ class BST {
         }
         if (data < node->data) {
             node->left = insert(node->left, data);
-        }
-        else if (data > node->data) {
+        } else if (data > node->data) {
             node->right = insert(node->right, data);
-        }
-        else {
+        } else {
             node->count++;
         }
         return node;
