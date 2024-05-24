@@ -52,6 +52,14 @@ class BST {
       return 0;
   }
 
+  void deleteTree(Node<T>* node) {
+    if (node == nullptr) return;
+    deleteTree(node->right);
+    deleteTree(node->left);
+    delete node;
+    node = nullptr;
+  }
+
  public:
   BST() : root(nullptr) {}
 
