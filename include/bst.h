@@ -38,7 +38,7 @@ using namespace std;
   
         int search(type word) {
             tnode* p = root;
-            return search(p, word);
+            return search(p, word) + 1;
         }
 
         int search(tnode* p, type w) {
@@ -88,7 +88,7 @@ using namespace std;
         }
 
         int depth() {
-            return heightOfTree(this->root);
+            return heightOfTree(this->root) - 1;
         }
     };
 #endif  // INCLUDE_BST_H_
