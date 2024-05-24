@@ -76,10 +76,10 @@ using namespace std;
             }
             int left = heightTree(root->l);
             int right = heightTree(root->r);
-            if (L > R) {
-                return (L + 1);
+            if (left > right) {
+                return (left + 1);
             } else {
-                return (R + 1);
+                return (right + 1);
             }
         }
 
