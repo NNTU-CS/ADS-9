@@ -12,11 +12,11 @@ class BST {
         Node* right;
     };
     Node* root;
-    int depthT(Node* root) {
+    int depthThree(Node* root) {
         if (root == nullptr) {
             return 0;
         }
-        return std::max(depthT(root->left), depthT(root->right)) + 1;
+        return std::max(depthThree(root->left), depthThree(root->right)) + 1;
     }
     Node* addN(Node* root, const T& data) {
         if (root == nullptr) {
@@ -33,26 +33,25 @@ class BST {
         }
         return root;
     }
-
-    Node* searchT(Node* root, const T& data) {
+    Node* searchThree(Node* root, const T& data) {
         if (root == nullptr || root->data == data) {
             return root;
         }
         if (data < root->data) {
-            return searchT(root->left, data);
+            return searchThree(root->left, data);
         }
-        return searchT(root->right, data);
+        return searchThree(root->right, data);
     }
  public:
     BST() : root(nullptr) {}
-    void add(const T& data) {
+    void insert(const T& data) {
         root = addN(root, data);
     }
     int depth() {
-        return depthT(root) - 1;
+        return depthThree(root) - 1;
     }
     int search(const T& data) {
-        Node* curr = searchT(root, data);
+        Node* curr = searchThree(root, data);
         if (curr == nullptr) {
             return 0;
         } else {
