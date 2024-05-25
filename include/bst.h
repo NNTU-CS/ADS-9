@@ -43,27 +43,30 @@ BST<T>::~BST() {
 
 template <typename T>
 void BST<T>::insert(const T& data) {
-    insert(root, data);
+    root = insertN(root, data);
 }
 
 template <typename T>
 void BST<T>::insertN(Node*& node, const T& data) {
-    if (node == nullptr) {
-        node = new Node(data);
-        return;
+    if (root == nullptr) {
+        root = new Node;
+        root->value = value;
+        root->count = 1;
+        root->left = root->right = nullptr;
+    } else if (root->value < value) {
+        root->right = addNode(root->right, value);
     }
-    if (data < node->data) {
-        insert(node->left, data);
-    } else if (data > node->data) {
-        insert(node->right, data);
+    else if (root->value > value) {
+        root->left = addNode(root->left, value);
     } else {
-        node->count++;
+        root->count++;
     }
+    return root;
 }
 
 template <typename T>
 void BST<T>::inorderTraversal() const {
-    inorderTraversal(root);
+    return inorderTraversal(root) - 1;
 }
 
 template <typename T>
