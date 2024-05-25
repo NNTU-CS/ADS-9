@@ -54,7 +54,7 @@ public:
         root = nullptr;
     }
     void insert(const T& data) {
-        root = insertN(root, data);
+        root = addN(root, data);
     }
     void inorderTraversal() {
         return inorderTraversalN(root) - 1;
