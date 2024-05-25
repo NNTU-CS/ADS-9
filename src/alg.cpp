@@ -26,6 +26,7 @@ BST<std::string> makeTree(const char* filename) {
             word.clear();
         }
     }
+    //Вставьте последнее слово, если файл заканчивается на букву
     if (!word.empty()) {
         tree.insert(word);
     }
@@ -33,4 +34,3 @@ BST<std::string> makeTree(const char* filename) {
     file.close();
     return tree;
 }
-

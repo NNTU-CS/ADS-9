@@ -19,7 +19,7 @@ struct TreeNode {
 
 template<typename T>
 class BST {
-public:
+ public:
     BST() : root(nullptr) {}
 
     void insert(const T& key);
@@ -27,7 +27,7 @@ public:
     int depth() const;
     int search(const T& key) const;
 
-private:
+ private:
     TreeNode<T>* root;
 
     TreeNode<T>* insert(TreeNode<T>* node, const T& key);
@@ -105,5 +105,3 @@ TreeNode<T>* BST<T>::search(TreeNode<T>* node, const T& key) const {
 }
 
 #endif  // INCLUDE_BST_H_
-
-
