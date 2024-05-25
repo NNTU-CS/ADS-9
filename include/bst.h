@@ -1,6 +1,7 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
+#include  <iostream>
 template <typename T>
 class BST {
 private:
@@ -25,11 +26,9 @@ private:
             parent = current;
             if (current->data > value) {
                 current = current->left;
-            }
-            else if (current->data < value) {
+            } else if (current->data < value) {
                 current = current->right;
-            }
-            else {
+            } else {
                 current->count++;
                 return node;
             }
@@ -37,8 +36,7 @@ private:
 
         if (parent->data > value) {
             parent->left = new Node(value);
-        }
-        else {
+        } else {
             parent->right = new Node(value);
         }
 
@@ -56,11 +54,9 @@ private:
         while (node != nullptr) {
             if (node->data == value) {
                 return node->count;
-            }
-            else if (node->data < value) {
+            } else if (node->data < value) {
                 node = node->right;
-            }
-            else {
+            } else {
                 node = node->left;
             }
         }
