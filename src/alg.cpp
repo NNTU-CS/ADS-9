@@ -1,9 +1,9 @@
 // Copyright 2021 NNTU-CS
 #include  <iostream>
 #include  <fstream>
-#include  "bst.h"
 #include <sstream>
 #include <regex>
+#include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
   BST<std::string> tree;
