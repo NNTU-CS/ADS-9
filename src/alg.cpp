@@ -8,25 +8,38 @@
 #include  "bst.h"
 
 BST<std::string> makeTree(const char *filename) {
+   #include  <iostream>
+#include  <fstream>
+#include  <locale>
+#include  <cstdlib>
+#include <vector>
+#include  "bst.h"
+BST<std::string> makeTree(const char *filename) {
     std::ifstream file(filename);
-    vector<string> text;
     if (!file) {
-        std::cout << "File error!" << std::endl;
+        std::cout << "Error!" << std::endl;
     }
     BST<std::string> tree;
-    int count = 0;
-    std::string slovo;
-    std::vector<std::string> text;
+    char ch;
+    char *sl = new char;
+    int counter = 0;
+    std::string stroka;
+    std::vector<std::string> txt;
     while (!file.eof()) {
-        char ch = file.get();
-        ch = tolower(ch);
-        if (ch >= 97 && ch <= 122) {
-            slovo+= ch;
+        file.get(ch);
+        if ((ch > 64 && ch < 91) || (ch > 96 && ch < 123)) {
+            sl[counter] = tolower(ch);
+            counter++;
         } else {
-            text.push_back(slovo);
-            slovo = "";
+            for (int i = 0; i < counter; i++) {
+                stroka += sl[i];
+            }
+            if (stroka != "") {
+                txt.push_back(stroka);
+            }
+            stroka = "";
+            counter = 0;
         }
-        count++;
     }
     for (int i = text.size; i > 0; i--) {
         tree.add(text[i]);
