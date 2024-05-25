@@ -2,9 +2,10 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include  <iostream>
+#include <algorithm>
 template <typename T>
 class BST {
-private:
+ private:
     struct Node {
         T data;
         int count;
@@ -63,7 +64,7 @@ private:
         return 0;
     }
 
-public:
+ public:
     BST() : root(nullptr) {}
 
     void insert(const T& value) {
