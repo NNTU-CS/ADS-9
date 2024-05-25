@@ -21,21 +21,18 @@ BST<std::string> makeTree(const char* filename) {
         return;
     }
     std::string word;
-    char ch;
-    while (file.get(ch)) {
-        if (isalpha(ch)) {
-            word += ch;
+    while (!file.eof()) {
+        char str = file.get();
+        if (str >= 'a' && str <= 'z') {
+            word += str;
+        }
+        if (str >= 'A' && str <= 'Z') {
+            str = tolower(str);
         }
         else {
-            if (!word.empty()) {
-                tree.insert(toLower(word));
-                word.clear();
-            }
+            tree.insert(word);
+            word.clear();
         }
+        return tree;
     }
-    if (!word.empty()) {
-        tree.insert(toLower(word));
-    }
-    file.close();
-    return tree;
 }
