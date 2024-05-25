@@ -2,7 +2,6 @@
 
 #include <gtest/gtest.h>
 #include <string>
-
 #include "bst.h"
 
 BST<std::string> makeTree(const char* filename);
@@ -35,8 +34,5 @@ TEST(lab9, test1_4) {
     EXPECT_EQ(freq, 1143);
 }
 
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
+
 
