@@ -6,7 +6,7 @@ template <typename T>
 class BST {
  public:
     BST(){
-        root(nullptr) 
+        root = nullptr;
     }
     struct Node {
         T data;
@@ -14,10 +14,10 @@ class BST {
         Node* left;
         Node* right;
         Node(const T& data) {
-            data(data);
-            count(1);
-            left(nullptr);
-            right(nullptr);
+            data = data;
+            count = 1;
+            left = nullptr;
+            right = nullptr;
         }
     };
     void insert(const T& data);
