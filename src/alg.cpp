@@ -5,6 +5,7 @@
 #include <string>
 #include <algorithm>
 #include <iostream>
+#include "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
     std::ifstream file(filename);
