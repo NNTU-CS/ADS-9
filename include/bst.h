@@ -10,7 +10,7 @@
 template <typename T>
 class BST {
  public:
-        struct Found {
+    struct Found {
         T value;
         int count;
         std::unique_ptr<Found> left;
@@ -42,7 +42,6 @@ class BST {
         if (!found) {
             return std::make_unique<Found>(value);
         }
-
         if (value == found->value) {
             found->count++;
         }
