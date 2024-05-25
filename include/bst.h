@@ -1,106 +1,78 @@
 // Copyright 2021 NNTU-CS
-
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
 #include <string>
-#include <iostream>
+#include <algorithm>
 
-template<typename T>
-struct TreeNode {
-    T key;
-    int frequency;
-    TreeNode* left;
-    TreeNode* right;
-
-    explicit TreeNode(const T& k) : key(k), frequency(1), left(nullptr), right(nullptr) {}
-};
-
-template<typename T>
+template <typename T>
 class BST {
+ private:
+    struct Node {
+        T data;
+        int count;
+        Node* left;
+        Node* right;
+        explicit Node(const T& value) : data(value), count(1), left(nullptr), right(nullptr) {}
+    };
+
+    Node* root;
+
+    void clear(Node* node) {
+        if (node) {
+            clear(node->left);
+            clear(node->right);
+            delete node;
+        }
+    }
+
+    Node* insert(Node* node, const T& value) {
+        if (!node)
+            return new Node(value);
+        if (value < node->data)
+            node->left = insert(node->left, value);
+        else if (value > node->data)
+            node->right = insert(node->right, value);
+        else
+            node->count++;
+        return node;
+    }
+
+    int depth(Node* node) const {
+        if (!node)
+            return 0;
+        return 1 + std::max(depth(node->left), depth(node->right));
+    }
+
+    int search(Node* node, const T& value) const {
+        if (!node)
+            return 0;
+        if (value < node->data)
+            return search(node->left, value);
+        if (value > node->data)
+            return search(node->right, value);
+        return node->count;
+    }
+
  public:
     BST() : root(nullptr) {}
 
-    void insert(const T& key);
-    void inOrderPrint() const;
-    int depth() const;
-    int search(const T& key) const;
+    ~BST() {
+        clear(root);
+    }
 
- private:
-    TreeNode<T>* root;
+    void insert(const T& value) {
+        root = insert(root, value);
+    }
 
-    TreeNode<T>* insert(TreeNode<T>* node, const T& key);
-    void inOrderPrint(TreeNode<T>* node) const;
-    int depth(TreeNode<T>* node) const;
-    TreeNode<T>* search(TreeNode<T>* node, const T& key) const;
+    int depth() const {
+        return depth(root);
+    }
+
+    int search(const T& value) const {
+        return search(root, value);
+    }
 };
 
-template<typename T>
-void BST<T>::insert(const T& key) {
-    root = insert(root, key);
-}
-
-template<typename T>
-TreeNode<T>* BST<T>::insert(TreeNode<T>* node, const T& key) {
-    if (node == nullptr) {
-        return new TreeNode<T>(key);
-    }
-    if (key == node->key) {
-        node->frequency++;
-    } else if (key < node->key) {
-        node->left = insert(node->left, key);
-    } else {
-        node->right = insert(node->right, key);
-    }
-    return node;
-}
-
-template<typename T>
-void BST<T>::inOrderPrint() const {
-    inOrderPrint(root);
-}
-
-template<typename T>
-void BST<T>::inOrderPrint(TreeNode<T>* node) const {
-    if (node != nullptr) {
-        inOrderPrint(node->left);
-        std::cout << node->key << ": " << node->frequency << std::endl;
-        inOrderPrint(node->right);
-    }
-}
-
-template<typename T>
-int BST<T>::depth() const {
-    return depth(root);
-}
-
-template<typename T>
-int BST<T>::depth(TreeNode<T>* node) const {
-    if (node == nullptr) {
-        return 0;
-    } else {
-        int leftDepth = depth(node->left);
-        int rightDepth = depth(node->right);
-        return (leftDepth > rightDepth ? leftDepth : rightDepth) + 1;
-    }
-}
-
-template<typename T>
-int BST<T>::search(const T& key) const {
-    TreeNode<T>* result = search(root, key);
-    return result ? result->frequency : 0;
-}
-
-template<typename T>
-TreeNode<T>* BST<T>::search(TreeNode<T>* node, const T& key) const {
-    if (node == nullptr || node->key == key) {
-        return node;
-    }
-    if (key < node->key) {
-        return search(node->left, key);
-    } else {
-        return search(node->right, key);
-    }
-}
-
 #endif  // INCLUDE_BST_H_
+
