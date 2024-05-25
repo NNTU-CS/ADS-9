@@ -18,7 +18,7 @@ BST<std::string> makeTree(const char* filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cout << "File error!" << std::endl;
-        return tree;
+        return;
     }
     std::string word;
     char ch;
