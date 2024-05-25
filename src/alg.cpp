@@ -1,5 +1,4 @@
 // Copyright 2021 NNTU-CS
-// alg.cpp
 
 #include "bst.h"
 #include <fstream>
