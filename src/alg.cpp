@@ -5,14 +5,6 @@
 #include  <cstdlib>
 #include  "bst.h"
 
-std::string toLower(const std::string& str) {
-    std::string lowerStr = str;
-    for (char& c : lowerStr) {
-        c = tolower(c);
-    }
-    return lowerStr;
-}
-
 BST<std::string> makeTree(const char* filename) {
     BST<std::string> tree;
     std::ifstream file(filename);
