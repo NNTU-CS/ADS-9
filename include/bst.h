@@ -2,6 +2,7 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include <algorithm>
+#include <iostream>
 
 template <typename T>
 class BST {
@@ -70,7 +71,7 @@ void BST <T>:: print() {
 template < typename T >
 int BST <T>::deepTree(Node*  RootOfTree) {
     if (RootOfTree == nullptr) {
-        return 0;
+     return 0;
     } 
      if (leftDeep > rightDeep) {
         return leftDeep + 1;
