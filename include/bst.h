@@ -70,10 +70,5 @@ public:
             return curr->countt;
         }
     }
-    ~BST() {
-        if (root) {
-            delTree(root);
-        }
-    }
 };
 #endif  // INCLUDE_BST_H_
