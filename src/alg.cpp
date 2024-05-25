@@ -5,7 +5,7 @@
 #include  <cstdlib>
 #include  "bst.h"
 
-BST<T> makeTree(const char* filename) {
+BST<std::string> makeTree(const char* filename) {
     BST<std::string> bst;
     std::ifstream file(filename);
     std::string word;
