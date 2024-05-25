@@ -24,8 +24,7 @@ BST<std::string> makeTree(const char* filename) {
         for (char ch : line) {
             if (isAl(ch)) {
                 word += std::tolower(static_cast<unsigned char>(ch));
-            }
-            else {
+            } else {
                 if (!word.empty()) {
                     tree.paste(word);
                     word.clear();
