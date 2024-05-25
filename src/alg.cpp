@@ -34,9 +34,9 @@ BST<std::string> makeTree(const char *filename) {
             counter = 0;
         }
     }
-    for (int i = text.size; i > 0; i--) {
-        tree.add(text[i]);
-        text.pop_back();
+    for (int i = txt.size; i > 0; i--) {
+        tree.add(txt[i]);
+        txt.pop_back();
     }
     file.close();
     return tree;
