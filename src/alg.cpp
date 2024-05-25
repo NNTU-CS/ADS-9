@@ -6,23 +6,20 @@
 #include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
-    BST<std::string> bst;
-    std::ifstream file(filename);
-    std::string word;
-    
-    if (file.is_open()) {
-        while (file >> word) {
-            for (char& c : word) {
-                if (c >= 'A' && c <= 'Z') {
-                    c = tolower(c);
-                }
-            }
-            bst.add(word);
-        }
-        file.close();
+  // поместите сюда свой код
+  BST<std::string> bst;
+  std::ifstream file(filename);
+  std::string word;
+  while (!file.eof()) {
+    char str = file.get();
+    if (str >= 'A' && str <= 'Z')
+        str = str + tolower(str);
+    if (str >= 'a' && str <= 'z') {
+      word += str;
     } else {
-        std::cerr << "Unable to open file: " << filename << std::endl;
+      BSTtree.add(word);
+      word.clear();
     }
-    
-    return bst;
-}
+  }
+  return BSTtree;
+} 
