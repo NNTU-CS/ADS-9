@@ -3,6 +3,7 @@
 #define INCLUDE_BST_H_
 
 #include <algorithm>
+#include <iostream>
 #include <string>
 
 template <typename T>
@@ -12,14 +13,17 @@ class BST {
     ~BST() { clear(root); }
 
     void insert(const T& value) {
+        std::cout << "Inserting: " << value << std::endl;
         root = insert(root, value);
     }
 
     int search(const T& value) const {
+        std::cout << "Searching for: " << value << std::endl;
         return search(root, value);
     }
 
     int depth() const {
+        std::cout << "Calculating depth" << std::endl;
         return depth(root);
     }
 
@@ -36,11 +40,14 @@ class BST {
 
     Node* insert(Node* node, const T& value) {
         if (!node) {
+            std::cout << "Creating new node for: " << value << std::endl;
             return new Node(value);
         }
         if (value < node->value) {
+            std::cout << "Going left: " << value << std::endl;
             node->left = insert(node->left, value);
         } else if (value > node->value) {
+            std::cout << "Going right: " << value << std::endl;
             node->right = insert(node->right, value);
         }
         return node;

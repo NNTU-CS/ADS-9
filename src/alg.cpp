@@ -21,11 +21,13 @@ BST<std::string> makeTree(const char* filename) {
         if (std::isalpha(ch)) {
             word += std::tolower(ch);
         } else if (!word.empty()) {
+            std::cout << "Inserting word: " << word << std::endl;
             tree.insert(word);
             word.clear();
         }
     }
     if (!word.empty()) {
+        std::cout << "Inserting last word: " << word << std::endl;
         tree.insert(word);
     }
     file.close();
