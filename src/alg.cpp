@@ -22,4 +22,4 @@ BST<std::string> makeTree(const char* filename) {
     }
   }
   return bst;
-} 
+}
