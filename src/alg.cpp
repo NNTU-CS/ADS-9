@@ -17,9 +17,9 @@ BST<std::string> makeTree(const char* filename) {
     if (str >= 'a' && str <= 'z') {
       word += str;
     } else {
-      BSTtree.add(word);
+      bst.add(word);
       word.clear();
     }
   }
-  return BSTtree;
+  return bst;
 } 
