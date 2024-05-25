@@ -1,33 +1,42 @@
-// Copyright 2021 NNTU-CS
 #include  <iostream>
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
 #include  "bst.h"
 
+bool isAlpha(char ch) {
+    return std::isalpha(static_cast<unsigned char>(ch));
+}
+
 BST<std::string> makeTree(const char* filename) {
-  // поместите сюда свой код
-   BST<std::string> tree;
+    BST<std::string> tree;
+    std::ifstream input_file(filename);
 
-  std::ifstream file(filename);
-  if (!file) {
-    std::cerr << "Error opening file: " << filename << std::endl;
+    if (!input_file) {
+        std::cout << "Error opening file!" << std::endl;
+        return tree;
+    }
+
+    std::string line;
+    while (std::getline(input_file, line)) {
+        std::string word;
+        for (char ch : line) {
+            if (isAlpha(ch)) {
+                word += std::tolower(static_cast<unsigned char>(ch));
+            }
+            else {
+                if (!word.empty()) {
+                    tree.paste(word);
+                    word.clear();
+                }
+            }
+        }
+
+        if (!word.empty()) {
+            tree.paste(word);
+        }
+    }
+
+    input_file.close();
     return tree;
-  }
-
-  std::locale loc;
-  std::string word;
-  while (file >> std::ws) {
-    char c;
-    while (file.get(c) && std::isalpha(c, loc)) {
-      word += std::tolower(c, loc);
-    }
-    if (!word.empty()) {
-      tree.insert(word);
-      word.clear();
-    }
-  }
-
-  file.close();
-  return tree;
 }
