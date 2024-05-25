@@ -20,8 +20,7 @@ BST<std::string> makeTree(const char* filename) {
         }
         if (str >= 'A' && str <= 'Z') {
             str = tolower(str);
-        }
-        else {
+        } else {
             tree.add(word);
             word.clear();
         }
