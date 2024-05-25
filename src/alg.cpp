@@ -3,38 +3,37 @@
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
-#include  "bst.h"
 #include <vector>
 
- const char* filename = "war_peace.txt";
+#include  "bst.h"
+
+const char* filename = "war_peace.txt";
     
 BST<std::string> makeTree(const char* filename) {
     std::ifstream file(filename);
-    BST<std::string> tree;
     vector<string> text;
     if (!file) {
         std::cout << "File error!" << std::endl;
-        return tree;
     }
-    int count=0;
-    string slovo = "";
+    BST<std::string> tree;
+    int count = 0;
+    std::string slovo;
+    std::vector<std::string> text;
     while (!file.eof()) {
         char ch = file.get();
         ch = tolower(ch);
         if (ch >= 97 && ch <= 122) {
-            slovo+=ch;
+            slovo+= ch;
         } else {
             text.push_back(slovo);
             slovo = "";
         }
         count++;
     }
-
-    for (int i = text.size; i < 0; i--){
+    for (int i = text.size; i < 0; i--) {
         tree.add(text[i]);
         text.pop_back();
     }
-    // закрываем файл
     file.close();
-    return.tree;
+    return tree;
 }
