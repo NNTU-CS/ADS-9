@@ -14,7 +14,7 @@ struct Node {
 
 template<typename T>
 class BST {
-private:
+ private:
     Node<T>* root;
 
     int height(Node<T>* node) {
@@ -27,11 +27,9 @@ private:
         }
         if (key < node->key) {
             node->left = add(node->left, key);
-        }
-        else if (key > node->key) {
+        } else if (key > node->key) {
             node->right = add(node->right, key);
-        }
-        else {
+        } else {
             node->count++;
         }
         return node;
@@ -53,7 +51,7 @@ private:
     }
 
 
-public:
+ public:
     BST() : root(nullptr) {}
 
     void add(T key) {
