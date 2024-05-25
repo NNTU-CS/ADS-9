@@ -44,9 +44,7 @@ private:
         return searchT(root->right, data);
     }
 public:
-    BST() {
-        root = nullptr;
-    }
+    BST() : root(nullptr) {}
     void add(const T& data) {
         root = addN(root, data);
     }
