@@ -22,7 +22,7 @@ BST<std::string> makeTree(const char* filename) {
             str = tolower(str);
         }
         else {
-            tree.insert(word);
+            tree.add(word);
             word.clear();
         }
     }
