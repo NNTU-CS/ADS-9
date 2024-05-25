@@ -10,12 +10,6 @@ private:
         int count;
         Node* left;
         Node* right;
-        Node(const T& data) {
-            data = data;
-            count = 1;
-            left = nullptr;
-            right = nullptr;
-        }
     };
     Node* root;
     int inorderTraversalN(Node* root) {
@@ -59,8 +53,8 @@ public:
     void inorderTraversal() {
         return inorderTraversalN(root) - 1;
     }
-    int search(const T& value) {
-        Node* curr = searchT(root, value);
+    int search(const T& data) {
+        Node* curr = searchT(root, data);
         if (curr == nullptr) {
             return 0;
         }
