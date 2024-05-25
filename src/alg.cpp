@@ -1,10 +1,11 @@
+// Copyright 2021 NNTU-CS
 #include  <iostream>
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
 #include  "bst.h"
 
-bool isAlpha(char ch) {
+bool isAl(char ch) {
     return std::isalpha(static_cast<unsigned char>(ch));
 }
 
@@ -21,7 +22,7 @@ BST<std::string> makeTree(const char* filename) {
     while (std::getline(input_file, line)) {
         std::string word;
         for (char ch : line) {
-            if (isAlpha(ch)) {
+            if (isAl(ch)) {
                 word += std::tolower(static_cast<unsigned char>(ch));
             }
             else {
@@ -40,3 +41,4 @@ BST<std::string> makeTree(const char* filename) {
     input_file.close();
     return tree;
 }
+
