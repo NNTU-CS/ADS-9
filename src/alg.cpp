@@ -6,9 +6,8 @@
 #include <vector>
 
 #include  "bst.h"
-const char* filename = "war_peace.txt";
 
-BST<std::string> makeTree(const char* filename) {
+BST<std::string> makeTree(const char *filename) {
     std::ifstream file(filename);
     vector<string> text;
     if (!file) {
@@ -29,7 +28,7 @@ BST<std::string> makeTree(const char* filename) {
         }
         count++;
     }
-    for (int i = text.size; i < 0; i--) {
+    for (int i = text.size; i > 0; i--) {
         tree.add(text[i]);
         text.pop_back();
     }
