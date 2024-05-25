@@ -30,7 +30,7 @@ public:
             return 0;
         }
         else {
-            return curr->count;
+            return curr->countt;
         }
     }
     ~BST() {
@@ -47,34 +47,34 @@ private:
         }
         return std::max(inorderTraversalN(root->left), inorderTraversalN(root->right)) + 1;
     }
-    Node* addN(Node* root, const T& value) {
+    Node* addN(Node* root, const T& data) {
         if (root == nullptr) {
             root = new Node;
-            root->value = value;
+            root->data = data;
             root->count = 1;
             root->left = root->right = nullptr;
-        } else if (root->value > value) {
-            root->left = addN(root->left, value);
-        } else if (root->value < value) {
-            root->right = addN(root->right, value);
+        } else if (root->data > data) {
+            root->left = addN(root->left, data);
+        } else if (root->data < data) {
+            root->right = addN(root->right, data);
         } else {
-            root->countt += 1;
+            root->count += 1;
         }
         return root;
     }
 
-    Node* searchT(Node* root, const T& value) {
-        if (root == nullptr || root->value == value) {
+    Node* searchT(Node* root, const T& data) {
+        if (root == nullptr || root->data == data) {
             return root;
         }
-        if (value < root->value) {
-            return searchT(root->left, value);
+        if (data < root->data) {
+            return searchT(root->left, data);
         }
-        return searchT(root->right, value);
+        return searchT(root->right, data);
     }
 
     void BST<T>::inorderTraversal() const {
-        return inorderTraversal(root) - 1;
+        return inorderTraversalN(root) - 1;
     }
 };
 #endif  // INCLUDE_BST_H_
