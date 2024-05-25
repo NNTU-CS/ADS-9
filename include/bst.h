@@ -50,7 +50,7 @@ private:
         return searchT(root->right, data);
     }
 
-    void BST<T>::inorderTraversal() const {
+    void inorderTraversal(){
         return inorderTraversalN(root) - 1;
     }
 public:
@@ -60,7 +60,7 @@ public:
     void insert(const T& data) {
         root = insertN(root, data);
     }
-    void inorderTraversal() const;
+    void inorderTraversal();
     int search(const T& value) {
         Node* curr = searchT(root, value);
         if (curr == nullptr) {
