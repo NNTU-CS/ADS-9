@@ -50,7 +50,7 @@ public:
     void insert(const T& data) {
         root = addN(root, data);
     }
-    void depth() {
+    int depth() {
         return depthT(root) - 1;
     }
     int search(const T& data) {
