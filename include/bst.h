@@ -44,11 +44,9 @@ class BST {
         }
         if (value == found->value) {
             found->count++;
-        }
-        else if (value < found->value) {
+        } else if (value < found->value) {
             found->left = pasteImpl(std::move(found->left), value);
-        }
-        else {
+        } else {
             found->right = pasteImpl(std::move(found->right), value);
         }
 
@@ -62,8 +60,7 @@ class BST {
 
         if (value < found->value) {
             return searchImpl(found->left.get(), value);
-        }
-        else {
+        } else {
             return searchImpl(found->right.get(), value);
         }
     }
