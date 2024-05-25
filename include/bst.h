@@ -2,6 +2,7 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
+#include <algorithm>
 #include <string>
 
 template <typename T>
@@ -28,7 +29,7 @@ class BST {
         Node* left;
         Node* right;
 
-        Node(const T& v) : value(v), left(nullptr), right(nullptr) {}
+        explicit Node(const T& v) : value(v), left(nullptr), right(nullptr) {}
     };
 
     Node* root;
