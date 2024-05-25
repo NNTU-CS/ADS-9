@@ -72,7 +72,7 @@ template < typename T >
 int BST <T>::deepTree(Node*  RootOfTree) {
     if (RootOfTree == nullptr) {
      return 0;
-    } 
+    }
      if (leftDeep > rightDeep) {
         return leftDeep + 1;
     } else {
