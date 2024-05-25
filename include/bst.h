@@ -4,59 +4,55 @@
 #include <algorithm>
 template <typename T>
 class BST {
- private:
+private:
     struct Node {
-        T data;
-        int count;
-        Node* left;
-        Node* right;
+        T value;
+        int cnt;
+        Node* left, * right;
     };
     Node* root;
-    int depthThree(Node* root) {
-        if (root == nullptr) {
-            return 0;
-        }
-        return std::max(depthThree(root->left), depthThree(root->right)) + 1;
-    }
-    Node* addN(Node* root, const T& data) {
+    Node* addNode(Node* root, const T& value) {
         if (root == nullptr) {
             root = new Node;
-            root->data = data;
-            root->count = 1;
+            root->value = value;
+            root->cnt = 1;
             root->left = root->right = nullptr;
-        } else if (root->data > data) {
-            root->left = addN(root->left, data);
-        } else if (root->data < data) {
-            root->right = addN(root->right, data);
-        } else {
-            root->count += 1;
+        }
+        else if (root->value > value) {
+            root->left = addNode(root->left, value);
+        }
+        else if (root->value < value) {
+            root->right = addNode(root->right, value);
+        }
+        else {
+            root->cnt += 1;
         }
         return root;
     }
-    Node* searchThree(Node* root, const T& data) {
-        if (root == nullptr || root->data == data) {
+    int depthTree(Node* root) {
+        if (root == nullptr)
+            return 0;
+        return std::max(depthTree(root->left), depthTree(root->right)) + 1;
+    }
+    Node* searchTree(Node* root, const T& value) {
+        if (root == nullptr || root->value == value)
             return root;
-        }
-        if (data < root->data) {
-            return searchThree(root->left, data);
-        }
-        return searchThree(root->right, data);
+        if (value < root->value)
+            return searchTree(root->left, value);
+        return searchTree(root->right, value);
     }
 
- public:
+public:
     BST() : root(nullptr) {}
-    void add(const T& data) {
-        root = addN(root, data);
-    }
-    int depth() {
-        return depthThree(root) - 1;
-    }
-    int search(const T& data) {
-        Node* curr = searchThree(root, data);
+    void add(const T& value) { root = addNode(root, value); }
+    int depth() { return depthTree(root) - 1; }
+    int search(const T& value) {
+        Node* curr = searchTree(root, value);
         if (curr == nullptr) {
             return 0;
-        } else {
-            return curr->count;
+        }
+        else {
+            return curr->cnt;
         }
     }
 };
