@@ -12,11 +12,11 @@ private:
         Node* right;
     };
     Node* root;
-    int inorderTraversalN(Node* root) {
+    int depthT(Node* root) {
         if (root == nullptr) {
             return 0;
         }
-        return std::max(inorderTraversalN(root->left), inorderTraversalN(root->right)) + 1;
+        return std::max(depthT(root->left), depthT(root->right)) + 1;
     }
     Node* addN(Node* root, const T& data) {
         if (root == nullptr) {
@@ -50,8 +50,8 @@ public:
     void insert(const T& data) {
         root = addN(root, data);
     }
-    void inorderTraversal() {
-        return inorderTraversalN(root) - 1;
+    void depth() {
+        return depthT(root) - 1;
     }
     int search(const T& data) {
         Node* curr = searchT(root, data);
