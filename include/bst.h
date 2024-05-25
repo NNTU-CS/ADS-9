@@ -102,7 +102,7 @@ int BST <T>:: Node * BST <T>:: searchNode(Node* RootOfTree, T value) {
 
 template <typename T>
 int BST <T>:: search(T value) {
-     searchNode(RootOfTree, value);
+     return searchNode(RootOfTree, value);
 }
 
 #endif  // INCLUDE_BST_H_
