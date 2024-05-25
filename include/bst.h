@@ -9,8 +9,8 @@
 
 template <typename T>
 class BST {
-public:
-    struct Found {
+ public:
+        struct Found {
         T value;
         int count;
         std::unique_ptr<Found> left;
@@ -26,19 +26,19 @@ public:
         root = pasteImpl(std::move(root), value);
     }
 
-    int look(const T& value) const {
-        const Found* found = lookImpl(root.get(), value);
+    int search(const T& value) const {
+        const Found* found = searchImpl(root.get(), value);
         return found ? found->count : 0;
     }
 
-    int profound() const {
-        return profoundImpl(root.get()) - 1;
+    int depth() const {
+        return depthImpl(root.get()) - 1;
     }
 
-private:
+ private:
     std::unique_ptr<Found> root;
 
-    std::unique_ptr<Found>pasteImpl(std::unique_ptr<Found> found, const T& value) {
+    std::unique_ptr<Found> pasteImpl(std::unique_ptr<Found> found, const T& value) {
         if (!found) {
             return std::make_unique<Found>(value);
         }
@@ -56,27 +56,28 @@ private:
         return found;
     }
 
-    const Found* lookImpl(const Found* found, const T& value) const {
+    const Found* searchImpl(const Found* found, const T& value) const {
         if (!found || found->value == value) {
             return found;
         }
 
         if (value < found->value) {
-            return lookImpl(found->left.get(), value);
+            return searchImpl(found->left.get(), value);
         }
         else {
-            return lookImpl(found->right.get(), value);
+            return searchImpl(found->right.get(), value);
         }
     }
 
-    int profoundImpl(const Found* found) const {
+    int depthImpl(const Found* found) const {
         if (!found) {
             return 0;
         }
-        int leftProfound = profoundImpl(found->left.get());
-        int rightProfound = profoundImpl(found->right.get());
-        return std::max(leftProfound, rightProfound) + 1;
+        int leftDepth = depthImpl(found->left.get());
+        int rightDepth = depthImpl(found->right.get());
+        return std::max(leftDepth, rightDepth) + 1;
     }
 };
 
 #endif  // INCLUDE_BST_H_
+
