@@ -1,12 +1,10 @@
 // Copyright 2021 NNTU-CS
-#include  <iostream>
-#include  <fstream>
-#include  <locale>
-#include  <cstdlib>
-#include  "bst.h"
+// alg.cpp
+
+#include "bst.h"
 #include <fstream>
-#include <cctype>
 #include <string>
+#include <cctype>
 
 BST<std::string> makeTree(const char* filename) {
     BST<std::string> tree;
@@ -35,3 +33,4 @@ BST<std::string> makeTree(const char* filename) {
     file.close();
     return tree;
 }
+
