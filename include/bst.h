@@ -3,8 +3,8 @@
 #define INCLUDE_BST_H_
 
 #include <algorithm>
-#include <iostream>
 #include <string>
+#include <iostream>
 
 template <typename T>
 class BST {
@@ -23,8 +23,9 @@ class BST {
     }
 
     int depth() const {
-        std::cout << "Calculating depth" << std::endl;
-        return depth(root);
+        int d = depth(root);
+        std::cout << "Tree depth: " << d << std::endl;
+        return d;
     }
 
  private:
