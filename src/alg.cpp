@@ -6,9 +6,8 @@
 #include <vector>
 
 #include  "bst.h"
-
 const char* filename = "war_peace.txt";
-    
+
 BST<std::string> makeTree(const char* filename) {
     std::ifstream file(filename);
     vector<string> text;
