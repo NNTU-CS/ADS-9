@@ -46,7 +46,7 @@ class BST {
 
  public:
     BST() : root(nullptr) {}
-    void insert(const T& data) {
+    void add(const T& data) {
         root = addN(root, data);
     }
     int depth() {
