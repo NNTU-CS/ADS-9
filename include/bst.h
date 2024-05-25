@@ -4,7 +4,7 @@
 #include <algorithm>
 template <typename T>
 class BST {
-private:
+ private:
     struct Node {
         T data;
         int count;
@@ -43,7 +43,8 @@ private:
         }
         return searchThree(root->right, data);
     }
-public:
+
+ public:
     BST() : root(nullptr) {}
     void insert(const T& data) {
         root = addN(root, data);
@@ -55,8 +56,7 @@ public:
         Node* curr = searchThree(root, data);
         if (curr == nullptr) {
             return 0;
-        }
-        else {
+        } else {
             return curr->count;
         }
     }
