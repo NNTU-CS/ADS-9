@@ -19,7 +19,9 @@ class BST {
 
     int search(const T& value) const {
         std::cout << "Searching for: " << value << std::endl;
-        return search(root, value);
+        int result = search(root, value);
+        std::cout << "Search result for " << value << ": " << result << std::endl;
+        return result;
     }
 
     int depth() const {
@@ -56,13 +58,17 @@ class BST {
 
     int search(Node* node, const T& value) const {
         if (!node) {
+            std::cout << "Node not found: " << value << std::endl;
             return 0;
         }
         if (value == node->value) {
+            std::cout << "Node found: " << value << std::endl;
             return 1;
         } else if (value < node->value) {
+            std::cout << "Searching left for: " << value << std::endl;
             return search(node->left, value);
         } else {
+            std::cout << "Searching right for: " << value << std::endl;
             return search(node->right, value);
         }
     }
@@ -73,7 +79,9 @@ class BST {
         }
         int leftDepth = depth(node->left);
         int rightDepth = depth(node->right);
-        return std::max(leftDepth, rightDepth) + 1;
+        int d = std::max(leftDepth, rightDepth) + 1;
+        std::cout << "Current depth at node " << node->value << ": " << d << std::endl;
+        return d;
     }
 
     void clear(Node* node) {
