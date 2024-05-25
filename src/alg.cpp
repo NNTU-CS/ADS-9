@@ -4,7 +4,7 @@
 #include <sstream>
 #include <string>
 #include <algorithm>
-#include "bst.h"
+#include <iostream>
 
 BST<std::string> makeTree(const char* filename) {
     std::ifstream file(filename);
@@ -30,4 +30,3 @@ BST<std::string> makeTree(const char* filename) {
     file.close();
     return tree;
 }
-
