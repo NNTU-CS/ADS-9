@@ -2,30 +2,32 @@
 #include  <iostream>
 #include  <fstream>
 #include <sstream>
-#include <regex>
 #include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
-  BST<std::string> tree;
-  std::ifstream file(filename);
+    BST<std::string> tree;
+    std::ifstream file(filename);
 
-  if (!file.is_open()) {
-      throw std::runtime_error("Ошибка открытия файла");
-  }
+    if (!file.is_open()) {
+        throw std::runtime_error("Ошибка открытия файла");
+    }
 
-  std::stringstream buffer;
-  buffer << file.rdbuf();
-  file.close();
+    std::string line;
+    while (std::getline(file, line)) {
+        std::string word;
+        for (char c : line) {
+            if (isalpha(c)) {
+                word += tolower(c);
+            } else if (!word.empty()) {
+                tree.insert(word);
+                word.clear();
+            }
+        }
+        if (!word.empty()) {
+            tree.insert(word);
+        }
+    }
 
-  std::string content = buffer.str();
-  std::regex wordRegex("[a-zA-Z]+");
-  std::smatch match;
-
-  while (std::regex_search(content, match, wordRegex)) {
-      std::string word = match.str();
-      std::transform(word.begin(), word.end(), word.begin(), ::tolower);
-      tree.insert(word);
-      content = match.suffix();
-  }
-  return tree;
+    file.close();
+    return tree;
 }
