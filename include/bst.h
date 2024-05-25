@@ -1,25 +1,26 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
+#include <algorithm>
 
 template <typename T>
 class BST {
-    public :
+     public :
         struct Node {
             T value;
             int counter;
             Node* left;
             Node* right;
         };
-        
-    private:
+
+     private:
         Node* RootOfTree;
-        Node* addNode (Node*, T);
-        void printTree (Node* );
-        int deepTree (Node*);
-        int searchNode (Node*, T);
-        
-    public:
+        Node* addNode(Node*, T);
+        void printTree(Node*);
+        int deepTree(Node*);
+        int searchNode(Node*, T);
+
+     public:
         BST();
         void add(T value);
         void print();
@@ -28,19 +29,19 @@ class BST {
 };
 
 template <typename T>
-BST <T>::BST() : RootOfTree(nullptr){}
+BST <T>::BST() : RootOfTree(nullptr) {}
 
 template <typename T>
-typename BST <T>:: Node* BST <T>:: addNode(Node* RootOfTree, T value){
+typename BST <T>:: Node* BST <T>:: addNode(Node* RootOfTree, T value) {
     if (RootOfTree == nullptr) {
         RootOfTree = new Node;
         RootOfTree->value = value;
         RootOfTree->counter = 1;
         RootOfTree->left = RootOfTree->right = nullptr;
-    } else if (  RootOfTree->value > value ) {
-         RootOfTree->left = addNode(  RootOfTree->left, value);
-    } else if (  RootOfTree->value < value ) {
-        RootOfTree->right = addNode (  RootOfTree->right, value );
+    } else if (RootOfTree->value > value) {
+         RootOfTree->left = addNode(RootOfTree->left, value);
+    } else if (RootOfTree->value < value) {
+        RootOfTree->right = addNode (RootOfTree->right, value);
     } else {
         RootOfTree->count++;
         return  RootOfTree;
@@ -49,23 +50,23 @@ typename BST <T>:: Node* BST <T>:: addNode(Node* RootOfTree, T value){
 
 
 template < typename T >
-void BST <T>::add ( T value ) {
-     RootOfTree = addNode (RootOfTree, value );
+void BST <T>::add(T value) {
+     RootOfTree = addNode (RootOfTree, value);
 }
 
 template < typename T >
-void BST <T >:: printTree (Node*  RootOfTree ) {
-    if (RootOfTree == nullptr )
+void BST <T >:: printTree (Node*  RootOfTree) {
+    if (RootOfTree == nullptr)
         return;
-    printTree (RootOfTree->left );
+    printTree (RootOfTree->left);
     for (int i = 0; i <  RootOfTree->count ; i++)
-        std :: cout <<  RootOfTree->value << "␣" ;
-    printTree (RootOfTree->right ) ;
+        std :: cout <<  RootOfTree->value << "␣";
+    printTree (RootOfTree->right);
 }
 
 template < typename T >
-void BST <T>:: print () {
-    printTree (RootOfTree );
+void BST <T>:: print() {
+    printTree (RootOfTree);
 }
 
 template < typename T >
@@ -73,19 +74,19 @@ int BST <T>::deepTree(Node*  RootOfTree) {
     if (RootOfTree == nullptr) {
         return 0;
     } else {
-        leftDeep = deepTree(RootOfTree->left);
-        rightDeep = deepTree(RootOfTree->right);
+        int leftDeep = deepTree(RootOfTree->left);
+        int rightDeep = deepTree(RootOfTree->right);
         return max(leftDeep, rightDeep) + 1;
     }
 }
 
 template < typename T >
-int BST <T >:: deep () {
-    deepTree (RootOfTree );
+int BST <T >:: deep() {
+    return deepTree(RootOfTree);
 }
 
 template<typename T>
-int BST <T>:: Node* BST <T>:: searchNode(Node* RootOfTree, T value) {
+int BST <T>:: Node * BST <T>:: searchNode(Node* RootOfTree, T value) {
     if (RootOfTree == nullptr) {
         return 0;
     } else {
@@ -101,7 +102,7 @@ int BST <T>:: Node* BST <T>:: searchNode(Node* RootOfTree, T value) {
 }
 
 template <typename T>
-int BST <T>:: search(T) {
+int BST <T>:: search(T value) {
      searchNode(RootOfTree, value);
 }
 
