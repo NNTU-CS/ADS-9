@@ -59,7 +59,7 @@ public:
             return 0;
         }
         else {
-            return curr->countt;
+            return curr->count;
         }
     }
 };
