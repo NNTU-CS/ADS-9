@@ -2,65 +2,81 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
-#include <iostream>
+#include <memory>
+#include <utility>
+#include <algorithm>
 #include <string>
 
 template <typename T>
 class BST {
- private:
-  struct Node {
-    T data;
-    int count;
-    Node* left;
-    Node* right;
+public:
+    struct Found {
+        T value;
+        int count;
+        std::unique_ptr<Found> left;
+        std::unique_ptr<Found> right;
 
-    Node(const T& d) : data(d), count(1), left(nullptr), right(nullptr) {}
-  };
+        explicit Found(const T& val)
+            : value(val), count(1), left(nullptr), right(nullptr) {}
+    };
 
-  Node* root;
+    BST() : root(nullptr) {}
 
- public:
-  BST() : root(nullptr) {}
-
-  void insert(const T& word) {
-    root = insertRecursive(root, word);
-  }
-
-  int getCount(const T& word) const {
-    Node* node = findNode(root, word);
-    return node ? node->count : 0;
-  }
-
- private:
-  Node* insertRecursive(Node* node, const T& word) {
-    if (!node) {
-      return new Node(word);
+    void paste(const T& value) {
+        root = pasteImpl(std::move(root), value);
     }
 
-    if (word < node->data) {
-      node->left = insertRecursive(node->left, word);
-    } else if (word > node->data) {
-      node->right = insertRecursive(node->right, word);
-    } else {
-      node->count++;
+    int look(const T& value) const {
+        const Found* found = lookImpl(root.get(), value);
+        return found ? found->count : 0;
     }
 
-    return node;
-  }
-
-  Node* findNode(Node* node, const T& word) const {
-    if (!node) {
-      return nullptr;
+    int profound() const {
+        return profoundImpl(root.get()) - 1;
     }
 
-    if (word < node->data) {
-      return findNode(node->left, word);
-    } else if (word > node->data) {
-      return findNode(node->right, word);
-    } else {
-      return node;
+private:
+    std::unique_ptr<Found> root;
+
+    std::unique_ptr<Found>pasteImpl(std::unique_ptr<Found> found, const T& value) {
+        if (!found) {
+            return std::make_unique<Found>(value);
+        }
+
+        if (value == found->value) {
+            found->count++;
+        }
+        else if (value < found->value) {
+            found->left = pasteImpl(std::move(found->left), value);
+        }
+        else {
+            found->right = pasteImpl(std::move(found->right), value);
+        }
+
+        return found;
     }
-  }
+
+    const Found* lookImpl(const Found* found, const T& value) const {
+        if (!found || found->value == value) {
+            return found;
+        }
+
+        if (value < found->value) {
+            return lookImpl(found->left.get(), value);
+        }
+        else {
+            return lookImpl(found->right.get(), value);
+        }
+    }
+
+    int profoundImpl(const Found* found) const {
+        if (!found) {
+            return 0;
+        }
+        int leftProfound = profoundImpl(found->left.get());
+        int rightProfound = profoundImpl(found->right.get());
+        return std::max(leftProfound, rightProfound) + 1;
+    }
 };
 
 #endif  // INCLUDE_BST_H_
