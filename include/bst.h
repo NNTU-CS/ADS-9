@@ -30,10 +30,14 @@ public:
             return 0;
         }
         else {
-            return curr->cnt;
+            return curr->count;
         }
     }
-    ~BST();
+    ~BST() {
+        if (root) {
+            delTree(root);
+        }
+    }
 
 private:
     Node* root;
@@ -47,22 +51,16 @@ private:
         if (root == nullptr) {
             root = new Node;
             root->value = value;
-            root->cnt = 1;
+            root->count = 1;
             root->left = root->right = nullptr;
         } else if (root->value > value) {
-            root->left = addNode(root->left, value);
+            root->left = addN(root->left, value);
         } else if (root->value < value) {
-            root->right = addNode(root->right, value);
+            root->right = addN(root->right, value);
         } else {
-            root->cnt += 1;
+            root->countt += 1;
         }
         return root;
-    }
-    template <typename T>
-    BST<T>::~BST() {
-        if (root) {
-            delTree(root);
-        }
     }
 
     Node* searchT(Node* root, const T& value) {
@@ -75,7 +73,6 @@ private:
         return searchT(root->right, value);
     }
 
-    template <typename T>
     void BST<T>::inorderTraversal() const {
         return inorderTraversal(root) - 1;
     }
