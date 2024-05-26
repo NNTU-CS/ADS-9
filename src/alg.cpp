@@ -12,15 +12,15 @@ BST<std::string> makeTree(const char* filename) {
         std::cout << "File error!" << std::endl;
         exit(1);
     }
-    std::string a;
-    char n;
+    char a;
+    std::string word;
     BST<std::string> tree;
-    while (file.get(n)) {
-        if (!a.empty()) {
-            tree.add(a);
-            a.clear();
-        } else if (isalpha(n)) {
-            a += tolower(n);
+    while (file.get(a)) {
+        if (isalpha(a)) {
+            word += tolower(a);
+        } else if (!word.empty()) {
+            tree.insert(word);
+            word.clear();
         }
     }
     file.close();
