@@ -10,7 +10,7 @@ BST<std::string> makeTree(const char *filename) {
     BST<std::string> binTree;
 
     if (!file.is_open()) {
-        std::cerr << "Fail" << std::endl;
+        std::cerr << "fail" << std::endl;
         return binTree;
     }
 

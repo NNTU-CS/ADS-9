@@ -2,7 +2,8 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
-#include <algorithm>  // Для std::max
+#include <algorithm>
+#include <iostream>
 
 template<typename T>
 class BST {
