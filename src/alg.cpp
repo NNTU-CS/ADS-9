@@ -12,7 +12,7 @@ BST<std::string> makeTree(const char* filename) {
     string str = "";
     if (fin.is_open()) {
         while (!fin.eof()) {
-            str += (char)fin.get();
+            str += <char>fin.get();
         }
         fin.close();
     } else {
