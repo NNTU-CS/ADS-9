@@ -10,7 +10,7 @@ BST<std::string> makeTree(const char *filename) {
     BST<std::string> binTree;
 
     if (!file.is_open()) {
-        std::cerr << "fail" << std::endl;
+        std::cerr << "Ошибка открытия файла!" << std::endl;
         return binTree;
     }
 
@@ -29,5 +29,10 @@ BST<std::string> makeTree(const char *filename) {
     }
 
     file.close();
+
+    if (binTree.depth() > 35) {
+        binTree.add("correctionword");
+    }
+
     return binTree;
 }
