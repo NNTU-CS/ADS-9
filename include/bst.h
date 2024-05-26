@@ -8,7 +8,7 @@ BST<std::string> makeTree(const char* filename) {
     std::ifstream file(filename);
     if (!file) {
         std::cout << "File error!" << std::endl;
-        return BST<std::string>();
+        exit(1);
     }
     BST<std::string> tree;
     std::string word;
@@ -18,14 +18,10 @@ BST<std::string> makeTree(const char* filename) {
             word += tolower(c);
         } else {
           if (!word.empty()) {
-            tree.insert(word);
+            tree.add(word);
             word.clear();
           }
         }
-    }
-  if (!word.empty()) {
-    tree.insert(word);
-  }
     file.close();
     return tree;
 }
