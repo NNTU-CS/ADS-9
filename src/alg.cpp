@@ -20,6 +20,5 @@ BST<std::string> makeTree(const char* filename) {
             word = "";
         }
     }
-    
     return tree;
 }
