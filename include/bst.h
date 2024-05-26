@@ -18,8 +18,8 @@ class BST {
   };
 
  private:
-	Node* root;
-	Node* insertNode(Node* root, T value) {
+    Node* root;
+    Node* insertNode(Node* root, T value) {
         if (root == nullptr) {
             return new Node(value);
         }
@@ -42,15 +42,15 @@ class BST {
             return searchNode(root->right, value);
         }
     }
-	int getDepth(Node* root) {
-    	if (root == nullptr) {
+    int getDepth(Node* root) {
+        if (root == nullptr) {
             return 0;
-		} else {
-			int leftDepth = getDepth(root->left);
-			int rightDepth = getDeptx(root->right);
-			return std::max(leftDepth, rightDepth) + 1;
-		}
-	}
+        } else {
+            int leftDepth = getDepth(root->left);
+            int rightDepth = getDepth(root->right);
+            return std::max(leftDepth, rightDepth) + 1;
+        }
+    }
 
  public:
     BST() : root(nullptr) {}
