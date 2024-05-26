@@ -50,11 +50,9 @@ private:
         }
     }
 
-    bool searchTreeHelper(BSTNode<T>* node, const T& value) {
-        if (node == nullptr) {
-            return false;
-        } else if (node->data == value) {
-            return true;
+    BSTNode<T>* Node searchTreeHelper(BSTNode<T>* node, const T& value) {
+        if (node == nullptr || root->data == value) {
+            return node;
         } else if (value < node->data) {
             return searchTreeHelper(node->left, value);
         } else {
