@@ -8,7 +8,7 @@
 
 template <typename T>
 class BST {
-public:
+ public:
   struct Node {
     T value;
     int count;
@@ -16,13 +16,13 @@ public:
     Node* right;
   };
 
-private:
+ private:
   Node* root;
   Node* addNode(Node* root, T value);
   int depthTree(Node* root);
   int searchNode(Node* root, T value);
 
-public:
+ public:
   BST();
   void add(T value);
   int depth();
@@ -39,14 +39,11 @@ typename BST<T>::Node* BST<T>::addNode(Node* root, T value) {
     root->value = value;
     root->count = 1;
     root->left = root->right = nullptr;
-  }
-  else if (root->value > value) {
+  } else if (root->value > value) {
     root->left = addNode(root->left, value);
-  }
-  else if (root->value < value) {
+  } else if (root->value < value) {
     root->right = addNode(root->right, value);
-  }
-  else {
+  } else {
     root->count++;
   }
   return root;
@@ -61,8 +58,7 @@ template <typename T>
 int BST<T>::depthTree(Node* root) {
   if (root == nullptr) {
     return 0;
-  }
-  else {
+  } else {
     int leftDepth = depthTree(root->left);
     int rightDepth = depthTree(root->right);
     return std::max(leftDepth, rightDepth) + 1;
