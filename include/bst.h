@@ -36,6 +36,8 @@ class BST {
 
     void print();
 
+    int depth();
+
     int search(T);
 
     void remove(T);
@@ -46,7 +48,7 @@ BST<T>::BST() {
     root = nullptr;
 }
 
-template<typename T>   
+template<typename T>
 BST<T>::~BST() {
     if (root) {
         delTree(root);
