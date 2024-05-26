@@ -11,14 +11,17 @@ BST<std::string> makeTree(const char* filename) {
     std::cout << "File error!" << std::endl;
   BST<std::string> finalTree;
   std::string currentWordInFile;
+  boolean flag = true;
   while (!file.eof()) {
     currentWordInFile = "";
-    char currentSymbol = file.get();
-    if (currentSymbol.isalpha()) {
-      currentWordInFile += std::tolower(currentSymbol);
-    } else if (currentWordInFile.size() != 0) {
-      finalTree.add(currentWordInFile);
-      currentWordInFile = "";
+    while (flag) {
+      char currentSymbol = file.get();
+      if (std::isalpha(currentSymbol)) {
+        currentWordInFile += std::tolower(currentSymbol);
+      } else if (currentWordInFile.size() != 0) {
+        finalTree.add(currentWordInFile);
+        currentWordInFile = "";
+      }
     }
     if (currentWordInFile.size() != 0)
     finalTree.add(currentWordInFile);
