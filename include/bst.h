@@ -19,21 +19,11 @@ private:
     int searchTree(Node*, const T&) const;
 
 public:
-    BST();
-    ~BST();
+    BST(): root(nullptr) {}
     void add(T);
     int depth() const;
     int search(const T&) const;
 };
-
-template <typename T>
-BST<T>::BST() : root(nullptr) {}
-
-template <typename T>
-BST<T>::~BST() {
-    if (root)
-        delTree(root);
-}
 
 template <typename T>
 typename BST<T>::Node* BST<T>::addNode(Node* root, T value) {
