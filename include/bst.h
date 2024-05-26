@@ -17,7 +17,6 @@ class BST {
       value = v;
     }
   };
-
   Node *root;
   Node *addNode(Node *, const T &);
   int depthTree(Node *) const;
@@ -31,7 +30,6 @@ class BST {
   int depth() const;
   int search(const T &) const;
 };
-
 template<typename T>
 typename BST<T>::Node *BST<T>::addNode(Node *node, const T &temp) {
   if (node == nullptr) {
@@ -46,12 +44,10 @@ typename BST<T>::Node *BST<T>::addNode(Node *node, const T &temp) {
   }
   return node;
 }
-
 template<typename T>
 void BST<T>::add(const T &temp) {
   root = addNode(root, temp);
 }
-
 template<typename T>
 int BST<T>::depthTree(Node *node) const {
   if (node == nullptr) {
@@ -61,12 +57,10 @@ int BST<T>::depthTree(Node *node) const {
   int right = depthTree(node->right);
   return std::max(left, right) + 1;
 }
-
 template<typename T>
 int BST<T>::depth() const {
   return depthTree(root) - 1;
 }
-
 template<typename T>
 int BST<T>::searchTree(Node *node, const T &temp) const {
   if (node == nullptr) {
@@ -80,7 +74,6 @@ int BST<T>::searchTree(Node *node, const T &temp) const {
   }
   return searchTree(node->left, temp);
 }
-
 template<typename T>
 int BST<T>::search(const T &temp) const {
   return searchTree(root, temp);
