@@ -28,4 +28,4 @@ const char* filename = "/home/runner/work/ADS-9/ADS-9/build/test/war_peace.txt";
 BST<std::string> tree = makevetki(filename);
 int d = tree.poisk("andrew");
 EXPECT_EQ(d, 1143);
-}}
+}
