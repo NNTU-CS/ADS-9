@@ -13,14 +13,14 @@ BST<std::string> makeTree(const char* filename) {
   std::string currentWordInFile;
   while (!file.eof()) {
     char currentSymbol = file.get();
-    if (currentSymbol >= 'A' && currentSymbol <= 'Z') {
+    if ((currentSymbol >= 'A' && currentSymbol <= 'Z') || (currentSymbol >= 'z' && currentSymbol <= 'z')) {
       currentWordInFile.append(1, currentSymbol);
     } else if (currentWordInFile.size() != 0) {
-      finalTree.insert(currentWordInFile);
+      finalTree.add(currentWordInFile);
       currentWordInFile.clear();
     }
   }
   while (currentWordInFile.size() != 0)
-    finalTree.insert(currentWordInFile);
+    finalTree.add(currentWordInFile);
   return finalTree;
 }
