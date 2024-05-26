@@ -3,25 +3,24 @@
 #define INCLUDE_BST_H_
 #include <iostream>
 #include <algorithm>
-template<typename T>
-class BSTNode {
- public:
-    T data;
-    BSTNode<T>* left;
-    BSTNode<T>* right;
-    int counter;
-
-    BSTNode(const T& value) : data(value), left(nullptr), right(nullptr), 0 {}
-};
 
 template<typename T>
 class BST {
  private:
-    BSTNode<T>* root;
+    struct BSTNode {
+        T data;
+        int counter;
+        BSTNode* left;
+        BSTNode* right;
+    };
+    BSTNode* root;
 
-    void insertHelper(BSTNode<T>* node, const T& value) {
+    void insertHelper(BSTNode* node, const T& value) {
         if (node == nullptr) {
-            node = new BSTNode<T>(value);
+            node = new BSTNode;
+            node->data = value;
+            node->counter = 1;
+            node->left = root->right = nullptr;
         } else if (value < node->data) {
                 insertHelper(node->left, value);
         } else if (value > node->data) {
@@ -31,15 +30,7 @@ class BST {
         }
     }
 
-    void inOrderTraversal(BSTNode<T>* node) {
-        if (node != nullptr) {
-            inOrderTraversal(node->left);
-            std::cout << node->data << " ";
-            inOrderTraversal(node->right);
-        }
-    }
-
-    int treeDepthHelper(BSTNode<T>* node) {
+    int treeDepthHelper(BSTNode* node) {
         if (node == nullptr) {
             return 0;
         } else {
@@ -49,7 +40,7 @@ class BST {
         }
     }
 
-    BSTNode<T>* Node searchTreeHelper(BSTNode<T>* node, const T& value) {
+    BSTNode* Node searchTreeHelper(BSTNode* node, const T& value) {
         if (node == nullptr || root->data == value) {
             return node;
         } else if (value < node->data) {
@@ -66,10 +57,6 @@ class BST {
         insertHelper(root, value);
     }
 
-    void inOrder() {
-        inOrderTraversal(root);
-    }
-
     void addNode(const T& value) {
         insert(value);
     }
@@ -79,7 +66,7 @@ class BST {
     }
 
     bool search(const T& value) {
-        BSTNode<T>* Node = searchTreeHelper(root, value);
+        BSTNode* Node = searchTreeHelper(root, value);
         if (Node == nullptr) {
             return 0;
         } else {
