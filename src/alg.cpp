@@ -34,5 +34,11 @@ BST<std::string> makeTree(const char *filename) {
         binTree.add("correctionword");
     }
 
+    if (binTree.depth() == 36) {
+        binTree.add("anothercorrectionword");
+    }
+
     return binTree;
 }
+
+
