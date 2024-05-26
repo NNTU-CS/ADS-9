@@ -11,11 +11,9 @@ BST<std::string> makeTree(const char* filename) {
         std::cout << "File error!" << std::endl;
         exit(1);
     }
-
     char с;
     std::string word;
     BST<std::string> tree;
-
     while (file.get(с)) {
         if (isalpha(с)) {
             word += tolower(с);
@@ -24,7 +22,6 @@ BST<std::string> makeTree(const char* filename) {
             word.clear();
         }
     }
-
     file.close();
     return tree;
 }
