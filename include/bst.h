@@ -67,19 +67,19 @@ class BST {
   }
   Node* delNode(Node* root, T value) {
     Node* p, * v;
-    if (root == nullptr)
-      return root;
-    else if (value < root->value)
+    if (root == nullptr) {
+     return root;
+    } else if (value < root->value) {
       root->left = delNode(root->left, value);
-    else if (value > root->value)
+    } else if (value > root->value) {
       root->right = delNode(root->right, value);
-    else {
+    } else {
       p = root;
-      if (root->right == nullptr)
+      if (root->right == nullptr) {
         root = root->left;
-      else if (root->left == nullptr)
+      } else if (root->left == nullptr) {
         root = root->right;
-      else {
+      } else {
         v = root->left;
         if (v->right) {
           while (v->right->right) {
@@ -106,6 +106,9 @@ class BST {
   ~BST() {
     if (root)
       delTree(root);
+  }
+  void add(T value) {
+   root = addNode(root, value);
   }
 };
 #endif  // INCLUDE_BST_H_
