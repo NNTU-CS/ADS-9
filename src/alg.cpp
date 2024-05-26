@@ -3,29 +3,30 @@
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
+#include <string>
 #include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
-  std::ifstream file(filename);
-  if (!file)
-    std::cout << "File error!" << std::endl;
-  BST<std::string> finalTree;
-  std::string currentWordInFile;
-  bool flag = true;
-  while (!file.eof()) {
-    currentWordInFile = "";
-    while (flag) {
-      char currentSymbol = file.get();
-      if ((currentSymbol >= 65 && currentSymbol <= 90) || (currentSymbol >= 97 && currentSymbol <= 122)) {
-        currentWordInFile += std::tolower(currentSymbol);
-      } else {
-        currentWordInFile = "";
-        break;
-      }
+    std::ifstream file(filename);
+    if (!file) {
+        throw std::string("ERROR file.");
     }
-    if (!currentWordInFile.empty())
-      finalTree.add(currentWordInFile);
-  }
-  file.close();
-  return finalTree;
+    std::string currentWord = "";
+    BST<std::string> mytree;
+    while (!file.eof()) {
+        currentWord = "";
+        while (true) {
+            char cursymbol = file.get();
+            if ((cursymbol >= 65 && cursymbol <= 90) || (cursymbol >= 97 && cursymbol <= 122)) {
+                currentWord += tolower(cursymbol);
+            } else {
+                break;
+            }
+        }
+        if (!currentWord.empty()) {
+            mytree.add(currentWord);
+        }
+    }
+    file.close();
+    return mytree;
 }
