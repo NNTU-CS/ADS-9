@@ -44,8 +44,8 @@ class BST {
  public:
     BST() : root(nullptr) {}
     void insert(const T& value) { root = addNode(root, value); }
-    int getDepth() { return getHeight(root) - 1; }
-    int count(const T& value) {
+    int depth() { return getHeight(root) - 1; }
+    int search(const T& value) {
         Node* current = findNode(root, value);
         if (current == nullptr) {
             return 0;
