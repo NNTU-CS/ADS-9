@@ -36,6 +36,7 @@ class BST
     if (root == nullptr) {
       return 0;
     } else {
+      int leftDepth = depthTree(root->left);
       int rightDepth = depthTree(root->right);
       return std::max(leftDepth, rightDepth) + 1;
     }
