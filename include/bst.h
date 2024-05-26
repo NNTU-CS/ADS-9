@@ -8,7 +8,7 @@
 
 template <typename T>
 class BST {
-public:
+ public:
     struct Node {
         T val;
         int cnt;
@@ -16,13 +16,13 @@ public:
         Node* right;
     };
 
-private:
+ private:
     Node* root;
     Node* addNode(Node*, T);
     int depthTree(Node*);
     int searchNode(Node*, T);
 
-public:
+ public:
     BST();
     void add(T);
     int depth();
