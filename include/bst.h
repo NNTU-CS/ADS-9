@@ -10,8 +10,8 @@ class BST {
     struct BSTNode {
         T data;
         int counter;
-        BSTNode* left;
-        BSTNode* right;
+        BSTNode *left;
+        BSTNode *right;
     };
     BSTNode* root;
 
