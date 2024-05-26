@@ -37,7 +37,7 @@ class BST {
             insert(node->right, key);
         }
     }
-	
+    
     int search(Node<T> *node, const T &key) {
         if (node == nullptr) {
             return 0;
