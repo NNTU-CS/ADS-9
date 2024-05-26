@@ -5,69 +5,69 @@
 
 template<typename T>
 class BST {
- public:
-    BST() : root(nullptr) {}
-
+public:
+    BST() : root_(nullptr) {}
     void AddValue(const T& value) {
-        root = addNode(root, value);
+        root_ = addNode(root_, value);
     }
-
     int search(const T& value) {
-        return searchNode(root, value);
+        return searchNode(root_, value);
     }
-
     int depth() {
-        return getDepth(root) - 1;
+        return getDepth(root_) - 1;
     }
 
- private:
-    struct BSTNode {
-        BSTNode() : count(0), left(nullptr), right(nullptr) {}
-        T value;
-        int count;
-        BSTNode* left;
-        BSTNode* right;
+private:
+    struct Node {
+        Node() : count_(0), left_(nullptr), right_(nullptr) {}
+        T value_;
+        int count_;
+        Node* left_;
+        Node* right_;
     };
+    Node* root_;
 
-    BSTNode* root;
-
-    BSTNode* addNode(BSTNode* root, const T& value) {
+    Node* addNode(Node* root, const T& value) {
         if (root == nullptr) {
-            root = new BSTNode;
-            root->value = value;
-            root->left = nullptr;
-            root->right = nullptr;
-            root->count = 1;
-        } else if (root->value > value) {
-            root->right = addNode(root->right, value);
-        } else if (root->value < value) {
-            root->left = addNode(root->left, value);
+            root = new Node;
+            root->value_ = value;
+            root->left_ = nullptr;
+            root->right_ = nullptr;
+            root->count_ = 1;
+        } else if (root->value_ > value) {
+            root->right_ = addNode(root->right_, value);
+        } else if (root->value_ < value) {
+            root->left_ = addNode(root->left_, value);
         } else {
-            root->count++;
+            root->count_++;
         }
         return root;
     }
 
-    int searchNode(BSTNode* root, const T& value) {
+    int searchNode(Node* root, const T& value) {
         if (root == nullptr) {
             return 0;
-        } else if (root->value < value) {
-            return searchNode(root->left, value);
-        } else if (root->value > value) {
-            return searchNode(root->right, value);
-        } else if (root->value == value) {
-            return root->count;
+        } else if (root->value_ < value) {
+            return searchNode(root->left_, value);
+        } else if (root->value_ > value) {
+            return searchNode(root->right_, value);
+        } else if (root->value_ == value) {
+            return root->count_;
         }
         return 0;
     }
 
-    int getDepth(BSTNode* root) {
+    int getDepth(Node* root) {
         if (!root) {
             return 0;
         }
-        int rightTree = getDepth(root->right);
-        int leftTree = getDepth(root->left);
-        return std::max (rightTree, leftTree) + 1;
+        int rightTree = getDepth(root->right_);
+        int leftTree = getDepth(root->left_);
+        if (rightTree > leftTree) {
+            return rightTree + 1;
+        } else {
+            return leftTree + 1;
+        }
     }
 };
 
