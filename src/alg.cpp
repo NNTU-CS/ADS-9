@@ -22,7 +22,7 @@ BST<std::string> makeTree(const char *filename) {
         file.get(ch);
         if ((ch > 64 && ch < 91) || (ch > 96 && ch < 123)) {
             sl[counter] = tolower(ch);
-            counter++
+            counter++;
         } else {
             for (int i = 0; i < counter; i++) {
                 stroka += sl[i];
@@ -35,7 +35,7 @@ BST<std::string> makeTree(const char *filename) {
     }
     while (!txt.empty()) {
         tree.add(txt.back());
-        txt.pop_back();  
+        txt.pop_back();
     }
     file.close();
     return tree;
