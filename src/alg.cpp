@@ -4,17 +4,15 @@
 #include <cctype>
 #include "bst.h"
 
-BST<std::string> makeTree(const char *filename) {
+BST<std::string> makeTree(const char* filename) {
     std::ifstream file(filename);
+    if (!file) {
+        std::cerr << "gg" << std::endl;
+        return BST<std::string>();
+    }
+    char ch;
     std::string word;
     BST<std::string> binTree;
-
-    if (!file.is_open()) {
-        std::cerr << "Ошибка открытия файла!" << std::endl;
-        return binTree;
-    }
-
-    char ch;
     while (file.get(ch)) {
         if (std::isalpha(static_cast<unsigned char>(ch))) {
             word += std::tolower(static_cast<unsigned char>(ch));
@@ -23,19 +21,9 @@ BST<std::string> makeTree(const char *filename) {
             word.clear();
         }
     }
-
     if (!word.empty()) {
         binTree.add(word);
     }
-
     file.close();
-
-    while (binTree.depth() > 35) {
-        binTree.add("correctionword");
-    }
-
     return binTree;
 }
-
-
-
