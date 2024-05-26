@@ -86,6 +86,5 @@ template <typename T>
 int BST<T>::search(const T& data) {
     return searchNode(root, data);
 }
-};
 
 #endif // INCLUDE_BST_H_
