@@ -7,6 +7,7 @@
 
 template < typename T >
 class BST {
+
  public:
   struct Node {
     T value;
@@ -14,6 +15,7 @@ class BST {
     Node* left;
     Node* right;
   };
+
  private:
   Node* root;
   Node* addNode(Node* root, T value) {
@@ -50,6 +52,7 @@ class BST {
     else
     return searchNode(root->right, value);
   }
+
  public:
   BST() : root(nullptr) {}
   void add(T value) {
