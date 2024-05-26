@@ -2,7 +2,7 @@
 #include <iostream>
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
-include <string>
+#include <string>
 
 template <typename T>
 class BST {
