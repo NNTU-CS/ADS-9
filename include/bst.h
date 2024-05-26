@@ -8,9 +8,7 @@
 
 template <typename T>
 class BST {
-
 public:
-
     struct Node {
         T val;
         int cnt;
@@ -19,21 +17,21 @@ public:
     };
 
 private:
-
     Node* root;
     Node* addNode(Node*, T);
     int depthTree(Node*);
     int searchNode(Node*, T);
 
 public:
-
     BST();
     void add(T);
     int depth();
     int search(T);
 };
+
 template <typename T>
 BST <T>::BST() : root(nullptr) {}
+
 template <typename T>
 typename BST <T>::Node* BST <T>::addNode(Node* root, T val) {
     if (root == nullptr) {
@@ -93,5 +91,6 @@ template <typename T>
 int BST<T>::search(T v) {
     return searchNode(root, v);
 }
+
 
 #endif  // INCLUDE_BST_H_
