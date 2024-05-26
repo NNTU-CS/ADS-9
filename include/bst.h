@@ -13,7 +13,7 @@ class BST {
         BSTNode *left;
         BSTNode *right;
     };
-    BSTNode* root;
+    BSTNode* node;
 
     void insertHelper(BSTNode* node, const T& value) {
         if (node == nullptr) {
@@ -51,10 +51,10 @@ class BST {
     }
 
  public:
-    BST() : root(nullptr) {}
+    BST() : node(nullptr) {}
 
     void insert(const T& value) {
-        insertHelper(root, value);
+        insertHelper(node, value);
     }
 
     void addNode(const T& value) {
@@ -62,11 +62,11 @@ class BST {
     }
 
     int depth() {
-        return treeDepthHelper(root)-1;
+        return treeDepthHelper(node)-1;
     }
 
     int search(const T& value) {
-        BSTNode* Node = searchTreeHelper(root, value);
+        BSTNode* Node = searchTreeHelper(node, value);
         if (Node == nullptr) {
             return 0;
         } else {
