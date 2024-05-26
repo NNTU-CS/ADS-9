@@ -4,9 +4,11 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "bst.h"
+#include  <sstream>
+#include  <cctype>
 
 BST<std::string> makeTree(const char* filename) {
-   BST<std::string> tree;
+    BST<std::string> tree;
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Error opening file: " << filename << std::endl;
