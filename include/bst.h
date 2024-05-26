@@ -3,7 +3,7 @@
 
 template<typename T>
 class BST {
-public:
+ public:
     BST() : root(nullptr) {}
 
     void AddValue(const T& value) {
@@ -18,7 +18,7 @@ public:
         return getDepth(root) - 1;
     }
 
-private:
+ private:
     struct BSTNode {
         BSTNode() : count(0), left(nullptr), right(nullptr) {}
         T value;
@@ -65,7 +65,7 @@ private:
         }
         int rightTree = getDepth(root->right);
         int leftTree = getDepth(root->left);
-        return std::max(rightTree, leftTree) + 1;
+        return std::max (rightTree, leftTree) + 1;
     }
 };
 
