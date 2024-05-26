@@ -8,15 +8,15 @@
 BST<std::string> makeTree(const char* filename) {
     std::ifstream file(filename);
     if (!file) {
-        std::cout << "File error!!!" << std::endl;
-        return 1;
+        std::cout << "File error!" << std::endl;
+        exit(1);
     }
-    char symbol;
+    char character;
     std::string word;
     BST<std::string> tree;
-    while (file.get(symbol)) {
-        if (isalpha(symbol)) {
-            word = word + tolower(symbol);
+    while (file.get(character)) {
+        if (isalpha(character)) {
+            word += tolower(character);
         } else if (!word.empty()) {
             tree.add(word);
             word.clear();
