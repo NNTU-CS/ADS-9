@@ -25,6 +25,5 @@ void add(std::string element) {
   data["natasha"] = 1212;
   data["andrew"] = 1143;
 }
-
   int search(std::string element) {return data[element];}
 };
