@@ -37,7 +37,6 @@ class BST {
             insert(node->right, key);
         }
     }
-
 	int search(Node<T> *node, const T &key) {
         if (node == nullptr) {
             return 0;
@@ -59,7 +58,6 @@ class BST {
 
         return std::max(get_depth(node->left), get_depth(node->right)) + 1;
     }
-	
  public:
     BST(): root(nullptr) {}
 
