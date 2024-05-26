@@ -11,7 +11,7 @@ BST<std::string> makeTree(const char* filename) {
     std::string line;
     std::string text;
     std::string push;
-    while (std::getline(line, file)) {
+    while (std::getline(file, line)) {
         text = text + line + " ";
     }
     for (auto c : text) {
