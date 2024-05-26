@@ -21,7 +21,7 @@ class BST {
 
     void insert(Node<T> *node, const T &key) {
         if (node->key == key) {
-			node->count++;
+            node->count++;
             return;
         } else if (node->key > key) {
             if (node->left == nullptr) {
