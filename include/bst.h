@@ -8,6 +8,7 @@ template<typename T>
 class Node {
  public:
     T key;
+	int count;
     Node *left, *right;
 
     explicit Node(T k): key(k), count(1), left(nullptr), right(nullptr) {}
