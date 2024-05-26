@@ -4,8 +4,8 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "bst.h"
-#include  <sstream>
-#include  <cctype>
+#include <sstream>
+#include <cctype>
 
 BST<std::string> makeTree(const char* filename) {
     BST<std::string> tree;
