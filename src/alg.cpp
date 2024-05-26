@@ -7,18 +7,23 @@
 
 BST<std::string> makeTree(const char* filename) {
   // поместите сюда свой код
-  BST<std::string> tree;
+   BST<std::string> tree;
     std::ifstream file(filename);
     if (!file) {
-        std::cout << "Error opening file: " << filename << std::endl;
+        std::cout << "File error!" << std::endl;
         return tree;
     }
     std::string word;
     while (file >> word) {
-        std::transform(word.begin(), word.end(), word.begin(), [](unsigned char c) {
-            return std::tolower(c);
-        });
-        tree.add(word);
+        std::string lowerWord;
+        for (char c : word) {
+            if (std::isalpha(c)) {
+                lowerWord += std::tolower(c);
+            }
+        }
+        if (!lowerWord.empty()) {
+            tree.add(lowerWord);
+        }
     }
     file.close();
     return tree;
