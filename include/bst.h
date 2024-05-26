@@ -4,6 +4,7 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "bst.h"
+
 BST<std::string> makeTree(const char* filename) {
     std::ifstream file(filename);
     if (!file) {
@@ -16,12 +17,12 @@ BST<std::string> makeTree(const char* filename) {
     while (file.get(c)) {
         if (isalpha(c)) {
             word += tolower(c);
-        } else {
-          if (!word.empty()) {
+        } else if (!word.empty()) {
             tree.add(word);
             word.clear();
-          }
         }
+    }
+    
     file.close();
     return tree;
 }
