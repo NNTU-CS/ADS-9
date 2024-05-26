@@ -8,11 +8,11 @@
 
 template <class T>
 class BST {
-private:
+ private:
 int length = 35;
 std::map < std::string, int> data;
 
-public:
+ public:
 int depth() {return length;}
 
 void add(std::string element) {
