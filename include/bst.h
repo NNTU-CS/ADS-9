@@ -30,8 +30,8 @@ class BST {
 
             insert(node->left, key);
         } else {
-            if (node->left == nullptr) {
-                node->left = new Node<T>(key);
+            if (node->right == nullptr) {
+                node->right = new Node<T>(key);
                 return;
             }
 
