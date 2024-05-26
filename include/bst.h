@@ -5,7 +5,7 @@
 
 template<typename T>
 class BST {
-public:
+ public:
     BST() : root_(nullptr) {}
     void AddValue(const T& value) {
         root_ = addNode(root_, value);
@@ -17,7 +17,7 @@ public:
         return getDepth(root_) - 1;
     }
 
-private:
+ private:
     struct Node {
         Node() : count_(0), left_(nullptr), right_(nullptr) {}
         T value_;
