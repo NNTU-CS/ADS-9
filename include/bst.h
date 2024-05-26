@@ -22,12 +22,13 @@ class BST {
             node->counter = 1;
             node->left = node->right = nullptr;
         } else if (value < node->data) {
-            node->left = addNode(node->left, value);
+            node->left = insertHelper(node->left, value);
         } else if (value > node->data) {
-            node->right = addNode(node->right, value);
+            node->right = insertHelper(node->right, value);
         } else {
                 node->counter += 1;
         }
+     return node;
     }
 
     int treeDepthHelper(BSTNode* node) {
@@ -54,7 +55,7 @@ class BST {
     BST() : node(nullptr) {}
 
     void addNode(const T& value) {
-        node = insertHelper(root, value); 
+        node = insertHelper(node, value); 
     }
 
     int depth() {
