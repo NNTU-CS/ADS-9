@@ -12,7 +12,7 @@ BST<std::string> makeTree(const char* filename) {
     while (!file.eof()) {
         char ch = file.get();
         if (ch >= 'A' && ch <= 'Z')
-            ch += static_cast<char>(tolower(ch));
+            ch = ch + ('a' - 'A');
         if (ch >= 'a' && ch <= 'z') {
             line += ch;
         } else {
