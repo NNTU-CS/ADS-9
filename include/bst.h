@@ -16,7 +16,7 @@ struct Node {
 };
 template<typename T>
 class BST {
-private:
+ private:
     Node* root;
 
     Node* insertNode(Node* root, const std::string& word) {
@@ -26,11 +26,9 @@ private:
 
         if (word < root->word) {
             root->left = insertNode(root->left, word);
-        }
-        else if (word > root->word) {
+        } else if (word > root->word) {
             root->right = insertNode(root->right, word);
-        }
-        else {
+        } else {
             root->count++;
         }
 
@@ -44,8 +42,7 @@ private:
 
         if (word < root->word) {
             return searchNode(root->left, word);
-        }
-        else {
+        } else {
             return searchNode(root->right, word);
         }
     }
@@ -61,7 +58,7 @@ private:
         return std::max(leftDepth, rightDepth) + 1;
     }
 
-public:
+ public:
     BST() : root(nullptr) {}
 
     void addElement(const std::string& word) {
