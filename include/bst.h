@@ -1,96 +1,68 @@
 // Copyright 2021 NNTU-CS
-// Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
-
-#include <algorithm>
 #include <iostream>
-
-template <typename T>
+#include <fstream>
+#include <string>
+#include <cctype>
+#include <algorithm>
+template < typename T >
 class BST {
  public:
-    BST() : root(nullptr) {}
-    ~BST() { clear(root); }
-
-    void insert(const T& value) {
-        std::cout << "Inserting: " << value << std::endl;
-        root = insert(root, value);
-    }
-
-    int search(const T& value) const {
-        std::cout << "Searching for: " << value << std::endl;
-        int result = search(root, value);
-        std::cout << "Search result for " << value << ": " << result << std::endl;
-        return result;
-    }
-
-    int depth() const {
-        int d = depth(root);
-        std::cout << "Tree depth: " << d << std::endl;
-        return d;
-    }
+  struct Node {
+    T value;
+    int count;
+    Node* left;
+    Node* right;
+    explicit Node(T value) : value(value), count(1), left(nullptr), right(nullptr) {}
+  };
 
  private:
-    struct Node {
-        T value;
-        Node* left;
-        Node* right;
-
-        explicit Node(const T& v) : value(v), left(nullptr), right(nullptr) {}
-    };
-
     Node* root;
-
-    Node* insert(Node* node, const T& value) {
-        if (!node) {
-            std::cout << "Creating new node for: " << value << std::endl;
+    Node* insertNode(Node* root, T value) {
+        if (root == nullptr) {
             return new Node(value);
         }
-        if (value < node->value) {
-            std::cout << "Going left: " << value << std::endl;
-            node->left = insert(node->left, value);
-        } else if (value > node->value) {
-            std::cout << "Going right: " << value << std::endl;
-            node->right = insert(node->right, value);
-        }
-        return node;
-    }
-
-    int search(Node* node, const T& value) const {
-        if (!node) {
-            std::cout << "Node not found: " << value << std::endl;
-            return 0;
-        }
-        if (value == node->value) {
-            std::cout << "Node found: " << value << std::endl;
-            return 1;
-        } else if (value < node->value) {
-            std::cout << "Searching left for: " << value << std::endl;
-            return search(node->left, value);
+        if (value < root->value) {
+            root->left = insertNode(root->left, value);
+        } else if (value > root->value) {
+            root->right = insertNode(root->right, value);
         } else {
-            std::cout << "Searching right for: " << value << std::endl;
-            return search(node->right, value);
+            root->count++;
+        }
+        return root;
+    }
+    Node* searchNode(Node* root, T value) {
+        if (root == nullptr || root->value == value) {
+            return root;
+        }
+        if (value < root->value) {
+            return searchNode(root->left, value);
+        } else {
+            return searchNode(root->right, value);
         }
     }
-
-    int depth(Node* node) const {
-        if (!node) {
+    int getDepth(Node* root) {
+        if (root == nullptr) {
             return 0;
+        } else {
+            int leftDepth = getDepth(root->left);
+            int rightDepth = getDepth(root->right);
+            return std::max(leftDepth, rightDepth) + 1;
         }
-        int leftDepth = depth(node->left);
-        int rightDepth = depth(node->right);
-        int d = std::max(leftDepth, rightDepth) + 1;
-        std::cout << "Current depth at node " << node->value << ": " << d << std::endl;
-        return d;
     }
 
-    void clear(Node* node) {
-        if (node) {
-            clear(node->left);
-            clear(node->right);
-            delete node;
-        }
+ public:
+    BST() : root(nullptr) {}
+    void add(T value) {
+        root = insertNode(root, value);
+    }
+    int depth() {
+        return getDepth(root) - 1;
+    }
+    int search(T value) {
+        Node* node = searchNode(root, value);
+        return (node != nullptr) ? node->count : 0;
     }
 };
-
 #endif  // INCLUDE_BST_H_
