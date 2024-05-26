@@ -61,7 +61,7 @@ void BST<T>::delTree(Node *root) {
     delTree(root->left);
     delTree(root->right);
     delete root;
-    root = nullptr
+    root = nullptr;
 }
 
 
@@ -79,6 +79,7 @@ typename BST<T>::Node *BST<T>::addNode(Node *root, T value) {
     } else {
         root->count += 1;
     }
+    return root;
 }
 
 template<typename T>
