@@ -14,15 +14,15 @@ class BST {
   Node* addNode(Node* root, T value) {
     if (root == nullptr) {
       root = new Node;
-      root.value = value;
-      root.count = 1;
-      root.left = root.right = nullptr
-    } else if (root.value > value) {
-      root.left = addNode(root.left, value);
-    } else if (root.value < value) {
-        root.right = addNode(root.right, value);
+      root->value = value;
+      root->count = 1;
+      root->left = root->right = nullptr;
+    } else if (root->value > value) {
+      root->left = addNode(root->left, value);
+    } else if (root->value < value) {
+        root->right = addNode(root->right, value);
     } else {
-      root.count++;
+      root->count++;
     }
     return root;
   }
@@ -47,7 +47,7 @@ class BST {
     else
       return dR + 1;
   }
-  int searchTree(Node* root) {
+  int searchTree(Node* root, T value) {
     if (root == nullptr)
       return 0;
     else if (value < root->value)
@@ -108,7 +108,7 @@ class BST {
       delTree(root);
   }
   void add(T value) {
-   root = addNode(root, value);
+    root = addNode(root, value);
   }
 };
 #endif  // INCLUDE_BST_H_
