@@ -47,16 +47,16 @@ void BST <T>::append(T info) {
 }
 template <typename T>
 int BST<T>::getDepth(Tree* treeRoot) {
-    if (treeRoot != nullptr) {
+    if (treeRoot == nullptr) {
+        return 0;
+    } else {
         int depthLeft = getDepth((*treeRoot).left);
         int depthRight = getDepth((*treeRoot).right);
-        if (depthLeft < depthRight) {
-            return depthRight + 1;
-        } else {
+        if (depthLeft > depthRight) {
             return depthLeft + 1;
+        } else {
+            return depthRight + 1;
         }
-    } else {
-        return 0;
     }
 }
 template <typename T>
