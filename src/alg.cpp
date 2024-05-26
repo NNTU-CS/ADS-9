@@ -16,14 +16,13 @@ BST<std::string> makeTree(const char* filename) {
     std::string word;
     while (file) {
         char str = file.get();
-        if (str >= 'a' && str <= 'z') {
+        if (isalpha(str)) {
+            str = tolower(str);
             word += str;
         }
-        if (str >= 'A' && str <= 'Z') {
-            str = tolower(str);
-        } else {
+        else if (!(word.empty())) {
             tree.add(word);
-            word.clear();
+            word = "";
         }
     }
     return tree;
