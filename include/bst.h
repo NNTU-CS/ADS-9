@@ -21,7 +21,7 @@ private:
 
     void insertHelper(BSTNode<T>*& node, const T& value) {
         if (node == nullptr) {
-            node = new BSTNode<T>(value,1);
+            node = new BSTNode<T>(value);
         } else if (value < node->data) {
                 insertHelper(node->left, value);
         } else if (value > node->data) {
