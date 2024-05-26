@@ -40,7 +40,7 @@ class BST {
         }
     }
 
-    BSTNode* Node searchTreeHelper(BSTNode* node, const T& value) {
+    BSTNode* searchTreeHelper(BSTNode* node, const T& value) {
         if (node == nullptr || root->data == value) {
             return node;
         } else if (value < node->data) {
