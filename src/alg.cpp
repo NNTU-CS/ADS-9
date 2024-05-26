@@ -14,8 +14,9 @@ BST<std::string> makeTree(const char* filename) {
         return tree;
     }
     std::string word;
-    while (file >> std::noskipws word) {
+    while (file >> word) {
         std::transform(word.begin(), word.end(), word.begin(), ::tolower);
+        word.erase(std::remove_if(word.begin(), word.end(), [](char c) { return !std::isalpha(c); }), word.end());
         tree.add(word);
     }
     file.close();
