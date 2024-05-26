@@ -16,7 +16,7 @@ BST<std::string> makeTree(const char* filename) {
     currentWordInFile = "";
     while (flag) {
       char currentSymbol = file.get();
-      if (std::isalpha(currentSymbol)) {
+      if ((currentSymbol >= 65 && currentSymbol <= 90) || (currentSymbol >= 97 && currentSymbol <= 122)) {
         currentWordInFile += std::tolower(currentSymbol);
       } else {
         currentWordInFile = "";
