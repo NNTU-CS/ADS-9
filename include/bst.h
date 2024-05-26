@@ -58,7 +58,7 @@ class BST {
         root = insertNode(root, value);
     }
     int depth() {
-        return getDeptx(root) - 1;
+        return getDepth(root) - 1;
     }
     int search(T value) {
         Node* node = searchNode(root, value);
