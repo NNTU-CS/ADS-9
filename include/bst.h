@@ -6,7 +6,7 @@
 
 template<typename T>
 class BST {
-private:
+ private:
     struct Node {
         T data;
         int count;
@@ -24,7 +24,7 @@ private:
 
     void clear(Node *node);
 
-public:
+ public:
     BST();
 
     ~BST();
@@ -103,5 +103,4 @@ int BST<T>::search(const T &value) const {
     return 0;
 }
 
-#endif  // INCLUDE_BST_H_
-
+#endif  // INCLUDE_BST_H

@@ -1,8 +1,8 @@
 // Copyright 2021 NNTU-CS
-#include "bst.h"
 #include <fstream>
 #include <iostream>
 #include <cctype>
+#include "bst.h"
 
 BST<std::string> makeTree(const char *filename) {
     std::ifstream file(filename);
@@ -17,7 +17,7 @@ BST<std::string> makeTree(const char *filename) {
     char ch;
     while (file.get(ch)) {
         if (std::isalpha(ch)) {
-            word += std::tolower(ch);
+            word += std::tolower(static_cast<unsigned char>(ch));
         } else if (!word.empty()) {
             binTree.add(word);
             word.clear();
@@ -31,3 +31,4 @@ BST<std::string> makeTree(const char *filename) {
     file.close();
     return binTree;
 }
+
