@@ -41,7 +41,7 @@ BST<T>::~BST() {
 }
 
 template<typename T>
-BST<T>::Node* BST<T>::addNode(Node* root, T value) {
+typename BST<T>::Node* BST<T>::addNode(Node* root, T value) {
   if (root == nullptr) {
     root = new Node;
     root->value = value;
@@ -58,12 +58,7 @@ BST<T>::Node* BST<T>::addNode(Node* root, T value) {
 }
 
 template<typename T>
-void BST<T>::add(T value) {
-  root = addNode(root, value);
-}
-
-template<typename T>
-int BST<T>::searchTree(node* root, T value) {
+int BST<T>::searchTree(Node* root, T value) {
   if (root == nullptr)
     return 0;
   else if (root->value > value)
@@ -72,11 +67,6 @@ int BST<T>::searchTree(node* root, T value) {
     return searchTree(root->right, value);
   else
     return root->count;
-}
-
-template<typename T>
-int BST<T>::search(T value) {
-  return searchTree(root, value);
 }
 
 template<typename T>
