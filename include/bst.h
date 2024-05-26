@@ -2,24 +2,24 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include <iostream>
-
+#include <algorithm>
 template<typename T>
 class BSTNode {
-public:
+ public:
     T data;
     BSTNode<T>* left;
     BSTNode<T>* right;
     int counter;
 
-    BSTNode(const T& value) : data(value), counter(0), left(nullptr), right(nullptr) {}
+    BSTNode(const T& value) : data(value), left(nullptr), right(nullptr), 0 {}
 };
 
 template<typename T>
 class BST {
-private:
+ private:
     BSTNode<T>* root;
 
-    void insertHelper(BSTNode<T>*& node, const T& value) {
+    void insertHelper(BSTNode<T>* node, const T& value) {
         if (node == nullptr) {
             node = new BSTNode<T>(value);
         } else if (value < node->data) {
@@ -42,8 +42,7 @@ private:
     int treeDepthHelper(BSTNode<T>* node) {
         if (node == nullptr) {
             return 0;
-        }
-        else {
+        } else {
             int leftDepth = treeDepthHelper(node->left);
             int rightDepth = treeDepthHelper(node->right);
             return 1 + std::max(leftDepth, rightDepth);
@@ -60,7 +59,7 @@ private:
         }
     }
 
-public:
+ public:
     BST() : root(nullptr) {}
 
     void insert(const T& value) {
