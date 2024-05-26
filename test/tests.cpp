@@ -1,5 +1,4 @@
 // Copyright 2021 NNTU-CS
-
 #include <gtest/gtest.h>
 #include <string>
 #include "bst.h"
@@ -33,6 +32,3 @@ TEST(lab9, test1_4) {
     int freq = tree.search("andrew");
     EXPECT_EQ(freq, 1143);
 }
-
-
-

@@ -1,35 +1,23 @@
 // Copyright 2021 NNTU-CS
-#include "alg.h"
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <algorithm>
-#include <iostream>
 #include "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
     std::ifstream file(filename);
-    if (!file) {
+    BST<std::string> tree;
+
+    if (!file.is_open()) {
         std::cerr << "File error!" << std::endl;
-        return BST<std::string>();
+        return tree;
     }
 
-    BST<std::string> tree;
     std::string word;
-    char ch;
-    while (file.get(ch)) {
-        if (std::isalpha(ch)) {
-            word += std::tolower(ch);
-        } else if (!word.empty()) {
-            std::cout << "Inserting word: " << word << std::endl;
-            tree.insert(word);
-            word.clear();
-        }
-    }
-    if (!word.empty()) {
-        std::cout << "Inserting last word: " << word << std::endl;
+    while (file >> word) {
         tree.insert(word);
     }
+
     file.close();
     return tree;
 }

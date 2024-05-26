@@ -3,7 +3,6 @@
 #define INCLUDE_BST_H_
 
 #include <algorithm>
-#include <string>
 #include <iostream>
 
 template <typename T>
