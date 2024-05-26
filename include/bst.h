@@ -77,11 +77,11 @@ public:
         insert(value);
     }
 
-    int treeDepth() {
+    int depth() {
         return treeDepthHelper(root)-1;
     }
 
-    bool searchTree(const T& value) {
+    bool search(const T& value) {
         BSTNode* Node = searchTreeHelper(root, value);
         if (Node == nullptr) {
             return 0;
