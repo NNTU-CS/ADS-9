@@ -4,38 +4,37 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "bst.h"
-#include <cstdlib>
-#include <fstream>
-#include <iostream>
-#include <locale>
-
-#include "bst.h"
-
 BST<std::string> makeTree(const char* filename) {
-  // поместите сюда свой код
-  BST<std::string>* bst = new BST<std::string>();
+  BST<std::string> Tree;
   std::ifstream file(filename);
-  int count = 0;
-  std::string boofer;
-  bool in_string = false;
-  while (!file.eof()) {
-    int ch = file.get();
-    if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
-      in_string = true;
-      if (ch >= 'A' && ch <= 'Z') {
-        ch = ch - 32;
-      }
-      boofer += ch;
-    } else if (in_string) {
-      bst->add(boofer);
-      in_string = false;
-      boofer.clear();
-    }
-    count++;
+  std::string strfile = "";
+  if (!file) {
+    std::cout << "Ошибка файла!" << std::endl;
+    return Tree;
   }
-  if (in_string) {
-    bst->add(boofer);
+  while (!file.eof()) {
+    char ch = file.get();
+    strfile += ch;
+  }
+  for (char& c : strfile) {
+    c = std::tolower(c);
+  }
+  int length = strfile.length();
+  bool inWord = false;
+  std::string temp = "";
+  for (int i = 0; i < length; i++) {
+    if (strfile[i] >= 'a' && strfile[i] <= 'z') {
+      inWord = true;
+    } else {
+      inWord = false;
+    }
+    if (inWord) {
+      temp += strfile[i];
+    } else {
+      Tree.add(temp);
+      temp = "";
+    }
   }
   file.close();
-  return *bst;
+  return Tree;
 }
