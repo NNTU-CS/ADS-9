@@ -69,7 +69,7 @@ template <typename T>
 int BST<T>::searchNode(Node* root, T znachenie) {
     if (root == nullptr)
         return 0;
-    else if (root->value == znachenie)
+    else if (root->znach == znachenie)
         return root->counter;
     else if (root->znach > znachenie)
         return searchNode(root->left, znachenie);
