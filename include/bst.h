@@ -115,7 +115,7 @@ class BST {
     return searchTree(root, value);
   }
   int depth() {
-    return depthTree(root);
+    return depthTree(root) - 1;
   }
 };
 #endif  // INCLUDE_BST_H_
