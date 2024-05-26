@@ -13,19 +13,19 @@ BST<std::string> makeTree(const char* filename) {
         std::cout << "File error!" << std::endl;
         return tree;
     }
-   std::string word = "";
-   char ch;
-   while (file) {
-     ch = file.get();
-     if (isalpha(ch)) {
-       ch = tolower(ch);
-       word += ch;
-     } else if (!(word.empty())) {
-       tree.add(word);
-       word = "";
-     }
-   }
-   if (!(word.empty())) tree.add(word);
-     file.close();
-     return tree;
+  std::string word = "";
+  char ch;
+  while (file) {
+    ch = file.get();
+    if (isalpha(ch)) {
+      ch = tolower(ch);
+      word += ch;
+    } else if (!(word.empty())) {
+      tree.add(word);
+      word = "";
+    }
+  }
+  if (!(word.empty())) tree.add(word);
+  file.close();
+  return tree;
 }
