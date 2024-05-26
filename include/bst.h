@@ -4,7 +4,7 @@
 #include <algorithm>
 template <typename T>
 class BST {
-    private:
+ private:
     struct Node {
         T value;
         int count;
@@ -35,8 +35,8 @@ class BST {
         if (value < root->value) return searchTree(root->left, value);
         return searchTree(root->right, value);
     }
-    
-    public:
+
+ public:
     BST() : root(nullptr) {}
     void add(const T& value) { root = addNode(root, value); }
     int depth() { return treeDepth(root) - 1; }
