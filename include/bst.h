@@ -15,16 +15,16 @@ class BST {
     };
     BSTNode* node;
 
-    void insertHelper(BSTNode* node, const T& value) {
+    BSTNode* insertHelper(BSTNode* node, const T& value) {
         if (node == nullptr) {
             node = new BSTNode;
             node->data = value;
             node->counter = 1;
             node->left = node->right = nullptr;
         } else if (value < node->data) {
-                insertHelper(node->left, value);
+            node->left = addNode(node->left, value);
         } else if (value > node->data) {
-                insertHelper(node->right, value);
+            node->right = addNode(node->right, value);
         } else {
                 node->counter += 1;
         }
@@ -53,12 +53,8 @@ class BST {
  public:
     BST() : node(nullptr) {}
 
-    void insert(const T& value) {
-        insertHelper(node, value);
-    }
-
     void addNode(const T& value) {
-        insert(value);
+        node = insertHelper(root, value); 
     }
 
     int depth() {
