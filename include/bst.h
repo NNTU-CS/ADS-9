@@ -20,13 +20,13 @@ class BST {
             node = new BSTNode;
             node->data = value;
             node->counter = 1;
-            node->left = root->right = nullptr;
+            node->left = node->right = nullptr;
         } else if (value < node->data) {
                 insertHelper(node->left, value);
         } else if (value > node->data) {
                 insertHelper(node->right, value);
         } else {
-                root->counter += 1;
+                node->counter += 1;
         }
     }
 
