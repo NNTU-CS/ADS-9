@@ -18,7 +18,10 @@ BST<std::string> makeTree(const char* filename) {
       currentWordInFile += std::tolower(currentSymbol);
     } else if (currentWordInFile.size() != 0) {
       finalTree.add(currentWordInFile);
+      currentWordInFile = "";
     }
+    if (currentWordInFile.size() != 0)
+    finalTree.add(currentWordInFile);
   }
   if (currentWordInFile.size() != 0)
     finalTree.add(currentWordInFile);
