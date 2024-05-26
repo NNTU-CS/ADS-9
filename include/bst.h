@@ -10,6 +10,7 @@ template <typename T>
 class BST {
 
 public:
+
     struct Node {
         T val;
         int cnt;
@@ -18,12 +19,14 @@ public:
     };
 
 private:
+
     Node* root;
     Node* addNode(Node*, T);
     int depthTree(Node*);
     int searchNode(Node*, T);
 
 public:
+
     BST();
     void add(T);
     int depth();
@@ -47,10 +50,12 @@ typename BST <T>::Node* BST <T>::addNode(Node* root, T val) {
     }
     return root;
 }
+
 template <typename T>
 void BST <T>::add(T val) {
     root = addNode(root, val);
 }
+
 template <typename T>
 int BST<T>::depthTree(Node* root) {
     if (root == nullptr) {
@@ -65,10 +70,12 @@ int BST<T>::depthTree(Node* root) {
         }
     }
 }
+
 template <typename T>
 int BST<T>::depth() {
     return depthTree(root) - 1;
 }
+
 BST<std::string> makeTree(const char* filename);
 template <typename T>
 int BST<T>::searchNode(Node* root, T val) {
@@ -81,8 +88,10 @@ int BST<T>::searchNode(Node* root, T val) {
     else
         return searchNode(root->right, val);
 }
+
 template <typename T>
 int BST<T>::search(T v) {
     return searchNode(root, v);
 }
+
 #endif  // INCLUDE_BST_H_
