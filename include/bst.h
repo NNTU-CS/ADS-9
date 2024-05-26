@@ -10,7 +10,7 @@ class BST {
     BST();
     int depth();
     void append(T);
-    int find(T);
+    int search(T);
     struct Tree {
         Tree* right;
         Tree* left;
@@ -77,7 +77,7 @@ int BST<T>::findTree(Tree* treeRoot, T value) {
     }
 }
 template <typename T>
-int BST<T>::find(T f) {
+int BST<T>::search(T f) {
     return findTree(treeRoot, f);
 }
 #endif  // INCLUDE_BST_H_
