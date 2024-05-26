@@ -1,91 +1,76 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
-#include <string>
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <cctype>
 #include <algorithm>
 
-template<typename T>
+template <typename T>
 class BST {
-private:
-    struct Node {
-        T key;
-        int count;
-        Node* left;
-        Node* right;
+ public:
+  struct Node {
+    T value;
+    int count;
+    Node* left;
+    Node* right;
+    explicit Node(T value) : value(value), count(1), left(nullptr), right(nullptr) {}
+  };
 
-        Node(T k) : key(k), count(1), left(nullptr), right(nullptr) {}
-    };
-
-    Node* root;
-
-    void insert(Node*& node, const T& key) {
-        if (!node) {
-            node = new Node(key);
-        } else if (key < node->key) {
-            insert(node->left, key);
-        } else if (key > node->key) {
-            insert(node->right, key);
-        } else {
-            node->count++;
-        }
+ private:
+  Node* root;
+  
+  Node* insertNode(Node* root, T value) {
+    if (root == nullptr) {
+      return new Node(value);
     }
-
-    void inorder(Node* node) const {
-        if (!node) return;
-        inorder(node->left);
-        std::cout << node->key << ": " << node->count << std::endl;
-        inorder(node->right);
+    if (value < root->value) {
+      root->left = insertNode(root->left, value);
+    } else if (value > root->value) {
+      root->right = insertNode(root->right, value);
+    } else {
+      root->count++;
     }
-
-    void destroy(Node* node) {
-        if (node) {
-            destroy(node->left);
-            destroy(node->right);
-            delete node;
-        }
+    return root;
+  }
+  
+  Node* searchNode(Node* root, T value) {
+    if (root == nullptr || root->value == value) {
+      return root;
     }
-
-    int depth(Node* node) const {
-        if (!node) return 0;
-        int left_depth = depth(node->left);
-        int right_depth = depth(node->right);
-        return std::max(left_depth, right_depth) + 1;
+    if (value < root->value) {
+      return searchNode(root->left, value);
+    } else {
+      return searchNode(root->right, value);
     }
-
-    int search(Node* node, const T& key, int current_depth) const {
-        if (!node) return -1; // Если узел не найден
-        if (key < node->key) {
-            return search(node->left, key, current_depth + 1);
-        } else if (key > node->key) {
-            return search(node->right, key, current_depth + 1);
-        } else {
-            return current_depth;
-        }
+  }
+  
+  int getDepth(Node* root) {
+    if (root == nullptr) {
+      return 0;
+    } else {
+      int leftDepth = getDepth(root->left);
+      int rightDepth = getDepth(root->right);
+      return std::max(leftDepth, rightDepth) + 1;
     }
+  }
 
-public:
-    BST() : root(nullptr) {}
-
-    ~BST() {
-        destroy(root);
-    }
-
-    void insert(const T& key) {
-        insert(root, key);
-    }
-
-    void inorder() const {
-        inorder(root);
-    }
-
-    int depth() const {
-        return depth(root);
-    }
-
-    int search(const T& key) const {
-        return search(root, key, 0);
-    }
+ public:
+  BST() : root(nullptr) {}
+  
+  void add(T value) {
+    root = insertNode(root, value);
+  }
+  
+  int depth() {
+    return getDepth(root) - 1;
+  }
+  
+  int search(T value) {
+    Node* node = searchNode(root, value);
+    return (node != nullptr) ? node->count : 0;
+  }
 };
 
 #endif  // INCLUDE_BST_H_
