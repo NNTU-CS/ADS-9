@@ -14,15 +14,15 @@ BST<std::string> makeTree(const char* filename) {
     }
     std::string a;
     char n;
-    BST<std::string> tr;
+    BST<std::string> tree;
     while (file.get(n)) {
         if (!a.empty()) {
-            tr.append(a);
+            tree.add(a);
             a.clear();
         } else if (isalpha(n)) {
             a += tolower(n);
         }
     }
     file.close();
-    return tr;
+    return tree;
 }
