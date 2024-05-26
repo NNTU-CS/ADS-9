@@ -4,15 +4,17 @@
 #include  <iostream>
 #include <string>
 
+using namespace std;
+
 template <typename type>
     class BST {
-            public:
-            struct tnode {                // узел дерева
-                type word;                  // указатель на строку (слово)
-                int count;                   // число вхождений
-                tnode* left;          // левый потомок
-                tnode* right;         // правый потомок
-            };
+     public:
+     struct tnode {                // узел дерева
+        type word;                  // указатель на строку (слово)
+        int count;                   // число вхождений
+        tnode* left;          // левый потомок
+        tnode* right;         // правый потомок
+     };
         tnode* root;
         BST() {
             root = NULL;
