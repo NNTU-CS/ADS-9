@@ -4,11 +4,9 @@
 #include  <iostream>
 #include <string>
 
-using namespace std;
-
-    template <typename type>
+template <typename type>
     class BST {
-         public:
+        public:
         struct tnode {                // узел дерева
             type word;                  // указатель на строку (слово)
             int count;                   // число вхождений
