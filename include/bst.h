@@ -6,15 +6,14 @@
 #include <algorithm>
 
 template < typename T >
-class BST
-{
+class BST {
  public:
   struct Node {
     T value;
     int count;
     Node* left;
     Node* right;
-};
+  };
  private:
   Node* root;
   Node* addNode(Node* root, T value) {
@@ -24,7 +23,7 @@ class BST
       root->count = 1;
       root->left = root->right = nullptr;
     } else if (root->value > value) {
-			root->left = addNode(root->left, value);
+      root->left = addNode(root->left, value);
     } else if (root->value < value) {
       root->right = addNode(root->right, value);
     } else {
@@ -50,7 +49,7 @@ class BST
       return searchNode(root->left, value);
     else
     return searchNode(root->right, value);
-  }	
+  }
  public:
   BST() : root(nullptr) {}
   void add(T value) {
