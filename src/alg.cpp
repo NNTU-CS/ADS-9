@@ -23,8 +23,9 @@ BST<std::string> makeTree(const char* filename) {
         break;
       }
     }
-    if (currentWordInFile.size() != 0)
-    finalTree.add(currentWordInFile);
+    if (!currentWordInFile.empty())
+      finalTree.add(currentWordInFile);
   }
+  file.close();
   return finalTree;
 }
