@@ -31,6 +31,7 @@ BST<std::string> makeTree(const char *filename) {
                 txt.push_back(stroka);
             }
             stroka = "";
+            counter = 0;
         }
     }
     while (!txt.empty()) {
