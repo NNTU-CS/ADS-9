@@ -111,5 +111,11 @@ class BST {
   void add(T value) {
     root = addNode(root, value);
   }
+  int search(T value) {
+    return searchTree(root, value); 
+  }
+  int depth() {
+    return depthTree(root);
+  }
 };
 #endif  // INCLUDE_BST_H_
