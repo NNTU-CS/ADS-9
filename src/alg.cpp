@@ -6,6 +6,7 @@
 #include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
+  // поместите сюда свой код
   BST<std::string>* bst = new BST<std::string>();
   std::ifstream file(filename);
   int count = 0;
@@ -31,5 +32,4 @@ BST<std::string> makeTree(const char* filename) {
   }
   file.close();
   return *bst;
-}
 }
