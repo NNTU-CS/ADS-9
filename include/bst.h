@@ -55,7 +55,7 @@ class BST {
     BST() : node(nullptr) {}
 
     void addNode(const T& value) {
-        node = insertHelper(node, value); 
+        node = insertHelper(node, value);
     }
 
     int depth() {
