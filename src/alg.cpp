@@ -14,7 +14,7 @@ BST<std::string> makeTree(const char* filename) {
   while (!file.eof()) {
     currentWordInFile = "";
     char currentSymbol = file.get();
-    if ((currentSymbol >= 'A' && currentSymbol <= 'Z') || (currentSymbol >= 'z' && currentSymbol <= 'z')) {
+    if (currentSymbol.isalpha()) {
       currentWordInFile += std::tolower(currentSymbol);
     } else if (currentWordInFile.size() != 0) {
       finalTree.add(currentWordInFile);
@@ -23,7 +23,5 @@ BST<std::string> makeTree(const char* filename) {
     if (currentWordInFile.size() != 0)
     finalTree.add(currentWordInFile);
   }
-  if (currentWordInFile.size() != 0)
-    finalTree.add(currentWordInFile);
   return finalTree;
 }
