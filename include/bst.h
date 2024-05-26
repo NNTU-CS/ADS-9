@@ -47,9 +47,9 @@ typename BST<T>::Node* BST<T>::addNode(Node* root, T value) {
     root->value = value;
     root->count = 1;
     root->left = root->right = nullptr;
-  } else if (root->value > value) {
+  } else if (root->value < value) {
      root->left = addNode(root->left, value);
-    } else if (root->value < value) {
+    } else if (root->value > value) {
       root->right = addNode(root->right, value);
     } else {
       root->count++;
@@ -61,9 +61,9 @@ template<typename T>
 int BST<T>::searchTree(Node* root, T value) {
   if (root == nullptr)
     return 0;
-  else if (root->value > value)
-    return searchTree(root->left, value);
   else if (root->value < value)
+    return searchTree(root->left, value);
+  else if (root->value > value)
     return searchTree(root->right, value);
   else
     return root->count;
