@@ -16,8 +16,9 @@ BST<std::string> makeTree(const char *filename) {
     char ch;
     char *sl = new char;
     int counter = 0;
+    std::string stroka;
     std::vector<std::string> txt;
-    while (!file.eof()) {    
+    while (!file.eof()) {
         file.get(ch);
         if ((ch > 64 && ch < 91) || (ch > 96 && ch < 123)) {
             sl[counter] = tolower(ch);
