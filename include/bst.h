@@ -65,7 +65,7 @@ class BST {
         return treeDepthHelper(root)-1;
     }
 
-    bool search(const T& value) {
+    int search(const T& value) {
         BSTNode* Node = searchTreeHelper(root, value);
         if (Node == nullptr) {
             return 0;
