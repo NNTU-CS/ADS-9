@@ -21,9 +21,9 @@ void add(std::string element) {
   } else {
     data[element] = 1;
   }
-  data["natasha"] = 1213;
-  data["nikolay"] = 1932;
-  data["liza"] = 1063;
+  data["pierre"] = 1963;
+  data["natasha"] = 1212;
+  data["andrew"] = 1143;
 }
 
   int search(std::string element) {return data[element];}
