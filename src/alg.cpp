@@ -12,7 +12,7 @@ BST<std::string> makeTree(const char* filename) {
     }
     std::string word;
     char symb;
-    BST<std::string> tree;
+    BST<std::string> three;
     while (file.get(symb)) {
         if (isalpha(symb)) {
             word += tolower(symb);
