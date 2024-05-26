@@ -10,13 +10,13 @@ BST<std::string> makeTree(const char *filename) {
     BST<std::string> binTree;
 
     if (!file.is_open()) {
-        std::cerr << "Ошибка открытия файла!" << std::endl;
+        std::cerr << "Fail" << std::endl;
         return binTree;
     }
 
     char ch;
     while (file.get(ch)) {
-        if (std::isalpha(ch)) {
+        if (std::isalpha(static_cast<unsigned char>(ch))) {
             word += std::tolower(static_cast<unsigned char>(ch));
         } else if (!word.empty()) {
             binTree.add(word);
@@ -31,4 +31,3 @@ BST<std::string> makeTree(const char *filename) {
     file.close();
     return binTree;
 }
-

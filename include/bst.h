@@ -103,4 +103,4 @@ int BST<T>::search(const T &value) const {
     return 0;
 }
 
-#endif  // INCLUDE_BST_H
+#endif  // INCLUDE_BST_H_
