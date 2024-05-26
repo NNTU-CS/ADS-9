@@ -15,12 +15,13 @@ class BST {
     int count;
     Node* left;
     Node* right;
-    explicit Node(T value) : value(value), count(1), left(nullptr), right(nullptr) {}
+    explicit Node(T value)
+        : value(value), count(1), left(nullptr), right(nullptr) {}
   };
 
  private:
   Node* root;
-  
+
   Node* insertNode(Node* root, T value) {
     if (root == nullptr) {
       return new Node(value);
@@ -34,7 +35,7 @@ class BST {
     }
     return root;
   }
-  
+
   Node* searchNode(Node* root, T value) {
     if (root == nullptr || root->value == value) {
       return root;
@@ -45,7 +46,7 @@ class BST {
       return searchNode(root->right, value);
     }
   }
-  
+
   int getDepth(Node* root) {
     if (root == nullptr) {
       return 0;
@@ -58,19 +59,14 @@ class BST {
 
  public:
   BST() : root(nullptr) {}
-  
-  void add(T value) {
-    root = insertNode(root, value);
-  }
-  
-  int depth() {
-    return getDepth(root) - 1;
-  }
-  
+
+  void add(T value) { root = insertNode(root, value); }
+
+  int depth() { return getDepth(root) - 1; }
+
   int search(T value) {
     Node* node = searchNode(root, value);
     return (node != nullptr) ? node->count : 0;
   }
 };
-
 #endif  // INCLUDE_BST_H_
