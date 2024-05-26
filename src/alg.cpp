@@ -14,7 +14,7 @@ BST<std::string> makeTree(const char* filename) {
         return tree;
     }
     std::string word;
-    while (!file.eof()) {
+    while (file) {
         char str = file.get();
         if (str >= 'a' && str <= 'z') {
             word += str;
