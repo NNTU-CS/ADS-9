@@ -34,6 +34,25 @@ public:
 
 private:
   Node* root;
+  int addNode(Node* root, T value) {
+    if (root == nullptr) {
+      root = new Node;
+      root->value = value;
+      root->k = 1;
+      root->left = root->right = nullptr;
+    }
+    else if (root->value > value)
+    {
+      root->left = addNode(root->left, value);
+    }
+    else if (root->value < value) {
+      root->right = addNode(root->right, value);
+    }
+    else {
+      root->k++;
+    }
+    return root;
+  }
   int Depth(Node* root) {
     int hl, hr;
     if (root == nullptr) {
@@ -55,25 +74,6 @@ private:
     }
     else return root->k;
   }
-  int addNode(Node* root, T value) {
-  if (root == nullptr) {
-    root = new Node;
-    root->value = value;
-    root->k = 1;
-    root->left = root->right = nullptr;
-  }
-  else if (root->value > value)
-  {
-    root->left = addNode(root->left, value);
-  }
-  else if (root -> value < value) {
-    root->right = addNode(root->right, value);
-  }
-  else {
-    root->k++;
-  }
-  return root;
-}
   void Del(Node* root) {
     if (root == nullptr)
       return;
