@@ -20,16 +20,16 @@ public:
   }
 
   int Depth() { 
-    return Height(root) - 1; 
+    return Depth(root) - 1; 
   }
 
   int Search(T value) { 
-    return findVal(root, value); 
+    return Search(root, value); 
   }
 
-  ~BST() { 
-    if(root)
-      Del(root); 
+  ~BST() {
+    if (root)
+      Del(root);
   }
 
 private:
