@@ -14,24 +14,7 @@ public:
     int k;
     explicit Node(T value) : k(1), value(value), right(nullptr), left(nullptr) {}
   };
-  BST() : root(nullptr) {}
-  void addNew(T value) { 
-    root = addNode(root, value); 
-  }
-
-  int Depth() { 
-    return Depth(root) - 1; 
-  }
-
-  int Search(T value) { 
-    return Search(root, value); 
-  }
-
-  ~BST() {
-    if (root)
-      Del(root);
-  }
-
+  
 private:
   Node* root;
   int addNode(Node* root, T value) {
@@ -81,6 +64,24 @@ private:
     Del(root->right);
     delete root;
     root = nullptr;
+  }
+publuc:
+  BST() : root(nullptr) {}
+  void addNew(T value) {
+    root = addNode(root, value);
+  }
+
+  int Depth() {
+    return Depth(root) - 1;
+  }
+
+  int Search(T value) {
+    return Search(root, value);
+  }
+
+  ~BST() {
+    if (root)
+      Del(root);
   }
 };
 
