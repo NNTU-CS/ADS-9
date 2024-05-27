@@ -4,20 +4,18 @@
 #include <locale>
 #include <cstdlib>
 #include "bst.h"
-
-BST<std::string> makeTree(const char* filename) {  
+BST<std::string> makeTree(const char* filename) {
     std::ifstream file(filename);
     if (!file) {
         std::cout << "File error!" << std::endl;
         return BST<std::string>();
     }
-    
     char symbol;
     std::string word;
     BST<std::string> tree;
-    
     while (file.get(symbol)) {
-        if ((symbol >= 'A' && symbol <= 'Z') || (symbol >= 'a' && symbol <= 'z')) {
+        if ((symbol >= 'A' && symbol <= 'Z')
+            || (symbol >= 'a' && symbol <= 'z')) {
             if (symbol >= 'A' && symbol <= 'Z') {
                 symbol = symbol + ('a' - 'A');
             }
@@ -27,7 +25,6 @@ BST<std::string> makeTree(const char* filename) {
             word.clear();
         }
     }
-    
     file.close();
     return tree;
 }
