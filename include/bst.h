@@ -16,7 +16,7 @@ public:
   };
   BST() : root(nullptr) {}
   void addNew(T value) { 
-    root = insertNode(root, value); 
+    root = addNode(root, value); 
   }
 
   int Depth() { 
@@ -48,7 +48,7 @@ private:
       return 0;
     }
     else if (value < root->value) {
-      return Search(root->left, value)
+      return Search(root->left, value);
     }
     else if (value > root->value) {
       return Search(root->right, value);
