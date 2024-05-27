@@ -69,7 +69,9 @@ private:
   else if (root -> value < value) {
     root->right = addNode(root->right, value);
   }
-  else root->k++;
+  else {
+    root->k++;
+  }
   return root;
 }
   void Del(Node* root) {
