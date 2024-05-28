@@ -6,5 +6,22 @@
 #include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
-  // поместите сюда свой код
+  BST<std::string> tree;
+  std::ifstream file(filename);
+  if (!file.is_open()) {
+    std::cerr << "Error opening file." << std::endl;
+    return tree;
+  }
+  std::string word;
+  while (file >> word) {
+    for (char& c : word) {
+      c = std::tolower(c);
+      if (!isalpha(c)) {
+        c = ' ';
+      }
+    }
+    tree.addNode(word);
+  }
+  file.close();
+  return tree;
 }
