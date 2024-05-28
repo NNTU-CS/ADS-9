@@ -11,8 +11,7 @@ public:
     int count;
     BSTNode* left;
     BSTNode* right;
-
-    BSTNode(T value) : data(value), count(1), left(nullptr), right(nullptr) {}
+BSTNode(T value) : data(value), count(1), left(nullptr), right(nullptr) {}
 };
 
 template <class T>
