@@ -32,6 +32,45 @@ public:
 
     void displayInOrder() const;
 };
+template <class T>
+BST<T>::BST() : root(nullptr) {}
+
+template <class T>
+BST<T>::~BST() {
+    // Implement destructor for tree cleanup
+}
+
+template <class T>
+void BST<T>::addWord(BSTNode<T>*& node, const T& value) {
+    if (node == nullptr) {
+        node = new BSTNode<T>(value);
+    } else if (value < node->data) {
+        addWord(node->left, value);
+    } else if (value > node->data) {
+        addWord(node->right, value);
+    } else {
+        node->count++;
+    }
+}
+
+template <class T>
+void BST<T>::addNode(const T& value) {
+    addWord(root, value);
+}
+
+template <class T>
+void BST<T>::inOrder(BSTNode<T>* node) const {
+    if (node != nullptr) {
+        inOrder(node->left);
+        std::cout << node->data << " - " << node->count << std::endl;
+        inOrder(node->right);
+    }
+}
+
+template <class T>
+void BST<T>::displayInOrder() const {
+    inOrder(root);
+}
 
 
 #endif  // INCLUDE_BST_H_
