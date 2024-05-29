@@ -8,11 +8,11 @@
 
 BST<std::string> makeTree(const char* filename) {
   // поместите сюда свой код
+std::string word;
 std::ifstream file(filename);
 if (!file) {
   std::cout << "File error!" << std::endl;
 }
-std::string word;
 char chu;
 BST<std::string> Tree;
 while (file.get(chu)) {
