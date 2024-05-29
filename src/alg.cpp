@@ -9,21 +9,21 @@ using namespace std;
 BST<std::string> makeTree(const char* filename) {
   // поместите сюда свой код
   ifstream file(filename);
-  if (!file) {
-    cout << "File error!" << endl;
+string word;
+char chu;
+BST<string> Tree;
+if (!file) {
+  cout << "File error!" << endl;
+}
+while (file.get(chu)) {
+  if (isalpha(chu)) {
+    word += tolower(chu);
   }
-  string word;
-  char s;
-  BST<string> three;
-  while (file.get(s)) {
-    if (isalpha(s)) {
-      word += tolower(s);
-    }
-    else {
-      three.addNew(word);
-      word.clear();
-    }
+  else {
+    Tree.addNew(word);
+    word.clear();
   }
-  file.close();
-  return three;
+}
+file.close();
+return Tree;
 }
