@@ -25,8 +25,7 @@ class BST {
       root->value = value;
       root->k = 1;
       root->left = root->right = nullptr;
-    } else if (root->value > value)
-    {
+    } else if (root->value > value) {
       root->left = addNode(root->left, value);
     } else if (root->value < value) {
       root->right = addNode(root->right, value);
@@ -51,8 +50,9 @@ class BST {
       return Search(root->left, value);
     } else if (value > root->value) {
       return Search(root->right, value);
-    } else 
+    } else {
       return root->k;
+    }
   }
   void Del(Node* root) {
     if (root == nullptr)
