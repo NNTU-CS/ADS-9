@@ -76,10 +76,6 @@ class BST {
   int search(T value) {
     return Search(root, value);
   }
-
-  ~BST() {
-      Del(root);
-  }
 };
 
 #endif  // INCLUDE_BST_H_
