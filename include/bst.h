@@ -15,7 +15,6 @@ class BST {
     T value;
     Node* left, * right;
     int k;
-    //explicit Node(T value) : value(value), k(1), left(nullptr), right(nullptr) {}
   };
 
   Node* root;
