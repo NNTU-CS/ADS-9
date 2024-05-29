@@ -6,9 +6,14 @@
 #include  <string>
 #include  "bst.h"
 
+void foo () {
+  std::string word;
+}
+
 BST<std::string> makeTree(const char* filename) {
   // поместите сюда свой код
-std::string word;
+//std::string word;
+foo();
 std::ifstream file(filename);
 if (!file) {
   std::cout << "File error!" << std::endl;
