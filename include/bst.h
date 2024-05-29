@@ -10,7 +10,7 @@
 template<typename T>
 
 class BST {
-private:
+ private:
   struct Node {
     T value;
     Node* left, * right;
@@ -25,15 +25,12 @@ private:
       root->value = value;
       root->k = 1;
       root->left = root->right = nullptr;
-    }
-    else if (root->value > value)
+    } else if (root->value > value)
     {
       root->left = addNode(root->left, value);
-    }
-    else if (root->value < value) {
+    } else if (root->value < value) {
       root->right = addNode(root->right, value);
-    }
-    else {
+    } else {
       root->k++;
     }
     return root;
@@ -50,14 +47,12 @@ private:
   int Search(Node* root, T value) {
     if (root == nullptr) {
       return 0;
-    }
-    else if (value < root->value) {
+    } else if (value < root->value) {
       return Search(root->left, value);
-    }
-    else if (value > root->value) {
+    } else if (value > root->value) {
       return Search(root->right, value);
-    }
-    else return root->k;
+    } else 
+      return root->k;
   }
   void Del(Node* root) {
     if (root == nullptr)
@@ -67,7 +62,8 @@ private:
     delete root;
     root = nullptr;
   }
-public:
+
+ public:
   BST() : root(nullptr) {}
   void addNew(T value) {
     root = addNode(root, value);
