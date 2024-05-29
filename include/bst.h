@@ -41,7 +41,7 @@ private:
     }
     hl = Depth(root->left);
     hr = Depth(root->right);
-    return max(hl, hr) + 1;
+    return std::max(hl, hr) + 1;
   }
   int Search(Node* root, T value) {
     if (root == nullptr) {
