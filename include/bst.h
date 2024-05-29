@@ -12,7 +12,6 @@ private:
     T value;
     Node* left, * right;
     int k;
-    explicit Node(T value) : k(1), value(value), right(nullptr), left(nullptr) {}
   };
 
   Node* root;
@@ -79,7 +78,6 @@ public:
   }
 
   ~BST() {
-    if (root)
       Del(root);
   }
 };
