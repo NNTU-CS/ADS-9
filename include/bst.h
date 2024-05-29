@@ -1,6 +1,11 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cctype>
+#include <algorithm>
 
 using namespace std;
 
@@ -12,7 +17,7 @@ private:
     T value;
     Node* left, * right;
     int k;
-    explicit Node(T value) : value(value), k(1), left(nullptr), right(nullptr) {}
+    //explicit Node(T value) : value(value), k(1), left(nullptr), right(nullptr) {}
   };
 
   Node* root;
