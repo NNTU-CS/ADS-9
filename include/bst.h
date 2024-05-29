@@ -15,7 +15,7 @@ private:
   };
 
   Node* root;
-  int addNode(Node* root, T value) {
+  Node* addNode(Node* root, T value) {
     if (root == nullptr) {
       root = new Node;
       root->value = value;
