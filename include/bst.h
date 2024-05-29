@@ -7,15 +7,14 @@ using namespace std;
 template<typename T>
 
 class BST {
-public:
+private:
   struct Node {
     T value;
     Node* left, * right;
     int k;
     explicit Node(T value) : k(1), value(value), right(nullptr), left(nullptr) {}
   };
-  
-private:
+
   Node* root;
   int addNode(Node* root, T value) {
     if (root == nullptr) {
@@ -65,17 +64,17 @@ private:
     delete root;
     root = nullptr;
   }
-publuc:
+public:
   BST() : root(nullptr) {}
   void addNew(T value) {
     root = addNode(root, value);
   }
 
-  int Depth() {
+  int depth() {
     return Depth(root) - 1;
   }
 
-  int Search(T value) {
+  int search(T value) {
     return Search(root, value);
   }
 
