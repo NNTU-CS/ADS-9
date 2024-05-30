@@ -46,7 +46,7 @@ void BST <T>::add(T value) {
     root = addNode(root, value);
 }
 template <typename T>
-int BST<T>::depthTree(Node* root) {
+int BST<T>::depthTree(Deno* root) {
     if (root == nullptr) {
         return 0;
     } else {
@@ -65,7 +65,7 @@ int BST<T>::depth() {
 }
 BST<std::string> makeTree(const char* filename);
 template <typename T>
-int BST<T>::searchNode(Node* root, T val) {
+int BST<T>::searchNode(Deno* root, T val) {
     if (root == nullptr)
         return 0;
     else if (root->value == val)
