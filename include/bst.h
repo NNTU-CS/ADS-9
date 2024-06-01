@@ -57,7 +57,7 @@ template <typename type>
         void treeprint(tnode* p) {
             if (p != NULL) {
                 treeprint(p->left);
-                cout << p->count <<" " << p->word << endl;
+                std::cout << p->count <<" " << p->word << std::endl;
                 treeprint(p->right);
             }
         }
