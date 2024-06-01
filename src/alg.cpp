@@ -7,18 +7,18 @@
 #include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
-    BST<string> bst;
-    ifstream fin(filename);
-    string str = "";
+    BST<std::string> bst;
+    std::ifstream fin(filename);
+    std::string str = "";
     if (fin.is_open()) {
         while (!fin.eof()) {
             str += static_cast<char>(fin.get());
         }
         fin.close();
     } else {
-        cout << "Ошибка";
+        std::cout << "Ошибка";
     }
-    string currentWord = "";
+    std::string currentWord = "";
     for (int i = 0; i < str.length(); i++) {
         if (isalpha(str[i])) {
             if (isupper(str[i])) {
