@@ -5,7 +5,7 @@
 
 template<typename T>
 class BST {
-private:
+ private:
     struct Node {
         T value;
         int count;
@@ -21,16 +21,10 @@ private:
 
     int searchTree(Node*, T);
 
-   
-
-public:
+ public:
     BST();
 
-   
-
     void add(T);
-
-
 
     int depth();
 
@@ -101,9 +95,5 @@ template<typename T>
 int BST<T>::depth() {
     return depthTree(root) - 1;
 }
-
-
-
-
 
 #endif  // INCLUDE_BST_H_
