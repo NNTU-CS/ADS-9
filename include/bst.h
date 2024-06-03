@@ -29,7 +29,6 @@ class BST {
     int depth();
 
     int search(T);
-
 };
 
 template<typename T>
