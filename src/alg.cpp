@@ -1,16 +1,14 @@
-// Copyright 2021 NNTU-CS
-#include <iostream>
+// Copyright 2021 NNTU-CS                                                                                                                                                       #include <iostream>
 #include <fstream>
 #include <string>
 #include <cctype>
-#include "BST2.h"
+#include "BST.h"
 
 bool isAlpha(char ch) {
   return std::isalpha(static_cast<unsigned char>(ch));
 }
-
-BST2<std::string> makeTree(const char* filename) {
-  BST2<std::string> tree; // Изменили тип на BST2
+BST<std::string> makeTree(const char* filename) {
+  BST<std::string> tree;
   std::ifstream input_file(filename);
   if (!input_file) {
     std::cout << "Error opening file!" << std::endl;
