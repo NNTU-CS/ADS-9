@@ -1,4 +1,9 @@
-// Copyright 2021 NNTU-CS                                                                                                                                                       #include <iostream>
+// Copyright 2021 NNTU-CS                                                                                                                                                       #include <iostream>                                                                                                                                                  #include <iostream>
+#include <fstream>
+#include <string>
+#include <cctype>
+#include "BST.h"
+
 bool isAlpha(char ch) {
     return std::isalpha(static_cast<unsigned char>(ch));
 }
