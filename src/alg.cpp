@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <cctype>
-#include "BST.h"
+#include "bst.h"
 
 bool isAlpha(char ch) {
     return std::isalpha(static_cast<unsigned char>(ch));
