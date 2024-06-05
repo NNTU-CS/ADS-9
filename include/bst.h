@@ -7,7 +7,7 @@
 
 template<typename T>
 class BST {
-private: 
+ private:
     struct Node {
         T value;
         int count;
@@ -58,7 +58,7 @@ private:
         return 1 + std::max(depth(node->left), depth(node->right));
     }
 
-public: 
+ public:
     BST() : root(nullptr) {}
 
     void add(const T& value) {
