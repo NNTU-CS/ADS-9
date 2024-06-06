@@ -7,4 +7,19 @@
 
 BST<std::string> makeTree(const char* filename) {
   // поместите сюда свой код
+    BST<std::string> BSTtree;
+  std::ifstream file(filename);
+  std::string res;
+  while (!file.eof()) {
+    char s = file.get();
+    if (s >= 'A' && s <= 'Z')
+        s = s + ('a' - 'A');
+    if (s >= 'a' && s <= 'z') {
+      res += s;
+    } else {
+      BSTtree.add(res);
+      res.clear();
+    }
+  }
+  return BSTtree;
 }
