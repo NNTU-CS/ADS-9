@@ -8,7 +8,7 @@
 BST<std::string> makeTree( const char* filename ) {
     std::cout << filename << std::endl;
     BST<std::string> tree;
-    std::fstream input( filename );
+    std::fstream input(filename);
     std::string word = "";
 
     char follow;
@@ -23,7 +23,7 @@ BST<std::string> makeTree( const char* filename ) {
         }
     }
 
-    if ( !( word.empty() ) )
+    if (!(word.empty()))
         tree.add(word);
 
     input.close();
