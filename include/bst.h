@@ -11,10 +11,14 @@ class BST {
     };
     Node* root;
     Node* addNode(Node*, T);
+    int depthTree(Node*);
+    int searchTree(Node*, T value);
     void delTree(Node*);
 public:
     BST();
     void add(T value);
+    int depth();
+    int search(T value);
     ~BST();
 };
 template<typename T>
@@ -44,6 +48,33 @@ void BST<T>::delTree(Node* root) {
     delTree(root->right);
     delete root;
     root = nullptr;
+}
+template<typename T>
+int BST<T>::depthTree(Node* root) {
+    if (root == nullptr)
+        return 0;
+    int hl = depthTree(root->left);
+    int hr = depthTree(root->right);
+    return (hl > hr) ? (hl + 1) : (hr + 1);
+}
+template<typename T>
+int BST<T>::searchTree(Node* root, T value) {
+    if (root == nullptr)
+        return 0;
+    else if (value < root->value)
+        return searchTree(root->left, value);
+    else if (value > root->value)
+        return searchTree(root->right, value);
+    else
+        return root->count;
+}
+template<typename T>
+int BST<T>::depth() {
+    return depthTree(root) - 1;
+}
+template<typename T>
+int BST<T>::search(T value) {
+    return searchTree(root, value);
 }
 template<typename T>
 void BST<T>::add(T value) {
