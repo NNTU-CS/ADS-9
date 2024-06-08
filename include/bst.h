@@ -6,7 +6,7 @@
 
 template<typename T>
 class BST {
-     private:
+ private:
         struct Node {
             T value;
             Node *left;
@@ -26,7 +26,7 @@ class BST {
         int depthTree(Node *) const;
         int searchTree(Node *, const T &) const;
 
-     public:
+ public:
         BST() {
             root = nullptr;
         }
@@ -87,7 +87,7 @@ int BST<T>::searchTree(Node *node, const T &temp) const {
 }
 
 template<typename T>
-int BST<T>::search( const T &temp ) const {
+int BST<T>::search(const T &temp) const {
     return searchTree(root, temp);
 }
 
