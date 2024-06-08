@@ -4,6 +4,7 @@
 
 #include <algorithm>
 
+
 template<typename T>
 class BST {
 private:
