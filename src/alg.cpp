@@ -16,8 +16,8 @@ BST<std::string> makeTree( const char* filename ) {
             follow = tolower(follow);
             word += follow;
         } else if (!(word.empty())) {
-            tree.add(word);
             std::cout << word << std::endl;
+            tree.add(word);
             word = "";
         }
     }
