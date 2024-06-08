@@ -16,17 +16,21 @@ BST<std::string> makeTree(const char* filename) {
     BST<std::string> bst;
     std::string word;
     bool flag = false;
+    char ch;
     while (!file.eof()) {
-        char ch = file.get();
+        ch = file.get();
         ch = ChangeRegistr(ch);
-        if (ch >= 'a' && ch <= 'z' && !flag) {
-            flag = true;
-            word = ch;
-        } else if (ch >= 'a' && ch <= 'z' && flag) {
-            word += ch;
+        if (ch >= 'a' && ch <= 'z') {
+            if (!flag) {
+                flag = true;
+                word = ch;
+            } else {
+                word += ch;
+            }
         } else {
             flag = false;
             bst.add(word);
+            word = "";
         }
     }
     file.close();
