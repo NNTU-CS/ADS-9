@@ -29,13 +29,6 @@ class BST {
     }
 
     int depth() const {
-        return depthRec(root);
-    }
-
-    bool search(const T& value) const {
-        return searchRec(root, value);
-    
-    int depth() const {
         return depth(root);
     }
 
@@ -84,30 +77,6 @@ class BST {
             delete node;
         }
     }
-
-    int depthRec(Node* node) const {
-        if (!node) {
-            return 0;
-        }
-        int left_depth = depthRec(node->left);
-        int right_depth = depthRec(node->right);
-        return std::max(left_depth, right_depth) + 1;
-    }
-
-    bool searchRec(Node* node, const T& value) const {
-        if (!node) {
-            return false;
-        }
-        if (value == node->data) {
-            return true;
-        }
-        if (value < node->data) {
-            return searchRec(node->left, value);
-        } else {
-            return searchRec(node->right, value);
-        }
-    }
-    
 };
 
 #endif  // INCLUDE_BST_H_
