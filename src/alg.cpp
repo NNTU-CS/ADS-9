@@ -3,7 +3,8 @@
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
-#include  "bst.h"
+#include <algorithm>
+#include "bst.h"
 
 char toLowerChar(char ch) {
     return std::tolower(ch, std::locale::classic());
@@ -22,10 +23,10 @@ BST<std::string> makeTree(const char* filename) {
     }
     std::string word;
     while (file >> word) {
+        word.erase(std::remove_if(word.begin(), word.end(), 
+                                  [](char c { return !isAlphaChar(c); }), word.end());
         std::string filteredWord;
-        std::remove_copy_if(word.begin(), word.end(), std::back_inserter(filteredWord),
-                            [](char c { return !isAlphaChar(c); });
-        std::transform(filteredWord.begin(), filteredWord.end(), filteredWord.begin(), toLowerChar);
+        std::transform(word.begin(), word.end(), std::back_inserter(filteredWord), toLowerChar);
         if (!filteredWord.empty()) {
             tree.insert(filteredWord);
         }
