@@ -32,8 +32,8 @@ class BST {
         return depth(root);
     }
 
-    Node* search(const T& val) const {
-        return search(root, val);
+    int search(const T& val) const {
+    return getDepthRec(root, val);
     }
 
     int getDepth(const T& val) const {
@@ -82,17 +82,18 @@ class BST {
         }
     }
 
-    int getDepthRec(Node* node, const T& val, int depth = 0) const {
+    int getDepthRec(Node* node, const T& val, int currentDepth = 0) const {
         if (!node) {
             return -1;
         }
         if (node->data == val) {
-            return depth;
+            return currentDepth;
         }
-        if (val < node->data) {
-            return getDepthRec(node->left, val, depth + 1);
+        int depthLeft = getDepthRec(node->left, val, currentDepth + 1);
+        if (depthLeft != -1) {
+            return depthLeft;
         }
-        return getDepthRec(node->right, val, depth + 1);
+        return getDepthRec(node->right, val, currentDepth + 1);
     }
 };
 
