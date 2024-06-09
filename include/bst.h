@@ -36,6 +36,10 @@ class BST {
         return search(root, val);
     }
 
+    int getDepth(const T& val) const {
+        return getDepthRec(root, val);
+    }
+
  private:
      int depth(Node* node) const {
         if (!node) {
@@ -76,6 +80,19 @@ class BST {
             clear(node->right);
             delete node;
         }
+    }
+
+    int getDepthRec(Node* node, const T& val, int depth = 0) const {
+        if (!node) {
+            return -1;
+        }
+        if (node->data == val) {
+            return depth;
+        }
+        if (val < node->data) {
+            return getDepthRec(node->left, val, depth + 1);
+        }
+        return getDepthRec(node->right, val, depth + 1);
     }
 };
 
