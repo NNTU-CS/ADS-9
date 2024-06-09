@@ -5,7 +5,6 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 
-#include <algorithm>
 template <typename T>
 class BST {
  private:
