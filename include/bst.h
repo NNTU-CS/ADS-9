@@ -68,6 +68,13 @@ class BST {
   int depth() {
     return DepthTree(root) - 1;
   }
+
+  char LowercaseTranslation(char Token) {
+    if (Token >= 'A' && Token <= 'Z') {
+      Token = Token + ('a' - 'A');
+    }
+    return Token;
+  }
 };
 
 #endif  // INCLUDE_BST_H_
