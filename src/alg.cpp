@@ -12,7 +12,7 @@ BST<std::string> makeTree(const char* filename) {
   char Token;
   while (!file.eof()) {
     Token = file.get();
-    Token = WarPeaсeTree->LowercaseTranslation(Token);
+    Token = WarPeaсeTree.LowercaseTranslation(Token);
     if (Token >= 'a' && Token <= 'z') {
       Word += Token;
     } else {
