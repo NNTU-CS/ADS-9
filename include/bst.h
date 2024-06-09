@@ -2,6 +2,8 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include <string>
+#include <algorithm>
+#include <iostream>
 
 template <typename T>
 class BST {
@@ -42,13 +44,13 @@ class BST {
     }
 
  private:
-    int depth(Node* node) const {
+     int depth(Node* node) const {
         if (!node) {
             return 0;
         }
         int leftDepth = depth(node->left);
         int rightDepth = depth(node->right);
-        return (leftDepth > rightDepth ? leftDepth : rightDepth) + 1;
+        return std::max(leftDepth, rightDepth) + 1;
     }
 
     Node* search(Node* node, const T& val) const {
@@ -60,7 +62,6 @@ class BST {
         }
         return search(node->right, val);
     }
-};
 
     Node* insertRec(Node* node, const T& value) {
         if (!node) {
