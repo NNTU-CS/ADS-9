@@ -6,12 +6,6 @@
 #include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
-  char LowercaseTranslation(char Token) {
-    if (Token >= 'A' && Token <= 'Z') {
-      Token = Token + ('a' - 'A');
-    }
-    return Token;
-  }
   BST<std::string> WarPeaсeTree;
   std::ifstream file(filename);
   std::string Word;
