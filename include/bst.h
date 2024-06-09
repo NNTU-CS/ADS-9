@@ -54,7 +54,7 @@ class BST {
   BST() {};
 
   void add(const T& value) {
-    root = AddNODE(root, value); 
+    root = AddNode(root, value); 
   }
   
   int search(const T& value) {
