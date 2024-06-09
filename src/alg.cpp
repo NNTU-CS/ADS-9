@@ -23,10 +23,11 @@ BST<std::string> makeTree(const char* filename) {
     }
     std::string word;
     while (file >> word) {
-        word.erase(std::remove_if(
-            word.begin(),
-            word.end(),
-            [](char c) { return !isAlphaChar(c);}));
+    auto new_end = std::remove_if(
+        word.begin(),
+        word.end(),
+        [](char c) { return !isAlphaChar(c); });
+        word.erase(new_end, word.end());
         std::string filteredWord;
         std::transform(word.begin(), word.end(), std::back_inserter(filteredWord), toLowerChar);
         if (!filteredWord.empty()) {
