@@ -9,7 +9,7 @@ class BST {
     int count;
     NODE* left;
     NODE* right;
-  }
+  };
   NODE* root = nullptr;
 
   NODE* AddNode(NODE* root, const T& value) {
@@ -46,7 +46,7 @@ class BST {
     if (!root) {
       return 0;
     } else {
-      return max(DepthTree(root->left), DepthTree(root->right))+1;
+      return std::max(DepthTree(root->left), DepthTree(root->right))+1;
     }
   }
 
