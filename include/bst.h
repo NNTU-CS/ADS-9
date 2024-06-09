@@ -32,8 +32,36 @@ class BST {
 
     bool search(const T& value) const {
         return searchRec(root, value);
+    
+    int depth() const {
+        return depth(root);
+    }
+
+    Node* search(const T& val) const {
+        return search(root, val);
+    }
 
  private:
+    int depth(Node* node) const {
+        if (!node) {
+            return 0;
+        }
+        int leftDepth = depth(node->left);
+        int rightDepth = depth(node->right);
+        return (leftDepth > rightDepth ? leftDepth : rightDepth) + 1;
+    }
+
+    Node* search(Node* node, const T& val) const {
+        if (!node || node->data == val) {
+            return node;
+        }
+        if (val < node->data) {
+            return search(node->left, val);
+        }
+        return search(node->right, val);
+    }
+};
+
     Node* insertRec(Node* node, const T& value) {
         if (!node) {
             return new Node(value);
@@ -78,6 +106,7 @@ class BST {
             return searchRec(node->right, value);
         }
     }
+    
 };
 
 #endif  // INCLUDE_BST_H_
