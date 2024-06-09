@@ -90,7 +90,7 @@ int BST<T>::searchTree(Node *root, T value) {
     if (root == nullptr) {
         return 0;
     } else if (value > root->value) {
-        return searchTree(root->right, value);  
+        return searchTree(root->right, value);
     } else if (value < root->value) {
         return searchTree(root->left, value);
     } else {
