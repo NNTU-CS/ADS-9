@@ -30,9 +30,9 @@ class BST {
   }
 
   NODE* SearchTree(NODE* root, const T& value) {
-    if (root->value == value) {
+    if (root == nullptr) {
       return root;
-    } else if (root == nullptr) {
+    } else if (root->value == value) {
       return root;
     }
     if (root->value < value) {
