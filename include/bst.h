@@ -106,7 +106,7 @@ int BST<T>::depth() {
 template<typename T>
 int BST<T>::depthTree(Node *root) {
     if (root == nullptr) {
-        return 0
+        return 0;
     }
     int hR = depthTree(root->right);
     int hL = depthTree(root->left);
