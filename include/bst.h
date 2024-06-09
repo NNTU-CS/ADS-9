@@ -35,7 +35,7 @@ class BST {
     } else if (root->value == value) {
       return root;
     }
-    if (root->value < value) {
+    if (root->value > value) {
       return SearchTree(root->left, value);
     } else {
       return SearchTree(root->right, value);
@@ -43,7 +43,7 @@ class BST {
   }
 
   int DepthTree(NODE* root) {
-    if (!root) {
+    if (root == nullptr) {
       return 0;
     } else {
       return std::max(DepthTree(root->left), DepthTree(root->right))+1;
