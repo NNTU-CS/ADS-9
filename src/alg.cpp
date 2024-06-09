@@ -6,5 +6,20 @@
 #include  "bst.h"
 
 BST<std::string> makeTree(const char* filename) {
-  // поместите сюда свой код
+  BST<std::string> WarPeaсeTree;
+  std::ifstream file(filename);
+  std::string Word;
+  char Token;
+  while (!file.eof()) {
+    Token = file.get();
+    Token = WarPeaсeTree.LowercaseTranslation(Token);
+    if (Token >= 'a' && Token <= 'z') {
+      Word += Token;
+    } else {
+      WarPeaсeTree.add(Word);
+      Word.clear();
+    }
+  }
+  return WarPeaсeTree;
 }
+
