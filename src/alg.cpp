@@ -18,7 +18,7 @@ BST<std::string> makeTree(const char* filename) {
     std::string word;
     char ch;
     while (file.get(ch)) {
-        if (isLatinLetter(ch)) {  
+        if (isLatinLetter(ch)) {
             word += std::tolower(ch, std::locale());
         } else if (!word.empty()) {
             tree.insert(word);
