@@ -6,19 +6,19 @@
 
 template <typename T>
 class BST {
-private:
-   
+ private:
+
     struct Node {
-        T data;        
-        int count;      
-        Node *left;     
-        Node *right;    
+        T data;
+        int count;
+        Node *left;
+        Node *right;
 
       
         Node(T val) : data(val), count(1), left(nullptr), right(nullptr) {}
     };
 
-    Node *root; // Корень дерева
+    Node *root;
 
     void insert(Node *&node, const T &val) {
         if (!node) {
@@ -40,8 +40,7 @@ private:
         }
     }
 
-public:
-    // Конструктор дерева
+ public:
     BST() : root(nullptr) {}
 
     void insert(const T &val) {
