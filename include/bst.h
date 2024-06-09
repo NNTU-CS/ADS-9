@@ -2,53 +2,51 @@
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include <string>
-#include <iostream>
 
 template <typename T>
 class BST {
- private:
-
+ public:
     struct Node {
         T data;
         int count;
-        Node *left;
-        Node *right;
-
-      
+        Node* left;
+        Node* right;
         Node(T val) : data(val), count(1), left(nullptr), right(nullptr) {}
     };
 
-    Node *root;
+    Node* root;
 
-    void insert(Node *&node, const T &val) {
+    BST() : root(nullptr) {}
+
+    ~BST() {
+        clear(root);
+    }
+
+    void insert(const T& value) {
+        root = insertRec(root, value);
+    }
+
+ private:
+    Node* insertRec(Node* node, const T& value) {
         if (!node) {
-            node = new Node(val);
-        } else if (val < node->data) {
-            insert(node->left, val);
-        } else if (val > node->data) {
-            insert(node->right, val);
+            return new Node(value);
+        }
+        if (value < node->data) {
+            node->left = insertRec(node->left, value);
+        } else if (value > node->data) {
+            node->right = insertRec(node->right, value);
         } else {
             node->count++;
         }
+        return node;
     }
 
-    void inOrder(Node *node) const {
+    void clear(Node* node) {
         if (node) {
-            inOrder(node->left);
-            std::cout << node->data << " - " << node->count << std::endl;
-            inOrder(node->right);
+            clear(node->left);
+            clear(node->right);
+            delete node;
         }
-    }
-
- public:
-    BST() : root(nullptr) {}
-
-    void insert(const T &val) {
-        insert(root, val);
-    }
-
-    void inOrder() const {
-        inOrder(root);
     }
 };
 
